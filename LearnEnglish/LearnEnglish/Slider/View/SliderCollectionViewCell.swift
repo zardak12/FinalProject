@@ -82,6 +82,7 @@ class SliderCollectionViewCell: UICollectionViewCell , ParallaxCardCell{
     }
   }
   
+// Нужно менять
   func configure(with item :Word) {
     firstValue =  item.value
     secondValue = item.translate
@@ -136,6 +137,7 @@ class SliderCollectionViewCell: UICollectionViewCell , ParallaxCardCell{
     rotate()
   }
   
+    //MARK: - нужно менять
   func rotate() {
     if isSelect  == false{
       let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]

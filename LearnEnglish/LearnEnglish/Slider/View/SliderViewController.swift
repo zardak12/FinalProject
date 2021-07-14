@@ -8,13 +8,16 @@
 import UIKit
 import CoreData
 
-class SliderViewController: UIViewController {
+
+class SliderViewController: UIViewController, SliderViewInput {
     
-    private let coreDataStack = Container.shared.coreDataStack
+     //MARK: - Убирать!!!
     
-    var words : [Word]
+    var presenter: SliderViewOutput?
     
-    var lesson : Lesson
+    //var words : [Word]? //MARK: - Убирать!!!
+//
+    //var lesson : Lesson? //MARK: - Убирать!!!
 
     let reply = 50
     
@@ -38,15 +41,17 @@ class SliderViewController: UIViewController {
     }()
     
     
-    init(words : [Word], lesson : Lesson) {
-        self.words = words
-        self.lesson = lesson
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+//    //MARK: - Убирать!!!
+//    init(words : [Word], lesson : Lesson) {
+//        self.words = words
+//        self.lesson = lesson
+//        super.init(nibName: nil, bundle: nil)
+//    }
+//    
+//    required init?(coder: NSCoder) {
+//        fatalError("init(coder:) has not been implemented")
+//    }
+//    
     
     
     // MARK: - Life Circle
@@ -54,6 +59,7 @@ class SliderViewController: UIViewController {
         super.viewWillAppear(animated)
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.layoutIfNeeded()
+        //MARK: - Убирать!!!
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
@@ -83,10 +89,11 @@ class SliderViewController: UIViewController {
     }
     
     
-    
+    //MARK: - Убирать!!!
     func arrayIndexForRow(_ row : Int) -> Int {
-        return row % words.count
+        return row % (presenter?.words?.count ?? 0)//words.count
     }
+    
     
     func createFirstWord() {
         let alertController = UIAlertController(title: "Новое слово ", message: "добавьте новое слово", preferredStyle: .alert)
@@ -106,12 +113,18 @@ class SliderViewController: UIViewController {
             else {
                 return
             }
-            self.coreDataStack.createWord(value: valueText, translate: translateText, lesson: self.lesson) { word in
-                self.words.insert(word, at: 0)
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }
+            guard let lesson = self.presenter?.lesson else { return }
+            self.presenter?.createWord(value: valueText, translate: translateText, lesson: lesson)
+            
+            //MARK: - Убирать!!!
+//            self.coreDataStack.createWord(value: valueText, translate: translateText, lesson: self.lesson) { word in
+//                self.words.insert(word, at: 0)
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+//            }
+            
+            
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -119,46 +132,60 @@ class SliderViewController: UIViewController {
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
-        
+    
+    func updateCollectionView() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    
+    //MARK: - Убирать!!! Router
     @objc func settings() {
-        let settings = SettingsViewController(with: words,lesson: lesson,delegate: self)
-        navigationController?.pushViewController(settings, animated: true)
+//        let settings = SettingsViewController(with: words,lesson: lesson,delegate: self)
+//        navigationController?.pushViewController(settings, animated: true)
     }
     
 }
 
 extension SliderViewController: UICollectionViewDataSource {
     
-    
-    
     // MARK: -  Возвращает количество слов
     
+    //MARK: - Убирать!!!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if words.count == 0 {
+        if presenter?.words?.count == 0 {
             createFirstWord()
         }
-        return words.count * reply
+        return (presenter?.words?.count ?? 0) * reply
     }
     
     // MARK: -  Регистрирует ячейку
     
+    //MARK: - Убирать!!!
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier, for: indexPath) as! SliderCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier, for: indexPath) as? SliderCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         let arrayIndex = arrayIndexForRow(indexPath.item)
-        let item = words[arrayIndex]
+          //MARK: - тут изменить тоже бляяяя
+        guard let item = presenter?.words?[arrayIndex] else { return UICollectionViewCell() }
         cell.configure(with: item)
         return cell
     }
 }
 
+/*
 extension SliderViewController : UpdateCollectionViewDelegate {
+    //MARK: - Убирать!!!
     func deleteWord(_ deleteIndex: Int) {
-        words.remove(at: deleteIndex)
+        presenter?.words.remove(at: deleteIndex)
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
     
+    //MARK: - Убирать!!!
     
     func addNewWord(_ newWord: Word) {
         words.append(newWord)
@@ -168,5 +195,5 @@ extension SliderViewController : UpdateCollectionViewDelegate {
     }
 }
 
-
+*/
 

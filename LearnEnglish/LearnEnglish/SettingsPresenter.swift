@@ -7,6 +7,13 @@
 
 import Foundation
 
+protocol SettingsViewInput: AnyObject {
+}
+
+protocol SettingsViewOutput: AnyObject {
+}
+
+
 class SettingsPresenter {
     
 }

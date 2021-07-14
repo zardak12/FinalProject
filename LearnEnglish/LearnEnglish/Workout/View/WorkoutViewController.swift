@@ -20,8 +20,8 @@ final class WorkoutViewController: CardsViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = frc.object(at: indexPath)
-        let words = item.words?.allObjects as! [Word]
+        let item = presenter?.frc?.object(at: indexPath)
+        guard let words = item?.words?.allObjects as? [Word] else { return }
         let trainingController = TrainingViewController(with: words)
         self.navigationController?.pushViewController(trainingController, animated: true)
     }

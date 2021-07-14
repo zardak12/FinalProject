@@ -10,6 +10,7 @@ import UIKit
 final class TrainingViewController: UIViewController {
     
     // MARK: -  Слова
+    //MARK: - Убирать!!!
     var words : [Word]
     
     let reply = 50
@@ -63,6 +64,7 @@ final class TrainingViewController: UIViewController {
         ])
     }
     
+    //MARK: - Убирать!!!
     func errorOfCountWords(){
             let alert = UIAlertController(title: "Мало слов...", message: "Вы должны иметь хотябы 5 слов чтобы пользоваться режимом тренировка ", preferredStyle: .alert)
             let ok = UIAlertAction(title:  "Ok", style: .cancel) { _ in
@@ -72,6 +74,7 @@ final class TrainingViewController: UIViewController {
             present(alert, animated: true)
     }
     
+    //MARK: - Убирать!!!
     func arrayIndexForRow(_ row : Int) -> Int {
         return row % words.count
     }
@@ -81,6 +84,7 @@ extension TrainingViewController : UICollectionViewDataSource {
     
     // MARK: -  Возвращает количество слов
     
+    //MARK: - Убирать!!!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if words.count < 5 {
             errorOfCountWords()
@@ -91,6 +95,7 @@ extension TrainingViewController : UICollectionViewDataSource {
     
     // MARK: -  Регистрирует ячейку
     
+    //MARK: - Убирать!!!
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrainingCollectionViewCell.identifier, for: indexPath) as? TrainingCollectionViewCell else {
             return UICollectionViewCell()
@@ -102,7 +107,10 @@ extension TrainingViewController : UICollectionViewDataSource {
         return cell
     }
     
-      //MARK: - Это мы уберем 
+      //MARK: - Это мы уберем
+    
+    //MARK: - Убирать!!!
+    
     private func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))

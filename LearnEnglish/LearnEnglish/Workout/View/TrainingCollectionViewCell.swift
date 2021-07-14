@@ -159,6 +159,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         
     }
     
+    //MARK: - Убирать!!!
     func getNewArray(word : Word, array : [Word]) -> [Word] {
         var newArray = [Word]()
         var number = 0
@@ -188,12 +189,13 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
     
     // MARK: -  Objc functions
     
+    //MARK: - Убирать!!!
     @objc func rightAnswer() {
         firstButton.backgroundColor = .green
         delegate?.scrollToNext()
     }
     
-    
+    //MARK: - Убирать!!!
     @objc func failedAnswer(sender : UIButton) {
         switch sender.tag {
         case 1:

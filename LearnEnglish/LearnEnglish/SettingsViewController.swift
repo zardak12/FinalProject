@@ -16,13 +16,16 @@ protocol UpdateCollectionViewDelegate : AnyObject {
 class SettingsViewController: UIViewController {
     
     
+    //MARK: - Убирать!!!
     var words : [Word]
     var lesson : Lesson
     
+    //MARK: - Убирать!!!
     private let coreDataStack = Container.shared.coreDataStack
     
     var cellSpacingHeight : CGFloat = 10
     
+    //MARK: - Убирать!!!
     weak var delegate : UpdateCollectionViewDelegate?
     
     private lazy var addItem : UIBarButtonItem = {
@@ -48,6 +51,8 @@ class SettingsViewController: UIViewController {
     
     // MARK: -  Init
     
+    //MARK: - Убирать!!!
+
     init(with words : [Word], lesson : Lesson , delegate : UpdateCollectionViewDelegate) {
         self.words = words
         self.lesson = lesson
@@ -108,13 +113,14 @@ class SettingsViewController: UIViewController {
             else {
                 return
             }
-            self.coreDataStack.createWord(value: valueText, translate: translateText, lesson: self.lesson) { word in
-                self.delegate?.addNewWord(word)
-                self.words.append(word)
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
+            //MARK: - Убирать!!!
+//            self.coreDataStack.createWord(value: valueText, translate: translateText, lesson: self.lesson) { word in
+//                self.delegate?.addNewWord(word)
+//                self.words.append(word)
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            }
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -128,16 +134,21 @@ class SettingsViewController: UIViewController {
   //MARK: - UITableViewDataSource
 extension SettingsViewController : UITableViewDataSource {
     
+    //MARK: - Убирать!!!
     func numberOfSections(in tableView: UITableView) -> Int {
         return words.count
     }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
+    //MARK: - Убирать!!!
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier,for: indexPath) as! SettingsTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier,for: indexPath) as? SettingsTableViewCell else {
+            return UITableViewCell()
+        }
         let word = words[indexPath.section]
         cell.configure(with: word)
         cell.backgroundColor = .white
@@ -169,6 +180,7 @@ extension SettingsViewController : UITableViewDelegate {
         return .delete
     }
     
+    //MARK: - Убирать!!!
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let deleteIndex = indexPath.section

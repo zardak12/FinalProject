@@ -7,6 +7,15 @@
 
 import Foundation
 
+protocol TrainingViewInput : AnyObject {
+    
+}
+
+protocol TrainingViewOutput : AnyObject {
+    
+}
+
+
 class TrainingPresenter  {
     
 }

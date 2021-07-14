@@ -16,7 +16,7 @@ final class LoadViewController: UIViewController {
         dataManager.load()
         setFontNavigationBar()
         tabBarCnt.tabBar.barStyle = .default
-        let vc1 = UINavigationController(rootViewController: CardsViewController())
+        let vc1 = UINavigationController(rootViewController: AssemblyBuilder().createCards())
         let cardsTabBarItem = UITabBarItem(title: "Карточки", image: UIImage(named: "cards"), tag: 0)
         vc1.tabBarItem = cardsTabBarItem
         vc1.navigationBar.tintColor = UIColor.white
@@ -24,7 +24,7 @@ final class LoadViewController: UIViewController {
         vc1.navigationBar.setBackgroundImage(UIImage(), for: .default)
         vc1.navigationBar.shadowImage = UIImage()
         vc1.navigationBar.isTranslucent = true
-        let vc2 = UINavigationController(rootViewController: WorkoutViewController())
+        let vc2 = UINavigationController(rootViewController: AssemblyBuilder().createWorkout())
         let workoutTabBarItem = UITabBarItem(title: "Тренировка", image: UIImage(named: "workout"), tag: 1)
         vc2.tabBarItem = workoutTabBarItem
         vc2.navigationBar.tintColor = UIColor.white
@@ -32,7 +32,7 @@ final class LoadViewController: UIViewController {
         vc2.navigationBar.setBackgroundImage(UIImage(), for: .default)
         vc2.navigationBar.shadowImage = UIImage()
         vc2.navigationBar.isTranslucent = true
-        let vc3 = Assembly.createProfile()//ProfileViewController() //createProfileViewController()
+        let vc3 = AssemblyBuilder().createProfile()
         let profileTabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "profile"), tag: 2)
         vc3.tabBarItem =  profileTabBarItem
         tabBarCnt.viewControllers = [vc1, vc2,vc3]
@@ -46,15 +46,4 @@ final class LoadViewController: UIViewController {
           ]
         UINavigationBar.appearance().titleTextAttributes = attrs
     }
-    
-    func createCardsViewContorller() -> UIViewController {
-        return CardsViewController()
-    }
-    
-//    func createProfileViewController() -> UIViewController {
-//        let view =  ProfileViewController()
-//        let presenter = ProfilePresenter()
-//        view.presenter = presenter
-//        return view
-//    }
 }

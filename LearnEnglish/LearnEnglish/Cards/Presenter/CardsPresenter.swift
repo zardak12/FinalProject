@@ -6,7 +6,54 @@
 //
 
 import UIKit
+import CoreData
 
-class CardsPresenter {
+protocol CardsViewOutput: AnyObject {
+    var frc: NSFetchedResultsController<Lesson>? { get set}
+    init(view: CardsViewInput,router: CardsRouterProtocol)
+    func fetch()
+    func createLesson(with name: String)
+    func deleteLesson(with lesson: Lesson)
+    func tapToSliderVc(with words: [Word], lesson: Lesson)
+}
+
+class CardsPresenter: CardsViewOutput {
     
+    weak var view: CardsViewInput?
+    let coreDataStack = Container.shared.coreDataStack
+    var frc: NSFetchedResultsController<Lesson>?
+    var router: CardsRouterProtocol
+    
+    
+    
+    required init(view: CardsViewInput,router: CardsRouterProtocol) {
+        self.view = view
+        self.router = router
+        self.frc = createFetchResultController()
+    }
+    
+    func createFetchResultController() -> NSFetchedResultsController<Lesson> {
+        let request = NSFetchRequest<Lesson>(entityName: "Lesson")
+        request.sortDescriptors = [.init(key: "name", ascending: true)]
+        return NSFetchedResultsController(fetchRequest: request,
+                                          managedObjectContext: coreDataStack.viewContext,
+                                          sectionNameKeyPath: "name",
+                                          cacheName: nil)
+    }
+    
+    func fetch() {
+        try? frc?.performFetch()
+    }
+    
+    func createLesson(with name: String) {
+        coreDataStack.createLesson(with: name)
+    }
+    
+    func deleteLesson(with lesson: Lesson) {
+        coreDataStack.deleteLesson(with: lesson)
+    }
+    
+    func tapToSliderVc(with words: [Word], lesson: Lesson) {
+        router.showSliderController(with: words, lesson: lesson)
+    }
 }

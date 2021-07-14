@@ -7,11 +7,11 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController, ProfileViewInput{
+final class ProfileViewController: UIViewController{
     
       //MARK: - UI
     
-    private lazy var imageView : UIImageView = {
+    private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePicker))
@@ -22,7 +22,7 @@ final class ProfileViewController: UIViewController, ProfileViewInput{
         return image
     }()
     
-    private lazy var tapToChangeLabel : UILabel = {
+    private lazy var tapToChangeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -30,7 +30,7 @@ final class ProfileViewController: UIViewController, ProfileViewInput{
         return label
     }()
     
-    private lazy var nameTextField : UITextField = {
+    private lazy var nameTextField: UITextField = {
         let field = UITextField()
         field.delegate = self
         field.textAlignment = .center
@@ -39,7 +39,7 @@ final class ProfileViewController: UIViewController, ProfileViewInput{
         field.textColor = .white
         field.placeholder = "Как вас зовут?"
         let placeholderText = NSAttributedString(string: "Как вас зовут?",
-                                                       attributes:[NSAttributedString.Key.foregroundColor: UIColor(named: "placeholderFill")])
+                                                 attributes:[NSAttributedString.Key.foregroundColor: UIColor(named: "placeholderFill") as Any])
         field.attributedPlaceholder = placeholderText
         field.font = UIFont.boldSystemFont(ofSize: 30)
         return field
@@ -67,7 +67,7 @@ final class ProfileViewController: UIViewController, ProfileViewInput{
     
     var presenter: ProfileViewOutput?
 
-      //MARK: -Life Cyrcle
+      //MARK: - Life Cyrcle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -119,16 +119,6 @@ final class ProfileViewController: UIViewController, ProfileViewInput{
         
     }
     
-      //MARK: - ViewInput
-    func showAvaImage(with image: UIImage,with text: String) {
-        imageView.image = image
-        tapToChangeLabel.text = text
-    }
-    
-    func showName(with name: String){
-        nameTextField.text = name
-    }
-    
       //MARK: - Objc fucntions
     
     @objc func openImagePicker() {
@@ -140,10 +130,23 @@ final class ProfileViewController: UIViewController, ProfileViewInput{
     
     @objc func showAboutUs() {
         // let aboutUsViewController = Assembly().createAboutUsViewController
-        let aboutUsViewContorller = UINavigationController(rootViewController: AboutUsViewController())
+        let aboutUsViewContorller = UINavigationController(rootViewController: AssemblyBuilder().createAboutUs())
         present(aboutUsViewContorller, animated: true)
     }
 
+}
+
+  //MARK: - ViewInput
+
+extension ProfileViewController: ProfileViewInput {
+    func showAvaImage(with image: UIImage,with text: String) {
+        imageView.image = image
+        tapToChangeLabel.text = text
+    }
+    
+    func showName(with name: String){
+        nameTextField.text = name
+    }
 }
 
   //MARK: - UITextFieldDelegate
@@ -161,7 +164,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-  //MARK: - UIImagePickerControllerDelegate
+  //MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {

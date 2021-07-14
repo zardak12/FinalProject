@@ -20,23 +20,16 @@
 		4D935D22269B983300906B62 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D21269B983300906B62 /* UIButton+Extension.swift */; };
 		4D935D4A269C740B00906B62 /* CardsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D49269C740B00906B62 /* CardsPresenter.swift */; };
 		4D935D4D269C74AC00906B62 /* SliderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D4C269C74AC00906B62 /* SliderPresenter.swift */; };
-		4D935D4F269C74CB00906B62 /* SliderViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D4E269C74CB00906B62 /* SliderViewOutput.swift */; };
-		4D935D51269C74EA00906B62 /* SliderViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D50269C74EA00906B62 /* SliderViewInput.swift */; };
 		4D935D53269C754400906B62 /* TrainingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D52269C754400906B62 /* TrainingPresenter.swift */; };
 		4D935D55269C756100906B62 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D54269C756100906B62 /* Assembly.swift */; };
-		4D935D57269C75F500906B62 /* TrainigInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D56269C75F500906B62 /* TrainigInput.swift */; };
-		4D935D59269C761800906B62 /* TrainingOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D58269C761800906B62 /* TrainingOutput.swift */; };
-		4D935D5C269C76A200906B62 /* CardsInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D5B269C76A200906B62 /* CardsInput.swift */; };
-		4D935D5E269C76C100906B62 /* CardsOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D5D269C76C100906B62 /* CardsOutput.swift */; };
 		4D935D60269C76FE00906B62 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D5F269C76FE00906B62 /* SettingsPresenter.swift */; };
-		4D935D62269C772100906B62 /* SettingsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D61269C772100906B62 /* SettingsViewOutput.swift */; };
-		4D935D64269C773D00906B62 /* SettingsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D63269C773D00906B62 /* SettingsViewInput.swift */; };
 		4D935D70269C784300906B62 /* AboutUsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D6F269C784300906B62 /* AboutUsPresenter.swift */; };
-		4D935D73269C786A00906B62 /* AboutUsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D72269C786A00906B62 /* AboutUsViewInput.swift */; };
-		4D935D75269C789000906B62 /* AboutUsViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D74269C789000906B62 /* AboutUsViewOutput.swift */; };
 		4D935D78269C79B600906B62 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D77269C79B600906B62 /* ProfilePresenter.swift */; };
-		4D935D7A269C79C900906B62 /* ProfileViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D79269C79C900906B62 /* ProfileViewInput.swift */; };
-		4D935D7C269C79E700906B62 /* ProfileViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935D7B269C79E700906B62 /* ProfileViewOutput.swift */; };
+		4D935DD9269DB51600906B62 /* RouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935DD8269DB51600906B62 /* RouterProtocol.swift */; };
+		4D935DE4269E064600906B62 /* CardsRouterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935DE3269E064600906B62 /* CardsRouterProtocol.swift */; };
+		4D935DE6269E065100906B62 /* CardsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935DE5269E065100906B62 /* CardsRouter.swift */; };
+		4D935DE8269E243A00906B62 /* UINaviagationBar+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935DE7269E243A00906B62 /* UINaviagationBar+Extensions.swift */; };
+		4D935DEC269EC6DA00906B62 /* StartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935DEB269EC6DA00906B62 /* StartRouter.swift */; };
 		4DEEC5712685F41B0017D77B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC5702685F41B0017D77B /* NetworkService.swift */; };
 		4DEEC60F268724440017D77B /* GetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC60E268724440017D77B /* GetResponse.swift */; };
 		4DEEC612268742DC0017D77B /* Lessons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC610268742DC0017D77B /* Lessons.xcdatamodeld */; };
@@ -49,7 +42,6 @@
 		970BBC8D2690A6F2008EFDEB /* TrainingCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BBC8C2690A6F2008EFDEB /* TrainingCollectionViewLayout.swift */; };
 		970BBC902690A82A008EFDEB /* TrainingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BBC8F2690A82A008EFDEB /* TrainingCollectionViewCell.swift */; };
 		970BBC9B2691F7BF008EFDEB /* CardsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BBC9A2691F7BF008EFDEB /* CardsTableViewCell.swift */; };
-		970BBC9F26932FF3008EFDEB /* LessonsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970BBC9E26932FF3008EFDEB /* LessonsTableViewController.swift */; };
 		9714212A2696DC9700467C83 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971421292696DC9700467C83 /* SettingsViewController.swift */; };
 		9714212D2696DCB400467C83 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9714212C2696DCB400467C83 /* SettingsTableViewCell.swift */; };
 		9734ADD12679D16F006BCF52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734ADD02679D16F006BCF52 /* AppDelegate.swift */; };
@@ -75,23 +67,16 @@
 		4D935D21269B983300906B62 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		4D935D49269C740B00906B62 /* CardsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPresenter.swift; sourceTree = "<group>"; };
 		4D935D4C269C74AC00906B62 /* SliderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPresenter.swift; sourceTree = "<group>"; };
-		4D935D4E269C74CB00906B62 /* SliderViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewOutput.swift; sourceTree = "<group>"; };
-		4D935D50269C74EA00906B62 /* SliderViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderViewInput.swift; sourceTree = "<group>"; };
 		4D935D52269C754400906B62 /* TrainingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPresenter.swift; sourceTree = "<group>"; };
 		4D935D54269C756100906B62 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
-		4D935D56269C75F500906B62 /* TrainigInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainigInput.swift; sourceTree = "<group>"; };
-		4D935D58269C761800906B62 /* TrainingOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingOutput.swift; sourceTree = "<group>"; };
-		4D935D5B269C76A200906B62 /* CardsInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsInput.swift; sourceTree = "<group>"; };
-		4D935D5D269C76C100906B62 /* CardsOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsOutput.swift; sourceTree = "<group>"; };
 		4D935D5F269C76FE00906B62 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
-		4D935D61269C772100906B62 /* SettingsViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewOutput.swift; sourceTree = "<group>"; };
-		4D935D63269C773D00906B62 /* SettingsViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewInput.swift; sourceTree = "<group>"; };
 		4D935D6F269C784300906B62 /* AboutUsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsPresenter.swift; sourceTree = "<group>"; };
-		4D935D72269C786A00906B62 /* AboutUsViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewInput.swift; sourceTree = "<group>"; };
-		4D935D74269C789000906B62 /* AboutUsViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewOutput.swift; sourceTree = "<group>"; };
 		4D935D77269C79B600906B62 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
-		4D935D79269C79C900906B62 /* ProfileViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewInput.swift; sourceTree = "<group>"; };
-		4D935D7B269C79E700906B62 /* ProfileViewOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewOutput.swift; sourceTree = "<group>"; };
+		4D935DD8269DB51600906B62 /* RouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterProtocol.swift; sourceTree = "<group>"; };
+		4D935DE3269E064600906B62 /* CardsRouterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRouterProtocol.swift; sourceTree = "<group>"; };
+		4D935DE5269E065100906B62 /* CardsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsRouter.swift; sourceTree = "<group>"; };
+		4D935DE7269E243A00906B62 /* UINaviagationBar+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINaviagationBar+Extensions.swift"; sourceTree = "<group>"; };
+		4D935DEB269EC6DA00906B62 /* StartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouter.swift; sourceTree = "<group>"; };
 		4DEEC5702685F41B0017D77B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4DEEC60E268724440017D77B /* GetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetResponse.swift; sourceTree = "<group>"; };
 		4DEEC611268742DC0017D77B /* Lessons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lessons.xcdatamodel; sourceTree = "<group>"; };
@@ -104,7 +89,6 @@
 		970BBC8C2690A6F2008EFDEB /* TrainingCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCollectionViewLayout.swift; sourceTree = "<group>"; };
 		970BBC8F2690A82A008EFDEB /* TrainingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingCollectionViewCell.swift; sourceTree = "<group>"; };
 		970BBC9A2691F7BF008EFDEB /* CardsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsTableViewCell.swift; sourceTree = "<group>"; };
-		970BBC9E26932FF3008EFDEB /* LessonsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonsTableViewController.swift; sourceTree = "<group>"; };
 		971421292696DC9700467C83 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		9714212C2696DCB400467C83 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
 		9734ADCD2679D16F006BCF52 /* LearnEnglish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnEnglish.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,8 +138,6 @@
 				970BBC8F2690A82A008EFDEB /* TrainingCollectionViewCell.swift */,
 				970BBC8C2690A6F2008EFDEB /* TrainingCollectionViewLayout.swift */,
 				970BBC80268EFC86008EFDEB /* WorkoutViewController.swift */,
-				4D935D56269C75F500906B62 /* TrainigInput.swift */,
-				4D935D58269C761800906B62 /* TrainingOutput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -171,8 +153,6 @@
 		4D935D67269C77C900906B62 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4D935D5B269C76A200906B62 /* CardsInput.swift */,
-				4D935D5D269C76C100906B62 /* CardsOutput.swift */,
 				970BBC9A2691F7BF008EFDEB /* CardsTableViewCell.swift */,
 				9734ADFD267A24A7006BCF52 /* CardsViewController.swift */,
 			);
@@ -190,11 +170,9 @@
 		4D935D69269C77F100906B62 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9734ADD42679D16F006BCF52 /* SliderViewController.swift */,
 				9734ADE92679D3B0006BCF52 /* SliderCollectionViewCell.swift */,
 				9734ADEC2679D3C7006BCF52 /* SliderCollectionViewLayout.swift */,
-				9734ADD42679D16F006BCF52 /* SliderViewController.swift */,
-				4D935D4E269C74CB00906B62 /* SliderViewOutput.swift */,
-				4D935D50269C74EA00906B62 /* SliderViewInput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,8 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				971421292696DC9700467C83 /* SettingsViewController.swift */,
-				4D935D61269C772100906B62 /* SettingsViewOutput.swift */,
-				4D935D63269C773D00906B62 /* SettingsViewInput.swift */,
 				9714212C2696DCB400467C83 /* SettingsTableViewCell.swift */,
 			);
 			name = View;
@@ -239,8 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				4D78452D2699B9FF00C274BB /* AboutUsViewController.swift */,
-				4D935D72269C786A00906B62 /* AboutUsViewInput.swift */,
-				4D935D74269C789000906B62 /* AboutUsViewOutput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -256,12 +230,50 @@
 		4D935D76269C79A400906B62 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				4D7835352698BF0B002FDB19 /* ProfileViewController.swift */,
-				4D935D77269C79B600906B62 /* ProfilePresenter.swift */,
-				4D935D79269C79C900906B62 /* ProfileViewInput.swift */,
-				4D935D7B269C79E700906B62 /* ProfileViewOutput.swift */,
+				4D935DC6269D018000906B62 /* View */,
+				4D935DC7269D018A00906B62 /* Presenter */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		4D935DC6269D018000906B62 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4D7835352698BF0B002FDB19 /* ProfileViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4D935DC7269D018A00906B62 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				4D935D77269C79B600906B62 /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4D935DC8269D028500906B62 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				970BBC7C268EF0F5008EFDEB /* LoadViewController.swift */,
+				4D935D21269B983300906B62 /* UIButton+Extension.swift */,
+				4D935DE7269E243A00906B62 /* UINaviagationBar+Extensions.swift */,
+				4D742AF7269AF462009CDA12 /* NetworkError.swift */,
+				4D7BC57C268B5645008CD301 /* Containers.swift */,
+				4D742AF5269ADDA2009CDA12 /* Constants.swift */,
+				970BBC72268EEEFF008EFDEB /* SpinnerViewController.swift */,
+				970BBC75268EEF57008EFDEB /* BaseViewContoller.swift */,
+				4D935DD8269DB51600906B62 /* RouterProtocol.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		4D935DC9269D029800906B62 /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4DEEC5702685F41B0017D77B /* NetworkService.swift */,
+			);
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 		970BBC922690CC87008EFDEB /* Workout */ = {
@@ -278,6 +290,8 @@
 			children = (
 				4D935D67269C77C900906B62 /* View */,
 				4D935D68269C77D500906B62 /* Presenter */,
+				4D935DE3269E064600906B62 /* CardsRouterProtocol.swift */,
+				4D935DE5269E065100906B62 /* CardsRouter.swift */,
 			);
 			path = Cards;
 			sourceTree = "<group>";
@@ -303,7 +317,7 @@
 			children = (
 				9734ADD02679D16F006BCF52 /* AppDelegate.swift */,
 				4D935D54269C756100906B62 /* Assembly.swift */,
-				970BBC7C268EF0F5008EFDEB /* LoadViewController.swift */,
+				4D935DEB269EC6DA00906B62 /* StartRouter.swift */,
 				9734AE0E267B315F006BCF52 /* Model */,
 				970BBC942690CCA4008EFDEB /* Cards */,
 				4D935D4B269C746500906B62 /* Slider */,
@@ -312,14 +326,8 @@
 				4D935D76269C79A400906B62 /* Profile */,
 				4D935D6D269C782400906B62 /* AboutUs */,
 				9734ADD92679D170006BCF52 /* Assets.xcassets */,
-				4DEEC5702685F41B0017D77B /* NetworkService.swift */,
-				4D935D21269B983300906B62 /* UIButton+Extension.swift */,
-				4D742AF7269AF462009CDA12 /* NetworkError.swift */,
-				4D7BC57C268B5645008CD301 /* Containers.swift */,
-				4D742AF5269ADDA2009CDA12 /* Constants.swift */,
-				970BBC9E26932FF3008EFDEB /* LessonsTableViewController.swift */,
-				970BBC72268EEEFF008EFDEB /* SpinnerViewController.swift */,
-				970BBC75268EEF57008EFDEB /* BaseViewContoller.swift */,
+				4D935DC9269D029800906B62 /* ServiceLayer */,
+				4D935DC8269D028500906B62 /* Helpers */,
 				9734ADDB2679D170006BCF52 /* LaunchScreen.storyboard */,
 				9734ADDE2679D170006BCF52 /* Info.plist */,
 			);
@@ -410,56 +418,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D935DE6269E065100906B62 /* CardsRouter.swift in Sources */,
 				4D935D22269B983300906B62 /* UIButton+Extension.swift in Sources */,
 				970BBC73268EEEFF008EFDEB /* SpinnerViewController.swift in Sources */,
 				4D935D4D269C74AC00906B62 /* SliderPresenter.swift in Sources */,
-				4D935D7A269C79C900906B62 /* ProfileViewInput.swift in Sources */,
 				970BBC81268EFC86008EFDEB /* WorkoutViewController.swift in Sources */,
 				4D7BC583268C896A008CD301 /* Lesson+CoreDataProperties.swift in Sources */,
 				970BBC9B2691F7BF008EFDEB /* CardsTableViewCell.swift in Sources */,
 				4D78452E2699B9FF00C274BB /* AboutUsViewController.swift in Sources */,
 				4D742AF6269ADDA2009CDA12 /* Constants.swift in Sources */,
+				4D935DE8269E243A00906B62 /* UINaviagationBar+Extensions.swift in Sources */,
 				4D7BC584268C896A008CD301 /* Word+CoreDataClass.swift in Sources */,
 				4D935D55269C756100906B62 /* Assembly.swift in Sources */,
+				4D935DE4269E064600906B62 /* CardsRouterProtocol.swift in Sources */,
 				970BBC8D2690A6F2008EFDEB /* TrainingCollectionViewLayout.swift in Sources */,
 				4D7835362698BF0B002FDB19 /* ProfileViewController.swift in Sources */,
 				4D742AF8269AF462009CDA12 /* NetworkError.swift in Sources */,
 				970BBC76268EEF57008EFDEB /* BaseViewContoller.swift in Sources */,
 				4D7BC585268C896A008CD301 /* Word+CoreDataProperties.swift in Sources */,
-				4D935D62269C772100906B62 /* SettingsViewOutput.swift in Sources */,
-				4D935D51269C74EA00906B62 /* SliderViewInput.swift in Sources */,
 				9714212A2696DC9700467C83 /* SettingsViewController.swift in Sources */,
 				4D7BC582268C896A008CD301 /* Lesson+CoreDataClass.swift in Sources */,
 				9734ADFE267A24A7006BCF52 /* CardsViewController.swift in Sources */,
 				9734ADEA2679D3B0006BCF52 /* SliderCollectionViewCell.swift in Sources */,
-				4D935D59269C761800906B62 /* TrainingOutput.swift in Sources */,
-				4D935D4F269C74CB00906B62 /* SliderViewOutput.swift in Sources */,
 				970BBC902690A82A008EFDEB /* TrainingCollectionViewCell.swift in Sources */,
 				9734ADD52679D16F006BCF52 /* SliderViewController.swift in Sources */,
 				4D935D70269C784300906B62 /* AboutUsPresenter.swift in Sources */,
 				4D935D78269C79B600906B62 /* ProfilePresenter.swift in Sources */,
-				4D935D5C269C76A200906B62 /* CardsInput.swift in Sources */,
-				4D935D57269C75F500906B62 /* TrainigInput.swift in Sources */,
 				4DEEC612268742DC0017D77B /* Lessons.xcdatamodeld in Sources */,
 				4D935D4A269C740B00906B62 /* CardsPresenter.swift in Sources */,
+				4D935DD9269DB51600906B62 /* RouterProtocol.swift in Sources */,
 				9734ADED2679D3C7006BCF52 /* SliderCollectionViewLayout.swift in Sources */,
-				4D935D64269C773D00906B62 /* SettingsViewInput.swift in Sources */,
 				4D7BC57D268B5645008CD301 /* Containers.swift in Sources */,
 				4D935D53269C754400906B62 /* TrainingPresenter.swift in Sources */,
 				970BBC7D268EF0F5008EFDEB /* LoadViewController.swift in Sources */,
-				4D935D73269C786A00906B62 /* AboutUsViewInput.swift in Sources */,
 				9714212D2696DCB400467C83 /* SettingsTableViewCell.swift in Sources */,
 				970BBC8926903487008EFDEB /* TrainingViewController.swift in Sources */,
-				970BBC9F26932FF3008EFDEB /* LessonsTableViewController.swift in Sources */,
 				4DEEC61C268751940017D77B /* CoreDataStack.swift in Sources */,
 				4DEEC5712685F41B0017D77B /* NetworkService.swift in Sources */,
-				4D935D5E269C76C100906B62 /* CardsOutput.swift in Sources */,
+				4D935DEC269EC6DA00906B62 /* StartRouter.swift in Sources */,
 				9734ADD12679D16F006BCF52 /* AppDelegate.swift in Sources */,
-				4D935D7C269C79E700906B62 /* ProfileViewOutput.swift in Sources */,
 				4D9024D42688CAE200EF34A7 /* DataManager.swift in Sources */,
 				4DEEC60F268724440017D77B /* GetResponse.swift in Sources */,
 				4D935D60269C76FE00906B62 /* SettingsPresenter.swift in Sources */,
-				4D935D75269C789000906B62 /* AboutUsViewOutput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

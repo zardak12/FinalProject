@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack {
+final class CoreDataStack { 
     
     private let container: NSPersistentContainer
     
@@ -34,14 +34,22 @@ final class CoreDataStack {
         try? viewContext.save()
     }
     
-    func createWord(value : String,translate : String, lesson : Lesson
-                    , completion: @escaping (Word) -> Void) {
+//    func createWord(value : String,translate : String, lesson : Lesson
+//                    , completion: @escaping (Word) -> Void) {
+//        let word = Word(context: viewContext)
+//        word.value = value
+//        word.translate = translate
+//        lesson.addToWords(word)
+//        try? viewContext.save()
+//        completion(word)
+//    }
+    
+    func createWord(value : String,translate : String, lesson : Lesson) {
         let word = Word(context: viewContext)
         word.value = value
         word.translate = translate
         lesson.addToWords(word)
         try? viewContext.save()
-        completion(word)
     }
     
     func deleteWord(with word : Word) {
@@ -59,8 +67,6 @@ final class CoreDataStack {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         try? coordinator.execute(deleteRequest, with: backgroundContext)
     }
-    
-    
     
     var viewContext: NSManagedObjectContext { container.viewContext }
     lazy var backgroundContext: NSManagedObjectContext = container.newBackgroundContext()

@@ -8,21 +8,13 @@
 import UIKit
 import CoreData
 
-class CardsViewController: UIViewController {
+protocol CardsViewInput: AnyObject {}
+
+
+class CardsViewController: UIViewController, CardsViewInput {
     
-    private let coreDataStack = Container.shared.coreDataStack
+    private let fontSize = UIFont.systemFont(ofSize:40) // Fix me
     
-    private let fontSize = UIFont.systemFont(ofSize:40)
-    
-    let frc: NSFetchedResultsController<Lesson> = {
-        let coreDataStack = Container.shared.coreDataStack
-        let request = NSFetchRequest<Lesson>(entityName: "Lesson")
-        request.sortDescriptors = [.init(key: "name", ascending: true)]
-        return NSFetchedResultsController(fetchRequest: request,
-                                          managedObjectContext: coreDataStack.viewContext,
-                                          sectionNameKeyPath: "name",
-                                          cacheName: nil)
-    }()
     
     //MARK: - Уроки
     
@@ -33,6 +25,7 @@ class CardsViewController: UIViewController {
         table.register(CardsTableViewCell.self, forCellReuseIdentifier: CardsTableViewCell.identifier)
         table.dataSource = self
         table.delegate = self
+        table.tableFooterView = UIView()
         return table
     }()
     
@@ -43,10 +36,9 @@ class CardsViewController: UIViewController {
         return add
     }()
     
-
+    var presenter: CardsViewOutput?
     
     var cellSpacingHeight : CGFloat = 10
-    
     
     
     override func viewDidLoad() {
@@ -56,19 +48,16 @@ class CardsViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = addItem
         view.addSubview(tableView)
         getConstraints()
-        tableView.tableFooterView = UIView()
-        frc.delegate = self
+        presenter?.frc?.delegate = self
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        try? frc.performFetch()
+        presenter?.fetch()
     }
     
     func getConstraints() {
-        
-        
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 10),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -10),
@@ -84,7 +73,8 @@ class CardsViewController: UIViewController {
         alert.addTextField(configurationHandler: nil)
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { _ in
             guard let field = alert.textFields?.first, let text = field.text, !text.isEmpty  else {return}
-            self.coreDataStack.createLesson(with: text)
+            //MARK: - Presenter ViewOutput
+            self.presenter?.createLesson(with: text)
         }))
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alert.addAction(cancel)
@@ -94,21 +84,23 @@ class CardsViewController: UIViewController {
 
 extension CardsViewController : UITableViewDataSource  {
     
+    //MARK: - Presenter ViewOutput
     func numberOfSections(in tableView: UITableView) -> Int {
-        return frc.sections?.count ?? 0
+        return presenter?.frc?.sections?.count ?? 0
     }
-    
+    //MARK: - Presenter ViewOutput
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sections = frc.sections else { return 0 }
+        guard let sections = presenter?.frc?.sections else { return 0 }
         return sections[section].numberOfObjects
     }
     
-    
+    //MARK: - Presenter ViewOutput
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = frc.object(at: indexPath)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: CardsTableViewCell.identifier, for: indexPath) as! CardsTableViewCell
-        cell.configure(with : item.name ?? "")
+        let item = presenter?.frc?.object(at: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CardsTableViewCell.identifier, for: indexPath) as? CardsTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.configure(with : item?.name ?? "")
         cell.backgroundColor = UIColor(named: "foregroundFill")
         cell.layer.cornerRadius = 8
         cell.clipsToBounds = true
@@ -117,13 +109,11 @@ extension CardsViewController : UITableViewDataSource  {
     
 }
 
-
 extension CardsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
@@ -133,10 +123,10 @@ extension CardsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = frc.object(at: indexPath)
-        let words = item.words?.allObjects as! [Word]
-        let slider = SliderViewController(words : words, lesson : item)
-        self.navigationController?.pushViewController(slider, animated: true)
+        guard let item = presenter?.frc?.object(at: indexPath) else { return }
+        guard let words = item.words?.allObjects as? [Word] else { return }
+        presenter?.tapToSliderVc(with: words, lesson:item)
+//        // Rooter
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{
@@ -145,8 +135,8 @@ extension CardsViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let item = frc.object(at: indexPath)
-            coreDataStack.deleteLesson(with: item)
+            guard let item = presenter?.frc?.object(at: indexPath) else { return }
+            presenter?.deleteLesson(with: item)
         }
     }
 }

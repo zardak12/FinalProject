@@ -7,6 +7,28 @@
 
 import UIKit
 
+//MARK: - ProfileViewInput
+
+protocol ProfileViewInput: AnyObject {
+  func showAvaImage(with image: UIImage, with text: String)
+  func showName(with name: String)
+}
+
+//MARK: - ProfileViewOutput
+
+protocol ProfileViewOutput: AnyObject {
+  
+  init(view: ProfileViewInput)
+  
+  func checkImage()
+  func checkName()
+  
+  func saveImage(with image: UIImage)
+  func saveName(with name: String)
+}
+
+  //MARK: - ProfilePresenter
+
 class ProfilePresenter: ProfileViewOutput {
     
     let defaults = UserDefaults.standard
