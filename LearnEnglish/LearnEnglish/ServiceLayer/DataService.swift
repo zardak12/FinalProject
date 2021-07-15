@@ -8,31 +8,31 @@
 import Foundation
 import CoreData
 
-protocol DataServiceProtocol : AnyObject{
+protocol DataServiceProtocol: AnyObject {
     func load()
     init(networkService: NetworkServiceProtocol)
 }
 
 class DataService: DataServiceProtocol {
-    
-    
+
     let networkService: NetworkServiceProtocol
     private let coreDataStack = Container.shared.coreDataStack
     let request = NSFetchRequest<Lesson>(entityName: "Lesson")
     let fetchRequest: NSFetchRequest<Lesson> = Lesson.fetchRequest()
-    
+
     required init(networkService: NetworkServiceProtocol) {
         self.networkService = networkService
     }
 
-      //MARK: - Загрузка данных
+      // MARK: - Загрузка данных
+
   func load() {
     coreDataStack.load()
     let viewContext = coreDataStack.viewContext
     viewContext.performAndWait {
-      let objects = try? viewContext.fetch(fetchRequest)
-      if objects?.count == 0{
-        networkService.getLessons { (result) in
+        guard let objects = try? viewContext.fetch(fetchRequest) else { return }
+        if objects.isEmpty {
+        networkService.getLessons { result in
             for lesson in result.lessons {
                 let lessonEntity = Lesson(context: viewContext)
                 lessonEntity.name = lesson.fields.name.stringValue
@@ -49,4 +49,3 @@ class DataService: DataServiceProtocol {
     }
   }
 }
-

@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension Word {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Word> {
@@ -22,6 +21,6 @@ extension Word {
 
 }
 
-extension Word : Identifiable {
+extension Word: Identifiable {
 
 }

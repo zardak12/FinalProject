@@ -7,22 +7,22 @@
 
 import UIKit
 
-protocol NetworkServiceProtocol{
+protocol NetworkServiceProtocol {
     func getLessons(completion: @escaping (GetResponce) -> Void)
     func loadImage(completion: @escaping (UIImage) -> Void )
 }
 
-final class NetworkService : NetworkServiceProtocol   {
+final class NetworkService: NetworkServiceProtocol {
   private let session: URLSession = .shared
   private let decoder = JSONDecoder()
-    
-    //MARK: - Upload Lessons
-    
+
+    // MARK: - Upload Lessons
+
   func getLessons(completion: @escaping (GetResponce) -> Void) {
     guard  let lessonUrl = URL(string: NetworkConstant.lessonUrl) else { return }
     var request = URLRequest(url: lessonUrl)
     request.httpMethod = "GET"
-    session.dataTask(with: request) { (data, _ , error) in
+    session.dataTask(with: request) { data, _, error in
       guard let data = data, error == nil else {
         fatalError("No Lessons data found")
       }
@@ -30,9 +30,9 @@ final class NetworkService : NetworkServiceProtocol   {
       completion(response)
     }.resume()
   }
-    
-    //MARK: - Upload Image
-    
+
+    // MARK: - Upload Image
+
   func loadImage(completion: @escaping (UIImage) -> Void ) {
     guard let imageUrl = URL(string: NetworkConstant.imageUrl) else { return }
     let imageRequest = URLRequest(url: imageUrl, cachePolicy: .returnCacheDataElseLoad)

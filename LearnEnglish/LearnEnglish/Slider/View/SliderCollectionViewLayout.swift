@@ -11,74 +11,69 @@ protocol ParallaxCardCell {
     func setZoom(progress: CGFloat)
 }
 
-
 class SliderCollectionViewLayout: UICollectionViewLayout {
-    
-    
+
     var itemSize: CGSize = .zero {
         didSet { invalidateLayout() }
     }
-    
+
     ///
     var minScale: CGFloat = 1.0 {
         didSet { invalidateLayout() }
     }
-    
+
     var visibleItemsCount: Int = 1 {
         didSet { invalidateLayout() }
     }
-    
+
     var itemsCount: CGFloat {
         return CGFloat(collectionView.numberOfItems(inSection: 0))
     }
-    
+
     var collectionBounds: CGRect {
         return collectionView.bounds
     }
-    
+
     var contentOffset: CGPoint {
         return collectionView.contentOffset
     }
-    
+
     var currentPage: Int {
         return max(Int(contentOffset.x) / Int(collectionBounds.width), 0)
     }
-    
+
     let scale = CGFloat(1.0)
     let progress = CGFloat(1.0)
-    
-    
+
     override var collectionView: UICollectionView {
         return super.collectionView!
     }
-    
+
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
-    
-  
+
     override var collectionViewContentSize: CGSize {
         return CGSize(width: collectionBounds.width * itemsCount, height: collectionBounds.height)
     }
-    
-    
+
     private var didInitialSetup = false
-    
+
     open override func prepare() {
         guard !didInitialSetup else { return }
         didInitialSetup = true
-        
+
         let width = collectionBounds.width * 0.7
         let height = width / 0.6
         itemSize = CGSize(width: width, height: height)
-        
-        collectionView.setContentOffset(CGPoint(x: collectionViewContentSize.width - collectionBounds.width, y: 0), animated: false)
+
+        collectionView.setContentOffset(CGPoint(x: collectionViewContentSize.width - collectionBounds.width,
+                                                y: 0), animated: false)
     }
-    
+
     override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let itemsCount = collectionView.numberOfItems(inSection: 0)
         guard itemsCount > 0 else { return nil }
-
 
         let minVisibleIndex = max(currentPage - visibleItemsCount + 1, 0)
 
@@ -93,18 +88,19 @@ class SliderCollectionViewLayout: UICollectionViewLayout {
 
         return attributes
     }
-    
-    private func layoutAttributes(for indexPath: IndexPath, _ pageIndex: Int, _ offset: CGFloat, _ offsetProgress: CGFloat) -> UICollectionViewLayoutAttributes {
-        let attributes = UICollectionViewLayoutAttributes(forCellWith:indexPath)
+
+    private func layoutAttributes(for indexPath: IndexPath, _ pageIndex: Int, _ offset: CGFloat,
+                                  _ offsetProgress: CGFloat) -> UICollectionViewLayoutAttributes {
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         let visibleIndex = max(indexPath.item - pageIndex + visibleItemsCount, 0)
         attributes.size = itemSize
-        attributes.center = CGPoint(x: collectionBounds.midX , y: collectionBounds.midY)
+        attributes.center = CGPoint(x: collectionBounds.midX, y: collectionBounds.midY)
         attributes.zIndex = visibleIndex
         attributes.transform = CGAffineTransform(scaleX: scale, y: scale)
         let cell = collectionView.cellForItem(at: indexPath) as? ParallaxCardCell
         cell?.setZoom(progress: scale)
         cell?.setShadeOpacity(progress: progress )
-        
+
         switch visibleIndex {
         case visibleItemsCount + 1:
             attributes.center.x += collectionBounds.width - offset
@@ -112,7 +108,7 @@ class SliderCollectionViewLayout: UICollectionViewLayout {
         default:
             attributes.center.x -= offsetProgress
         }
-        
+
         return attributes
     }
 

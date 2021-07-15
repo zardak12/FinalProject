@@ -10,8 +10,8 @@ import UIKit
 class SliderRouter: SliderRouterProtocol, RouterProtocol {
     var navigationContoller: UINavigationController
     var assemblyBuilder: AssemblyBuilderProtocol
-    
-    init(navigationContoller: UINavigationController,assemblyBuilder: AssemblyBuilderProtocol) {
+
+    init(navigationContoller: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationContoller = navigationContoller
         self.assemblyBuilder = assemblyBuilder
     }
@@ -20,6 +20,4 @@ class SliderRouter: SliderRouterProtocol, RouterProtocol {
         navigationContoller.pushViewController(settingVC, animated: true)
     }
 
-    
-    
 }

@@ -8,16 +8,15 @@
 import UIKit
 
 final class WorkoutViewController: CardsViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Тренировка"
         self.navigationItem.rightBarButtonItem = .none
     }
-    
-    
-    // MARK: -  Переопределяю метод и просто напрявляю на другой ViewContoller
-    
+
+    // MARK: - Переопределяю метод и просто напрявляю на другой ViewContoller
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = presenter?.frc?.object(at: indexPath)
@@ -25,4 +24,3 @@ final class WorkoutViewController: CardsViewController {
         presenter?.tapToWorkoutVC(with: words)
     }
 }
-

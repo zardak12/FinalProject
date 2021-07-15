@@ -13,23 +13,23 @@ protocol AssemblyBuilderProtocol {
     func createWorkout() -> UIViewController
     func createProfile() -> UIViewController
     func createAboutUs() -> UIViewController
-    func createSlider(with navigationContoller: UINavigationController, words: [Word], lesson: Lesson) -> UIViewController
-    func createSettings(words: [Word], lesson: Lesson,delegate: UpdateCollectionViewDelegate) ->UIViewController
+    func createSlider(with navigationContoller: UINavigationController,
+                      words: [Word], lesson: Lesson) -> UIViewController
+    func createSettings(words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) -> UIViewController
     func createTraining(with words: [Word]) -> UIViewController
 }
 
 class AssemblyBuilder: AssemblyBuilderProtocol {
-    
-    
-    var tabBarCnt =  UITabBarController()
-    
-    func createMainVC() -> UIViewController{
+
+    var tabBarCnt = UITabBarController()
+
+    func createMainVC() -> UIViewController {
         let attrs = [
               NSAttributedString.Key.foregroundColor: UIColor.white,
               NSAttributedString.Key.font: UIFont(name: "Rockwell-Bold", size: 30)
-          ]
-        UINavigationBar.appearance().titleTextAttributes = attrs
-        let tabBarCnt =  UITabBarController()
+        ]
+        UINavigationBar.appearance().titleTextAttributes = attrs as [NSAttributedString.Key: Any]
+        let tabBarCnt = UITabBarController()
         tabBarCnt.tabBar.barStyle = .default
         let cardsVC = createCards()
         let cardsTabBarItem = UITabBarItem(title: "Карточки", image: UIImage(named: "cards"), tag: 0)
@@ -37,18 +37,18 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         let workoutVC = createWorkout()
         let workoutTabBarItem = UITabBarItem(title: "Тренировка", image: UIImage(named: "workout"), tag: 1)
         workoutVC.tabBarItem = workoutTabBarItem
-        let profileVc =  createProfile()
+        let profileVc = createProfile()
         let profileTabBarItem = UITabBarItem(title: "Профиль", image: UIImage(named: "profile"), tag: 2)
-        profileVc.tabBarItem =  profileTabBarItem
-        tabBarCnt.viewControllers = [cardsVC, workoutVC,profileVc]
+        profileVc.tabBarItem = profileTabBarItem
+        tabBarCnt.viewControllers = [cardsVC, workoutVC, profileVc]
         return tabBarCnt
     }
-    
+
     func createCards() -> UIViewController {
         let view = CardsViewController()
         let navigationController = UINavigationController(rootViewController: view)
         let router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: self)
-        let presenter = CardsPresenter(view: view,router: router)
+        let presenter = CardsPresenter(view: view, router: router)
         view.presenter = presenter
         navigationController.navigationBar.tintColor = UIColor.white
         navigationController.navigationBar.barStyle = .black
@@ -57,7 +57,7 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         navigationController.navigationBar.isTranslucent = true
         return navigationController
     }
-    
+
     func createWorkout() -> UIViewController {
         let view = WorkoutViewController()
         let navigationController = UINavigationController(rootViewController: view)
@@ -71,29 +71,30 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         navigationController.navigationBar.isTranslucent = true
         return navigationController
     }
-    
-    func createSlider(with navigationContoller: UINavigationController, words: [Word], lesson: Lesson) -> UIViewController {
+
+    func createSlider(with navigationContoller: UINavigationController,
+                      words: [Word], lesson: Lesson) -> UIViewController {
         let view = SliderViewController()
         let router = SliderRouter(navigationContoller: navigationContoller, assemblyBuilder: self)
         let presenter = SliderPresenter(view: view, words: words, lesson: lesson, router: router)
         view.presenter = presenter
         return view
     }
-    
-    func createSettings(words: [Word], lesson: Lesson,delegate: UpdateCollectionViewDelegate) ->UIViewController {
+
+    func createSettings(words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) -> UIViewController {
         let view = SettingsViewController()
         let presenter = SettingsPresenter(view: view, words: words, lesson: lesson, delegate: delegate)
         view.presenter = presenter
         return view
     }
-    
+
     func createTraining(with words: [Word]) -> UIViewController {
         let view = TrainingViewController()
         let presenter = TrainingPresenter(view: view, words: words)
         view.presenter = presenter
         return view
     }
-    
+
     func createProfile() -> UIViewController {
         let view = ProfileViewController()
         let router = ProfileRouter(assemblyBuilder: self, view: view)
@@ -101,12 +102,12 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         view.presenter = presenter
         return view
     }
-    
+
     func createAboutUs() -> UIViewController {
         let view = AboutUsViewController()
         let networkService = NetworkService()
         let router = ProfileRouter(assemblyBuilder: self, view: view)
-        let presenter = AboutUsPresenter(view: view, networkService: networkService,router: router)
+        let presenter = AboutUsPresenter(view: view, networkService: networkService, router: router)
         view.presenter = presenter
         return view
     }

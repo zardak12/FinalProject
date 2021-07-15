@@ -7,8 +7,8 @@
 
 import UIKit
 
-class TrainingCollectionViewLayout: UICollectionViewLayout{
-  
+class TrainingCollectionViewLayout: UICollectionViewLayout {
+
   var itemSize: CGSize = .zero {
       didSet { invalidateLayout() }
   }
@@ -27,7 +27,6 @@ class TrainingCollectionViewLayout: UICollectionViewLayout{
 
   private var adjustedLayoutAttributes: [UICollectionViewLayoutAttributes] = []
 
-
   override var collectionViewContentSize: CGSize {
       return CGSize(width: collectionBounds.width, height: collectionBounds.height)
   }
@@ -35,7 +34,6 @@ class TrainingCollectionViewLayout: UICollectionViewLayout{
   override var collectionView: UICollectionView {
       return super.collectionView!
   }
-
 
   private var didInitialSetup = false
 
@@ -51,43 +49,43 @@ class TrainingCollectionViewLayout: UICollectionViewLayout{
   }
 
   override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-    
+
     let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
     attributes.size = itemSize
-    attributes.center = CGPoint(x: collectionBounds.midX , y: collectionBounds.midY)
+    attributes.center = CGPoint(x: collectionBounds.midX, y: collectionBounds.midY)
     return attributes
      }
-  
+
   override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-    
+
     for item in 0..<itemCount {
       let indexPath = IndexPath(item: item, section: 0)
       let attributes = layoutAttributesForItem(at: indexPath)
       layoutAttributes.append(attributes)
     }
-    
-    adjustedLayoutAttributes = layoutAttributes.compactMap{$0}
-    
+
+    adjustedLayoutAttributes = layoutAttributes.compactMap { $0 }
+
     return adjustedLayoutAttributes
   }
-    
+
     func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 30, bottom: 30, trailing: 30)
-        
+
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalHeight(1.0))
-        
+
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
                                                        subitems: [item])
-        
+
         let section = NSCollectionLayoutSection(group: group)
-        
+
         let config = UICollectionViewCompositionalLayoutConfiguration()
         config.scrollDirection = .horizontal
-        
+
         let layout = UICollectionViewCompositionalLayout(section: section)
         layout.configuration = config
         return layout

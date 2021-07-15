@@ -8,32 +8,31 @@
 import Foundation
 import AVFoundation
 
-protocol TrainingViewInput : AnyObject {
-    
+protocol TrainingViewInput: AnyObject {
+
 }
 
-protocol TrainingViewOutput : AnyObject {
+protocol TrainingViewOutput: AnyObject {
     var words: [Word] { get set }
-    init(view: TrainingViewInput,words: [Word])
-    func getNewArray(word : Word) -> [Word]
+    init(view: TrainingViewInput, words: [Word])
+    func getNewArray(word: Word) -> [Word]
     func rightAnswerAudio()
     func failedAnswerAudio()
 }
 
-
 class TrainingPresenter: TrainingViewOutput {
-    
+
     var words: [Word]
     var answer: AVAudioPlayer?
-    
+
     required init(view: TrainingViewInput, words: [Word]) {
         self.words = words
     }
-    
+
     func getNewArray(word: Word) -> [Word] {
         var newArray = [Word]()
         var number = 0
-        
+
         while number < 3 {
             if let newWord = words.randomElement() {
                 if newWord != word {
@@ -46,10 +45,10 @@ class TrainingPresenter: TrainingViewOutput {
         }
         return newArray.shuffled()
     }
-    
+
     func rightAnswerAudio() {
         DispatchQueue.global(qos: .userInteractive).async {
-            guard let path = Bundle.main.path(forResource: "rightAnswer.wav", ofType:nil) else { return }
+            guard let path = Bundle.main.path(forResource: "rightAnswer.wav", ofType: nil) else { return }
             let url = URL(fileURLWithPath: path)
             do {
                 self.answer = try AVAudioPlayer(contentsOf: url)
@@ -60,10 +59,10 @@ class TrainingPresenter: TrainingViewOutput {
             }
         }
     }
-    
+
     func failedAnswerAudio() {
         DispatchQueue.global(qos: .userInteractive).async {
-            guard let path = Bundle.main.path(forResource: "Fail-sound.mp3", ofType:nil) else { return }
+            guard let path = Bundle.main.path(forResource: "Fail-sound.mp3", ofType: nil) else { return }
             let url = URL(fileURLWithPath: path)
             do {
                 self.answer = try AVAudioPlayer(contentsOf: url)

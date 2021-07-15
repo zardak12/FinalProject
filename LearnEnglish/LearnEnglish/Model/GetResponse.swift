@@ -9,25 +9,25 @@ import Foundation
 
 // MARK: - GetResponce
 struct GetResponce: Codable {
-    let lessons : [Lessons]
-    
+    let lessons: [Lessons]
+
     private enum CodingKeys: String, CodingKey {
         case lessons = "documents"
     }
 }
 
-// MARK: -  Lessons
+// MARK: - Lessons
 
-struct Lessons : Codable {
+struct Lessons: Codable {
     let fields: Fields
-    
+
     private enum CodingKeys: String, CodingKey {
         case fields
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        fields = try container.decode(Fields.self,forKey: .fields)
+        fields = try container.decode(Fields.self, forKey: .fields)
     }
 }
 
@@ -75,6 +75,6 @@ struct MapValue: Codable {
 
 struct MapValueFields: Codable {
     let translate: Name
-    let value : Name
+    let value: Name
 
 }

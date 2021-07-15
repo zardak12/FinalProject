@@ -324,6 +324,14 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		4D935E1026A064F100906B62 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				4D935DEB269EC6DA00906B62 /* StartRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		970BBC922690CC87008EFDEB /* Workout */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,7 +372,7 @@
 			children = (
 				9734ADD02679D16F006BCF52 /* AppDelegate.swift */,
 				4D935D54269C756100906B62 /* Assembly.swift */,
-				4D935DEB269EC6DA00906B62 /* StartRouter.swift */,
+				4D935E1026A064F100906B62 /* Router */,
 				9734AE0E267B315F006BCF52 /* Model */,
 				970BBC942690CCA4008EFDEB /* Cards */,
 				4D935D4B269C746500906B62 /* Slider */,
@@ -406,6 +414,7 @@
 				9734ADC92679D16F006BCF52 /* Sources */,
 				9734ADCA2679D16F006BCF52 /* Frameworks */,
 				9734ADCB2679D16F006BCF52 /* Resources */,
+				4D935E1226A07C5D00906B62 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -462,6 +471,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4D935E1226A07C5D00906B62 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9734ADC92679D16F006BCF52 /* Sources */ = {

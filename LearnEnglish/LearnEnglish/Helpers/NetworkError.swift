@@ -5,9 +5,9 @@
 //  Created by Марк Шнейдерман on 11.07.2021.
 //
 
-  //MARK: - Errors
+  // MARK: - Errors
 
-enum NetworkError : Error{
+enum NetworkError: Error {
   case network
   case decodable
   case unknown

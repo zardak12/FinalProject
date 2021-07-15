@@ -7,10 +7,10 @@
 
 import UIKit
 
-  //MARK: - UIButton+Extension
+  // MARK: - UIButton+Extension
 
 extension UIButton {
-    
+
     func rightAnimation() {
         let animationColor = CABasicAnimation(keyPath: "backgroundColor")
         animationColor.toValue = UIColor.green.cgColor
@@ -18,7 +18,7 @@ extension UIButton {
         animationColor.autoreverses = true
         layer.add(animationColor, forKey: "animationColor")
     }
-    
+
     func fallAnimation() {
         let animationPosition = CABasicAnimation(keyPath: "position")
         animationPosition.duration = 0.1

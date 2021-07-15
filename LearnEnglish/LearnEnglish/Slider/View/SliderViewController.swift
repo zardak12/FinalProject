@@ -7,34 +7,31 @@
 
 import UIKit
 
-
 class SliderViewController: UIViewController, SliderViewInput {
-    
-    
+
     var presenter: SliderViewOutput?
 
-      //MARK: - UI
-    
-    lazy var collectionView : UICollectionView = {
-        let layout =  SliderCollectionViewLayout()
-        let collection =  UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collection.register(SliderCollectionViewCell.self, forCellWithReuseIdentifier: SliderCollectionViewCell.identifier)
+      // MARK: - UI
+
+    lazy var collectionView: UICollectionView = {
+        let layout = SliderCollectionViewLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.register(SliderCollectionViewCell.self,
+                            forCellWithReuseIdentifier: SliderCollectionViewCell.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
         collection.dataSource = self
         collection.delegate = self
         return collection
     }()
-    
-    
-    private lazy var settingButton : UIBarButtonItem = {
+
+    private lazy var settingButton: UIBarButtonItem = {
         let  image  = UIImage(systemName: "gearshape")
-        let setting = UIBarButtonItem(image: image, style: .done , target: self, action:  #selector(settings))
+        let setting = UIBarButtonItem(image: image, style: .done, target: self, action: #selector(settings))
         setting.tintColor = .white
         return setting
     }()
-    
-    
+
     // MARK: - Life Circle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,8 +39,7 @@ class SliderViewController: UIViewController, SliderViewInput {
         collectionView.layoutIfNeeded()
         presenter?.update()
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "backgroundFill")
@@ -55,36 +51,33 @@ class SliderViewController: UIViewController, SliderViewInput {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.delaysContentTouches = false
     }
-    
-    
-    
-    
-    // MARK: -  Constraint
+
+    // MARK: - Constraint
     func setConstraint() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -20)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
         ])
     }
-    
-    
-    func arrayIndexForRow(_ row : Int) -> Int {
+
+    func arrayIndexForRow(_ row: Int) -> Int {
         return row % (presenter?.words?.count ?? 0)
     }
-    
-    
+
     func createFirstWord() {
-        let alertController = UIAlertController(title: "Новое слово ", message: "добавьте новое слово", preferredStyle: .alert)
-        alertController.addTextField { (textField) in
+        let alertController = UIAlertController(title: "Новое слово ",
+                                                message: "добавьте новое слово",
+                                                preferredStyle: .alert)
+        alertController.addTextField { textField in
             textField.placeholder = "Слово"
         }
-        
-        alertController.addTextField { (textField) in
+
+        alertController.addTextField { textField in
             textField.placeholder = "Перевод"
         }
-        
+
         let add = UIAlertAction(title: "Add", style: .default) { _ in
             guard let value = alertController.textFields?[0],
                   let translate = alertController.textFields?[1],
@@ -96,40 +89,42 @@ class SliderViewController: UIViewController, SliderViewInput {
             guard let lesson = self.presenter?.lesson else { return }
             self.presenter?.createWord(value: valueText, translate: translateText, lesson: lesson)
         }
-        
+
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(add)
         alertController.addAction(cancel)
         present(alertController, animated: true)
     }
-    
+
     func updateCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
-    
+
     @objc func settings() {
         presenter?.tapOnSettings(delegate: self)
     }
-    
+
 }
 
 extension SliderViewController: UICollectionViewDataSource {
-    
-    // MARK: -  Возвращает количество слов
+
+    // MARK: - Возвращает количество слов
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if presenter?.words?.count == 0 {
+        if presenter?.words?.isEmpty == true {
             createFirstWord()
         }
         return (presenter?.words?.count ?? 0) * Constants.reply
     }
-    
-    // MARK: -  Регистрирует ячейку
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier, for: indexPath) as? SliderCollectionViewCell else {
+
+    // MARK: - Регистрирует ячейку
+
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier,
+                                                            for: indexPath) as? SliderCollectionViewCell else {
             return UICollectionViewCell()
         }
         let arrayIndex = arrayIndexForRow(indexPath.item)
@@ -142,7 +137,9 @@ extension SliderViewController: UICollectionViewDataSource {
 }
 
 extension SliderViewController: UICollectionViewDelegate {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         presenter?.swipeAudio()
     }
 }
@@ -157,4 +154,3 @@ extension SliderViewController: UpdateCollectionViewDelegate {
         presenter?.deleteWord(deleteIndex)
     }
 }
-

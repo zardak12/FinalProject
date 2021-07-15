@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RouterProtocol{
+protocol RouterProtocol {
     var navigationContoller: UINavigationController { get set }
     var assemblyBuilder: AssemblyBuilderProtocol { get set }
 }

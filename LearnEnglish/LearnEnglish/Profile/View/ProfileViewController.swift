@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController{
-    
-      //MARK: - UI
-    
+final class ProfileViewController: UIViewController {
+
+      // MARK: - UI
+
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -21,7 +21,7 @@ final class ProfileViewController: UIViewController{
         image.contentMode = .scaleAspectFit
         return image
     }()
-    
+
     private lazy var tapToChangeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -29,7 +29,7 @@ final class ProfileViewController: UIViewController{
         label.textColor = .white
         return label
     }()
-    
+
     private lazy var nameTextField: UITextField = {
         let field = UITextField()
         field.delegate = self
@@ -39,20 +39,22 @@ final class ProfileViewController: UIViewController{
         field.textColor = .white
         field.placeholder = "Как вас зовут?"
         let placeholderText = NSAttributedString(string: "Как вас зовут?",
-                                                 attributes:[NSAttributedString.Key.foregroundColor: UIColor(named: "placeholderFill") as Any])
+                                                 attributes:
+                                                    [NSAttributedString.Key.foregroundColor:
+                                                        UIColor(named: "placeholderFill") as Any])
         field.attributedPlaceholder = placeholderText
         field.font = UIFont.boldSystemFont(ofSize: 30)
         return field
     }()
-    
-    private lazy var imagePicker : UIImagePickerController = {
-      let imagePicker =  UIImagePickerController()
+
+    private lazy var imagePicker: UIImagePickerController = {
+      let imagePicker = UIImagePickerController()
       imagePicker.delegate = self
       imagePicker.allowsEditing = true
       return imagePicker
     }()
-    
-    private lazy var aboutProjectButton : UIButton = {
+
+    private lazy var aboutProjectButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = button.bounds.height / 2
@@ -62,13 +64,13 @@ final class ProfileViewController: UIViewController{
         button.addTarget(self, action: #selector(showAboutUs), for: .touchUpInside)
         return button
     }()
-    
-      //MARK: - ViewOutput
-    
+
+      // MARK: - ViewOutput
+
     var presenter: ProfileViewOutput?
 
-      //MARK: - Life Cyrcle
-    
+      // MARK: - Life Cyrcle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Профиль"
@@ -79,82 +81,81 @@ final class ProfileViewController: UIViewController{
         view.addSubview(aboutProjectButton)
         setUpLayout()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.checkImage()
         presenter?.checkName()
     }
-    
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         imageView.layer.cornerRadius = imageView.bounds.height / 2
     }
-    
-      //MARK: - Layout
-    
+
+      // MARK: - Layout
+
     func setUpLayout() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 125),
-            imageView.widthAnchor.constraint(equalToConstant: 125),
+            imageView.widthAnchor.constraint(equalToConstant: 125)
         ])
-        
+
         NSLayoutConstraint.activate([
             tapToChangeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 5),
-            tapToChangeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tapToChangeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             nameTextField.topAnchor.constraint(equalTo: tapToChangeLabel.bottomAnchor, constant: 20),
-            nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
+
         NSLayoutConstraint.activate([
             aboutProjectButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            aboutProjectButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            aboutProjectButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ])
-        
+
     }
-    
-      //MARK: - Objc fucntions
-    
+
+      // MARK: - Objc fucntions
+
     @objc func openImagePicker() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             return
         }
         present(imagePicker, animated: true, completion: nil)
     }
-    
+
     @objc func showAboutUs() {
         presenter?.tapOnAboutUsVC()
     }
 
 }
 
-  //MARK: - ViewInput
+  // MARK: - ViewInput
 
 extension ProfileViewController: ProfileViewInput {
-    func showAvaImage(with image: UIImage,with text: String) {
+    func showAvaImage(with image: UIImage, with text: String) {
         imageView.image = image
         tapToChangeLabel.text = text
     }
-    
-    func showName(with name: String){
+
+    func showName(with name: String) {
         nameTextField.text = name
     }
 }
 
-  //MARK: - UITextFieldDelegate
+  // MARK: - UITextFieldDelegate
 
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameTextField {
             if let text = textField.text {
                 presenter?.saveName(with: text)
-                
+
             }
             nameTextField.resignFirstResponder()
         }
@@ -162,13 +163,13 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-  //MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+  // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
       guard let image = info[.editedImage] as? UIImage else { return }
       presenter?.saveImage(with: image)
       dismiss(animated: true, completion: nil)
     }
 }
-

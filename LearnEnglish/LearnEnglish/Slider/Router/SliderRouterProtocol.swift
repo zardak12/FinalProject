@@ -8,5 +8,5 @@
 import Foundation
 
 protocol SliderRouterProtocol {
-    func showSettingVC(with words: [Word],lesson: Lesson, delegate: UpdateCollectionViewDelegate)
+    func showSettingVC(with words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate)
 }
