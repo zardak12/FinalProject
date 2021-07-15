@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let assembly = AssemblyBuilder()
     let networkService = NetworkService()
     let dataService = DataService(networkService: networkService)
-    let router = StartRouter(assembly: assembly, dataService: dataService)
+    let startRouter = StartRouter(assembly: assembly, dataService: dataService)
     window = UIWindow(frame: UIScreen.main.bounds)
-    window?.rootViewController = router.getStartViewController()
+    window?.rootViewController = startRouter.getStartViewController()
     window?.makeKeyAndVisible()
     return true
   }

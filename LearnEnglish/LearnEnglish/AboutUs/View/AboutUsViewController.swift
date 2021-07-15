@@ -73,7 +73,7 @@ class AboutUsViewController: BaseViewContoller {
 
       // MARK: - @Objc function
 
-    @objc func goBack() { // Router
+    @objc func goBack() {
         presenter?.tapBack()
     }
 }

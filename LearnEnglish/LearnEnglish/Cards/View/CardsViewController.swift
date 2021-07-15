@@ -12,7 +12,6 @@ protocol CardsViewInput: AnyObject {}
 
 class CardsViewController: UIViewController, CardsViewInput {
 
-    // private let fontSize = UIFont.systemFont(ofSize:40) // Fix me
     private let fontSize = UIFont(name: "Georgia-Bold", size: 40)
 
     // MARK: - Уроки
@@ -68,7 +67,6 @@ class CardsViewController: UIViewController, CardsViewInput {
         alert.addTextField(configurationHandler: nil)
         alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { _ in
             guard let field = alert.textFields?.first, let text = field.text, !text.isEmpty  else { return }
-            // MARK: - Presenter ViewOutput
             self.presenter?.createLesson(with: text)
         }))
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
