@@ -46,7 +46,11 @@ class AboutUsViewController: BaseViewContoller {
         view.addSubview(nameLabel)
         view.addSubview(avaImageView)
         setLayout()
-        presenter?.makeImageVisible()
+        isLoading = true
+        presenter?.makeImageVisible(completion: { [weak self] result in
+            guard let self = self else { return }
+            self.isLoading = result
+        })
     }
     
       //MARK: - Constraints
@@ -70,7 +74,7 @@ class AboutUsViewController: BaseViewContoller {
       //MARK: - @Objc function
     
     @objc func goBack() { // Router
-        dismiss(animated: true, completion: nil)
+        presenter?.tapBack()
     }
 }
 

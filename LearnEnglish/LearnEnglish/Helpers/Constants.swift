@@ -17,3 +17,7 @@ enum UserDefaultKeys {
   static let  keyForAvaImage = "keyForAvaImage"
   static let  keyForAuthorImage = "keyForAuthorImage"
 }
+
+enum Constants {
+    static let reply = 50
+}

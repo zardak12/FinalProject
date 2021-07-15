@@ -15,7 +15,8 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "identifier"
     
-    
+    var presenter: TrainingViewOutput?
+    var buttonArray =  [UIButton]()
     weak var delegate : QuestionDelegate?
     
     lazy var labelName : UILabel = {
@@ -72,11 +73,6 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         button.addTarget(self, action: #selector(failedAnswer), for: .touchUpInside)
         return button
     }()
-    
-    var buttonArray =  [UIButton]()
-    
-    var buttonValueArray =  [Word]()
-    
     
     private var cornerRadius: CGFloat = 10
     
@@ -149,36 +145,15 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configure(with word : Word, array : [Word]) {
+    func configure(with word : Word) {
         labelName.text = word.translate
         firstButton.setTitle(word.value, for: .normal)
-        buttonValueArray = getNewArray(word : word, array : array)
-        secondButton.setTitle(buttonValueArray[0].value, for: .normal)
-        thirdButton.setTitle(buttonValueArray[1].value, for: .normal)
-        fourthButton.setTitle(buttonValueArray[2].value, for: .normal)
+        guard let array = presenter?.getNewArray(word: word) else { return }
+        secondButton.setTitle(array[0].value, for: .normal)
+        thirdButton.setTitle(array[1].value, for: .normal)
+        fourthButton.setTitle(array[2].value, for: .normal)
         
     }
-    
-    //MARK: - Убирать!!!
-    func getNewArray(word : Word, array : [Word]) -> [Word] {
-        var newArray = [Word]()
-        var number = 0
-        
-        
-        while number < 3 {
-            if let newWord = array.randomElement() {
-                if newWord != word {
-                    if !newArray.contains(newWord) {
-                        newArray.append(newWord)
-                        number += 1
-                    }
-                }
-            }
-        }
-        return newArray
-    }
-    
-    
     
     func updateMask() {
         let mask = CAShapeLayer()
@@ -187,17 +162,17 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         contentView.layer.mask = mask
     }
     
-    // MARK: -  Objc functions
+      //MARK: - TrainingViewCell
     
-    //MARK: - Убирать!!!
-    @objc func rightAnswer() {
-        firstButton.backgroundColor = .green
-        delegate?.scrollToNext()
+    func showRightAnswer() {
+        firstButton.rightAnimation()
+        DispatchQueue.main.asyncAfter(deadline:.now() + 0.5) {
+            self.delegate?.scrollToNext()
+        }
     }
     
-    //MARK: - Убирать!!!
-    @objc func failedAnswer(sender : UIButton) {
-        switch sender.tag {
+    func showFailedAnswer(with numberButton: Int) {
+        switch numberButton {
         case 1:
             secondButton.fallAnimation()
         case 2:
@@ -207,6 +182,19 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         default:
             print("error")
         }
+    }
+    
+    
+    // MARK: -  Objc functions
+    
+    @objc func rightAnswer() {
+        showRightAnswer()
+        presenter?.rightAnswerAudio()
+    }
+
+    @objc func failedAnswer(sender : UIButton) {
+        showFailedAnswer(with: sender.tag)
+        presenter?.failedAnswerAudio()
     }
 }
 

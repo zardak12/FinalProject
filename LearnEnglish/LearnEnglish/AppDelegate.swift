@@ -7,16 +7,17 @@
 
 import UIKit
 
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
-  let dataManager = DataManager()
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    dataManager.load()
     let assembly = AssemblyBuilder()
-    let router = StartRouter(assembly: assembly)
+    let networkService = NetworkService()
+    let dataService = DataService(networkService: networkService)
+    let router = StartRouter(assembly: assembly,dataService: dataService)
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.rootViewController = router.getStartViewController()
     window?.makeKeyAndVisible()

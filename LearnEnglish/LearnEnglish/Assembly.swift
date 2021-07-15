@@ -10,17 +10,18 @@ import UIKit
 protocol AssemblyBuilderProtocol {
     func createMainVC() -> UIViewController
     func createCards() -> UIViewController
-    func createSlider( words: [Word], lesson: Lesson) -> UIViewController
     func createWorkout() -> UIViewController
     func createProfile() -> UIViewController
     func createAboutUs() -> UIViewController
+    func createSlider(with navigationContoller: UINavigationController, words: [Word], lesson: Lesson) -> UIViewController
+    func createSettings(words: [Word], lesson: Lesson,delegate: UpdateCollectionViewDelegate) ->UIViewController
+    func createTraining(with words: [Word]) -> UIViewController
 }
 
 class AssemblyBuilder: AssemblyBuilderProtocol {
     
     
     var tabBarCnt =  UITabBarController()
-    let dataManager = DataManager()
     
     func createMainVC() -> UIViewController{
         let attrs = [
@@ -46,7 +47,7 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
     func createCards() -> UIViewController {
         let view = CardsViewController()
         let navigationController = UINavigationController(rootViewController: view)
-        let router = CardsRouter(navigationContoller: navigationController, assemblyBuilder: self)
+        let router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: self)
         let presenter = CardsPresenter(view: view,router: router)
         view.presenter = presenter
         navigationController.navigationBar.tintColor = UIColor.white
@@ -60,7 +61,7 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
     func createWorkout() -> UIViewController {
         let view = WorkoutViewController()
         let navigationController = UINavigationController(rootViewController: view)
-        let router = CardsRouter(navigationContoller: navigationController, assemblyBuilder: self)
+        let router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: self)
         let presenter = CardsPresenter(view: view, router: router)
         view.presenter = presenter
         navigationController.navigationBar.tintColor = UIColor.white
@@ -71,16 +72,32 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         return navigationController
     }
     
-    func createSlider(words: [Word], lesson: Lesson) -> UIViewController {
+    func createSlider(with navigationContoller: UINavigationController, words: [Word], lesson: Lesson) -> UIViewController {
         let view = SliderViewController()
-        let presenter = SliderPresenter(view: view, words: words, lesson: lesson)
+        let router = SliderRouter(navigationContoller: navigationContoller, assemblyBuilder: self)
+        let presenter = SliderPresenter(view: view, words: words, lesson: lesson, router: router)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createSettings(words: [Word], lesson: Lesson,delegate: UpdateCollectionViewDelegate) ->UIViewController {
+        let view = SettingsViewController()
+        let presenter = SettingsPresenter(view: view, words: words, lesson: lesson, delegate: delegate)
+        view.presenter = presenter
+        return view
+    }
+    
+    func createTraining(with words: [Word]) -> UIViewController {
+        let view = TrainingViewController()
+        let presenter = TrainingPresenter(view: view, words: words)
         view.presenter = presenter
         return view
     }
     
     func createProfile() -> UIViewController {
         let view = ProfileViewController()
-        let presenter = ProfilePresenter(view: view)
+        let router = ProfileRouter(assemblyBuilder: self, view: view)
+        let presenter = ProfilePresenter(view: view, with: router)
         view.presenter = presenter
         return view
     }
@@ -88,7 +105,8 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
     func createAboutUs() -> UIViewController {
         let view = AboutUsViewController()
         let networkService = NetworkService()
-        let presenter = AboutUsPresenter(view: view, networkService: networkService)
+        let router = ProfileRouter(assemblyBuilder: self, view: view)
+        let presenter = AboutUsPresenter(view: view, networkService: networkService,router: router)
         view.presenter = presenter
         return view
     }

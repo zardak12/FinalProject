@@ -10,11 +10,12 @@ import CoreData
 
 protocol CardsViewOutput: AnyObject {
     var frc: NSFetchedResultsController<Lesson>? { get set}
-    init(view: CardsViewInput,router: CardsRouterProtocol)
+    init(view: CardsViewInput,router: MenuRouterProtocol)
     func fetch()
     func createLesson(with name: String)
     func deleteLesson(with lesson: Lesson)
-    func tapToSliderVc(with words: [Word], lesson: Lesson)
+    func tapToSliderVC(with words: [Word], lesson: Lesson)
+    func tapToWorkoutVC(with words: [Word])
 }
 
 class CardsPresenter: CardsViewOutput {
@@ -22,11 +23,11 @@ class CardsPresenter: CardsViewOutput {
     weak var view: CardsViewInput?
     let coreDataStack = Container.shared.coreDataStack
     var frc: NSFetchedResultsController<Lesson>?
-    var router: CardsRouterProtocol
+    var router: MenuRouterProtocol
     
     
     
-    required init(view: CardsViewInput,router: CardsRouterProtocol) {
+    required init(view: CardsViewInput,router: MenuRouterProtocol) {
         self.view = view
         self.router = router
         self.frc = createFetchResultController()
@@ -53,7 +54,12 @@ class CardsPresenter: CardsViewOutput {
         coreDataStack.deleteLesson(with: lesson)
     }
     
-    func tapToSliderVc(with words: [Word], lesson: Lesson) {
+    func tapToSliderVC(with words: [Word], lesson: Lesson) {
         router.showSliderController(with: words, lesson: lesson)
+    }
+    
+    
+    func tapToWorkoutVC(with words: [Word]) {
+        router.showTrainingVC(with: words)
     }
 }

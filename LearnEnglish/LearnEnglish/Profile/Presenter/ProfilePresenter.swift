@@ -18,13 +18,14 @@ protocol ProfileViewInput: AnyObject {
 
 protocol ProfileViewOutput: AnyObject {
   
-  init(view: ProfileViewInput)
+  init(view: ProfileViewInput, with router: ProfileRouterProtocol)
   
   func checkImage()
   func checkName()
   
   func saveImage(with image: UIImage)
   func saveName(with name: String)
+  func tapOnAboutUsVC()
 }
 
   //MARK: - ProfilePresenter
@@ -33,9 +34,11 @@ class ProfilePresenter: ProfileViewOutput {
     
     let defaults = UserDefaults.standard
     weak var view: ProfileViewInput?
+    var router: ProfileRouterProtocol
     
-    required init(view: ProfileViewInput) {
+    required init(view: ProfileViewInput, with router: ProfileRouterProtocol) {
         self.view = view
+        self.router = router
     }
     
     func checkImage() {
@@ -65,5 +68,10 @@ class ProfilePresenter: ProfileViewOutput {
         view?.showName(with: name)
         defaults.set(name, forKey: UserDefaultKeys.keyForName)
     }
+    
+    func tapOnAboutUsVC() {
+        router.showAboutUsVC()
+    }
+    
     
 }

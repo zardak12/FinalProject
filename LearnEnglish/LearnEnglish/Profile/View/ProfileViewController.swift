@@ -129,9 +129,7 @@ final class ProfileViewController: UIViewController{
     }
     
     @objc func showAboutUs() {
-        // let aboutUsViewController = Assembly().createAboutUsViewController
-        let aboutUsViewContorller = UINavigationController(rootViewController: AssemblyBuilder().createAboutUs())
-        present(aboutUsViewContorller, animated: true)
+        presenter?.tapOnAboutUsVC()
     }
 
 }

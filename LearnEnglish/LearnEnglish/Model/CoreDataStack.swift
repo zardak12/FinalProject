@@ -34,24 +34,16 @@ final class CoreDataStack {
         try? viewContext.save()
     }
     
-//    func createWord(value : String,translate : String, lesson : Lesson
-//                    , completion: @escaping (Word) -> Void) {
-//        let word = Word(context: viewContext)
-//        word.value = value
-//        word.translate = translate
-//        lesson.addToWords(word)
-//        try? viewContext.save()
-//        completion(word)
-//    }
-    
-    func createWord(value : String,translate : String, lesson : Lesson) {
+    func createWord(value : String,translate : String, lesson : Lesson
+                    , completion: @escaping (Word) -> Void) {
         let word = Word(context: viewContext)
         word.value = value
         word.translate = translate
         lesson.addToWords(word)
         try? viewContext.save()
+        completion(word)
     }
-    
+
     func deleteWord(with word : Word) {
         viewContext.delete(word)
         try? viewContext.save()

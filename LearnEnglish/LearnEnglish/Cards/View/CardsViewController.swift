@@ -13,8 +13,8 @@ protocol CardsViewInput: AnyObject {}
 
 class CardsViewController: UIViewController, CardsViewInput {
     
-    private let fontSize = UIFont.systemFont(ofSize:40) // Fix me
-    
+    //private let fontSize = UIFont.systemFont(ofSize:40) // Fix me
+    private let fontSize = UIFont(name: "Georgia-Bold", size: 40)
     
     //MARK: - Уроки
     
@@ -125,8 +125,7 @@ extension CardsViewController : UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = presenter?.frc?.object(at: indexPath) else { return }
         guard let words = item.words?.allObjects as? [Word] else { return }
-        presenter?.tapToSliderVc(with: words, lesson:item)
-//        // Rooter
+        presenter?.tapToSliderVC(with: words, lesson:item)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle{

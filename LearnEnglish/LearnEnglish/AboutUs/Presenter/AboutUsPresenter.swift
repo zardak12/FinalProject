@@ -12,25 +12,33 @@ protocol AboutUsViewInput : AnyObject {
 }
 
 protocol AboutUsViewOutput : AnyObject {
-    init(view: AboutUsViewInput,networkService: NetworkServiceProtocol)
-    func makeImageVisible()
+    init(view: AboutUsViewInput,networkService: NetworkServiceProtocol,router: ProfileRouterProtocol)
+    func makeImageVisible(completion:(Bool) -> Void)
+    func tapBack()
 }
 
 
 class AboutUsPresenter: AboutUsViewOutput{
     weak var view: AboutUsViewInput?
     let networkService: NetworkServiceProtocol
+    var router: ProfileRouterProtocol
     
-    required init(view: AboutUsViewInput, networkService: NetworkServiceProtocol) {
+    required init(view: AboutUsViewInput, networkService: NetworkServiceProtocol,router: ProfileRouterProtocol) {
         self.view = view
         self.networkService = networkService
+        self.router = router
     }
     
-    func makeImageVisible() {
+    func makeImageVisible(completion:(Bool) -> Void) {
         networkService.loadImage { image in
             DispatchQueue.main.async {
                 self.view?.showAuthorImage(with: image)
             }
         }
+        completion(false)
+    }
+    
+    func tapBack() {
+        router.goBack()
     }
 }

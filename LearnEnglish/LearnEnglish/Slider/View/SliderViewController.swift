@@ -6,22 +6,15 @@
 //
 
 import UIKit
-import CoreData
 
 
 class SliderViewController: UIViewController, SliderViewInput {
     
-     //MARK: - Убирать!!!
     
     var presenter: SliderViewOutput?
-    
-    //var words : [Word]? //MARK: - Убирать!!!
-//
-    //var lesson : Lesson? //MARK: - Убирать!!!
 
-    let reply = 50
+      //MARK: - UI
     
-    // MARK: -  колектш
     lazy var collectionView : UICollectionView = {
         let layout =  SliderCollectionViewLayout()
         let collection =  UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -29,29 +22,17 @@ class SliderViewController: UIViewController, SliderViewInput {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
         collection.dataSource = self
+        collection.delegate = self
         return collection
     }()
     
     
     private lazy var settingButton : UIBarButtonItem = {
         let  image  = UIImage(systemName: "gearshape")
-        let setting =   UIBarButtonItem(image: image, style: .done , target: self, action:  #selector(settings))
+        let setting = UIBarButtonItem(image: image, style: .done , target: self, action:  #selector(settings))
         setting.tintColor = .white
         return setting
     }()
-    
-    
-//    //MARK: - Убирать!!!
-//    init(words : [Word], lesson : Lesson) {
-//        self.words = words
-//        self.lesson = lesson
-//        super.init(nibName: nil, bundle: nil)
-//    }
-//    
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//    
     
     
     // MARK: - Life Circle
@@ -59,11 +40,9 @@ class SliderViewController: UIViewController, SliderViewInput {
         super.viewWillAppear(animated)
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.layoutIfNeeded()
-        //MARK: - Убирать!!!
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+        presenter?.update()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,6 +57,8 @@ class SliderViewController: UIViewController, SliderViewInput {
     }
     
     
+    
+    
     // MARK: -  Constraint
     func setConstraint() {
         NSLayoutConstraint.activate([
@@ -89,9 +70,8 @@ class SliderViewController: UIViewController, SliderViewInput {
     }
     
     
-    //MARK: - Убирать!!!
     func arrayIndexForRow(_ row : Int) -> Int {
-        return row % (presenter?.words?.count ?? 0)//words.count
+        return row % (presenter?.words?.count ?? 0)
     }
     
     
@@ -115,16 +95,6 @@ class SliderViewController: UIViewController, SliderViewInput {
             }
             guard let lesson = self.presenter?.lesson else { return }
             self.presenter?.createWord(value: valueText, translate: translateText, lesson: lesson)
-            
-            //MARK: - Убирать!!!
-//            self.coreDataStack.createWord(value: valueText, translate: translateText, lesson: self.lesson) { word in
-//                self.words.insert(word, at: 0)
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                }
-//            }
-            
-            
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -139,11 +109,8 @@ class SliderViewController: UIViewController, SliderViewInput {
         }
     }
     
-    
-    //MARK: - Убирать!!! Router
     @objc func settings() {
-//        let settings = SettingsViewController(with: words,lesson: lesson,delegate: self)
-//        navigationController?.pushViewController(settings, animated: true)
+        presenter?.tapOnSettings(delegate: self)
     }
     
 }
@@ -151,49 +118,43 @@ class SliderViewController: UIViewController, SliderViewInput {
 extension SliderViewController: UICollectionViewDataSource {
     
     // MARK: -  Возвращает количество слов
-    
-    //MARK: - Убирать!!!
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if presenter?.words?.count == 0 {
             createFirstWord()
         }
-        return (presenter?.words?.count ?? 0) * reply
+        return (presenter?.words?.count ?? 0) * Constants.reply
     }
     
     // MARK: -  Регистрирует ячейку
     
-    //MARK: - Убирать!!!
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SliderCollectionViewCell.identifier, for: indexPath) as? SliderCollectionViewCell else {
             return UICollectionViewCell()
         }
         let arrayIndex = arrayIndexForRow(indexPath.item)
-          //MARK: - тут изменить тоже бляяяя
         guard let item = presenter?.words?[arrayIndex] else { return UICollectionViewCell() }
+        cell.presenter = presenter
+        presenter?.cell = cell
         cell.configure(with: item)
         return cell
     }
 }
 
-/*
-extension SliderViewController : UpdateCollectionViewDelegate {
-    //MARK: - Убирать!!!
-    func deleteWord(_ deleteIndex: Int) {
-        presenter?.words.remove(at: deleteIndex)
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
-    }
-    
-    //MARK: - Убирать!!!
-    
-    func addNewWord(_ newWord: Word) {
-        words.append(newWord)
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
+extension SliderViewController: UICollectionViewDelegate {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        presenter?.swipeAudio()
     }
 }
 
-*/
+extension SliderViewController: UpdateCollectionViewDelegate {
+
+    func addNewWord(_ newWord: Word) {
+        presenter?.addWord(newWord)
+    }
+
+    func deleteWord(_ deleteIndex: Int) {
+        presenter?.deleteWord(deleteIndex)
+    }
+}
 

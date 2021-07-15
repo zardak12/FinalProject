@@ -19,7 +19,7 @@ final class NetworkService : NetworkServiceProtocol   {
     //MARK: - Upload Lessons
     
   func getLessons(completion: @escaping (GetResponce) -> Void) {
-    guard  let lessonUrl = URL(string: NetworkConstant.lessonUrl) else { return } // добавить возможность nil
+    guard  let lessonUrl = URL(string: NetworkConstant.lessonUrl) else { return }
     var request = URLRequest(url: lessonUrl)
     request.httpMethod = "GET"
     session.dataTask(with: request) { (data, _ , error) in

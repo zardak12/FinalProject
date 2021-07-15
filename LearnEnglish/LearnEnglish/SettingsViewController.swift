@@ -6,27 +6,14 @@
 //
 
 import UIKit
-import CoreData
 
-protocol UpdateCollectionViewDelegate : AnyObject {
-    func addNewWord(_ word: Word)
-    func deleteWord(_ indexPath: Int)
-}
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController,SettingsViewInput {
     
     
-    //MARK: - Убирать!!!
-    var words : [Word]
-    var lesson : Lesson
-    
-    //MARK: - Убирать!!!
-    private let coreDataStack = Container.shared.coreDataStack
+    var presenter: SettingsViewOutput?
     
     var cellSpacingHeight : CGFloat = 10
-    
-    //MARK: - Убирать!!!
-    weak var delegate : UpdateCollectionViewDelegate?
     
     private lazy var addItem : UIBarButtonItem = {
       let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
@@ -49,22 +36,6 @@ class SettingsViewController: UIViewController {
     }()
     
     
-    // MARK: -  Init
-    
-    //MARK: - Убирать!!!
-
-    init(with words : [Word], lesson : Lesson , delegate : UpdateCollectionViewDelegate) {
-        self.words = words
-        self.lesson = lesson
-        self.delegate = delegate
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     // MARK: -  Life Cyrcle
     
     override func viewDidLoad() {
@@ -78,6 +49,7 @@ class SettingsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        presenter?.update()
     }
     
     
@@ -113,14 +85,8 @@ class SettingsViewController: UIViewController {
             else {
                 return
             }
-            //MARK: - Убирать!!!
-//            self.coreDataStack.createWord(value: valueText, translate: translateText, lesson: self.lesson) { word in
-//                self.delegate?.addNewWord(word)
-//                self.words.append(word)
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            }
+            guard let lesson = self.presenter?.lesson else { return }
+            self.presenter?.createWord(value: valueText, translate: translateText, lesson: lesson)
         }
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -129,14 +95,19 @@ class SettingsViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    func updateTableView() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
 }
 
   //MARK: - UITableViewDataSource
 extension SettingsViewController : UITableViewDataSource {
     
-    //MARK: - Убирать!!!
     func numberOfSections(in tableView: UITableView) -> Int {
-        return words.count
+        return presenter?.words.count ?? 0
     }
     
     
@@ -144,12 +115,12 @@ extension SettingsViewController : UITableViewDataSource {
         return 1
     }
     
-    //MARK: - Убирать!!!
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SettingsTableViewCell.identifier,for: indexPath) as? SettingsTableViewCell else {
             return UITableViewCell()
         }
-        let word = words[indexPath.section]
+        guard let word = presenter?.words[indexPath.section] else { return UITableViewCell()}
         cell.configure(with: word)
         cell.backgroundColor = .white
         cell.layer.cornerRadius = 8
@@ -180,17 +151,12 @@ extension SettingsViewController : UITableViewDelegate {
         return .delete
     }
     
-    //MARK: - Убирать!!!
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let deleteIndex = indexPath.section
-            let word = words[indexPath.section]
-            words.remove(at: deleteIndex)
-            delegate?.deleteWord(deleteIndex)
-            coreDataStack.deleteWord(with: word)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            guard let word = presenter?.words[indexPath.section] else { return }
+            presenter?.deleteWord(wtih: word, deleteIndex)
         }
     }
     

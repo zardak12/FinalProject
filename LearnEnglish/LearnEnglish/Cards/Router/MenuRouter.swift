@@ -1,13 +1,13 @@
 //
-//  CardsRouter.swift
+//  MenuRouter.swift
 //  LearnEnglish
 //
-//  Created by Марк Шнейдерман on 13.07.2021.
+//  Created by Марк Шнейдерман on 15.07.2021.
 //
 
 import UIKit
 
-class CardsRouter: CardsRouterProtocol,RouterProtocol {
+class MenuRouter: MenuRouterProtocol,RouterProtocol {
     var navigationContoller: UINavigationController
     var assemblyBuilder: AssemblyBuilderProtocol
     
@@ -17,8 +17,12 @@ class CardsRouter: CardsRouterProtocol,RouterProtocol {
     }
     
     func showSliderController(with words: [Word], lesson: Lesson) {
-        let sliderVC = assemblyBuilder.createSlider(words: words, lesson: lesson)
+        let sliderVC = assemblyBuilder.createSlider(with:navigationContoller, words: words, lesson: lesson)
         navigationContoller.pushViewController(sliderVC, animated: true)
     }
     
+    func showTrainingVC(with words: [Word]) {
+        let trainingVC = assemblyBuilder.createTraining(with: words)
+        navigationContoller.pushViewController(trainingVC, animated: true)
+    }
 }
