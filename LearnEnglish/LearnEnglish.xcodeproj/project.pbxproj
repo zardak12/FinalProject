@@ -36,6 +36,15 @@
 		4D935E0A26A03F8F00906B62 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E0926A03F8F00906B62 /* ProfileRouter.swift */; };
 		4D935E0C26A04E4400906B62 /* Whoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D935E0B26A04E4400906B62 /* Whoosh.mp3 */; };
 		4D935E0E26A0591E00906B62 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E0D26A0591E00906B62 /* DataService.swift */; };
+		4D935E5A26A2C43300906B62 /* NetworkServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E5926A2C43300906B62 /* NetworkServiceTest.swift */; };
+		4D935E5E26A2ED2C00906B62 /* MenuRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E5D26A2ED2C00906B62 /* MenuRouterTest.swift */; };
+		4D935E6226A2F2E900906B62 /* ProfileRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E6126A2F2E900906B62 /* ProfileRouterTest.swift */; };
+		4D935E6426A2FC6500906B62 /* SliderRouterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E6326A2FC6500906B62 /* SliderRouterTest.swift */; };
+		4D935E6626A48E1C00906B62 /* CardsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E6526A48E1C00906B62 /* CardsPresenterTest.swift */; };
+		4D935E6826A48E4100906B62 /* SliderPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E6726A48E4100906B62 /* SliderPresenterTest.swift */; };
+		4D935E7A26A5741400906B62 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E7926A5741400906B62 /* LoginPage.swift */; };
+		4D935E7E26A5791500906B62 /*  XCUIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E7D26A5791500906B62 /*  XCUIApplication+Extension.swift */; };
+		4D935E8426A57A0F00906B62 /* LoginUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E8326A57A0F00906B62 /* LoginUITest.swift */; };
 		4DEEC5712685F41B0017D77B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC5702685F41B0017D77B /* NetworkService.swift */; };
 		4DEEC60F268724440017D77B /* GetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC60E268724440017D77B /* GetResponse.swift */; };
 		4DEEC612268742DC0017D77B /* Lessons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC610268742DC0017D77B /* Lessons.xcdatamodeld */; };
@@ -57,6 +66,23 @@
 		9734ADED2679D3C7006BCF52 /* SliderCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734ADEC2679D3C7006BCF52 /* SliderCollectionViewLayout.swift */; };
 		9734ADFE267A24A7006BCF52 /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9734ADFD267A24A7006BCF52 /* CardsViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4D935E4C26A219BB00906B62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9734ADC52679D16F006BCF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9734ADCC2679D16F006BCF52;
+			remoteInfo = LearnEnglish;
+		};
+		4D935E7426A56EEA00906B62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9734ADC52679D16F006BCF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9734ADCC2679D16F006BCF52;
+			remoteInfo = LearnEnglish;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4D742AF5269ADDA2009CDA12 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -88,6 +114,19 @@
 		4D935E0926A03F8F00906B62 /* ProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
 		4D935E0B26A04E4400906B62 /* Whoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Whoosh.mp3; sourceTree = "<group>"; };
 		4D935E0D26A0591E00906B62 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		4D935E4726A219BB00906B62 /* LearnEnglishTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnEnglishTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D935E4B26A219BB00906B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D935E5926A2C43300906B62 /* NetworkServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTest.swift; sourceTree = "<group>"; };
+		4D935E5D26A2ED2C00906B62 /* MenuRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuRouterTest.swift; sourceTree = "<group>"; };
+		4D935E6126A2F2E900906B62 /* ProfileRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRouterTest.swift; sourceTree = "<group>"; };
+		4D935E6326A2FC6500906B62 /* SliderRouterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderRouterTest.swift; sourceTree = "<group>"; };
+		4D935E6526A48E1C00906B62 /* CardsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsPresenterTest.swift; sourceTree = "<group>"; };
+		4D935E6726A48E4100906B62 /* SliderPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderPresenterTest.swift; sourceTree = "<group>"; };
+		4D935E6F26A56EEA00906B62 /* LearnEnglishUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnEnglishUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D935E7326A56EEA00906B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D935E7926A5741400906B62 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		4D935E7D26A5791500906B62 /*  XCUIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " XCUIApplication+Extension.swift"; sourceTree = "<group>"; };
+		4D935E8326A57A0F00906B62 /* LoginUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITest.swift; sourceTree = "<group>"; };
 		4DEEC5702685F41B0017D77B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4DEEC60E268724440017D77B /* GetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetResponse.swift; sourceTree = "<group>"; };
 		4DEEC611268742DC0017D77B /* Lessons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lessons.xcdatamodel; sourceTree = "<group>"; };
@@ -113,6 +152,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4D935E4426A219BB00906B62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D935E6C26A56EEA00906B62 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9734ADCA2679D16F006BCF52 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -332,6 +385,63 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		4D935E4826A219BB00906B62 /* LearnEnglishTests */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E5526A2B65700906B62 /* CardsModule */,
+				4D935E5626A2B66700906B62 /* SliderModule */,
+				4D935E5726A2B6AF00906B62 /* ProfileModule */,
+				4D935E5426A2B61700906B62 /* NetworkModule */,
+				4D935E4B26A219BB00906B62 /* Info.plist */,
+			);
+			path = LearnEnglishTests;
+			sourceTree = "<group>";
+		};
+		4D935E5426A2B61700906B62 /* NetworkModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E5926A2C43300906B62 /* NetworkServiceTest.swift */,
+			);
+			path = NetworkModule;
+			sourceTree = "<group>";
+		};
+		4D935E5526A2B65700906B62 /* CardsModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E5D26A2ED2C00906B62 /* MenuRouterTest.swift */,
+				4D935E6526A48E1C00906B62 /* CardsPresenterTest.swift */,
+			);
+			path = CardsModule;
+			sourceTree = "<group>";
+		};
+		4D935E5626A2B66700906B62 /* SliderModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E6326A2FC6500906B62 /* SliderRouterTest.swift */,
+				4D935E6726A48E4100906B62 /* SliderPresenterTest.swift */,
+			);
+			path = SliderModule;
+			sourceTree = "<group>";
+		};
+		4D935E5726A2B6AF00906B62 /* ProfileModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E6126A2F2E900906B62 /* ProfileRouterTest.swift */,
+			);
+			path = ProfileModule;
+			sourceTree = "<group>";
+		};
+		4D935E7026A56EEA00906B62 /* LearnEnglishUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E7926A5741400906B62 /* LoginPage.swift */,
+				4D935E7D26A5791500906B62 /*  XCUIApplication+Extension.swift */,
+				4D935E8326A57A0F00906B62 /* LoginUITest.swift */,
+				4D935E7326A56EEA00906B62 /* Info.plist */,
+			);
+			path = LearnEnglishUITests;
+			sourceTree = "<group>";
+		};
 		970BBC922690CC87008EFDEB /* Workout */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +465,8 @@
 			isa = PBXGroup;
 			children = (
 				9734ADCF2679D16F006BCF52 /* LearnEnglish */,
+				4D935E4826A219BB00906B62 /* LearnEnglishTests */,
+				4D935E7026A56EEA00906B62 /* LearnEnglishUITests */,
 				9734ADCE2679D16F006BCF52 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -363,6 +475,8 @@
 			isa = PBXGroup;
 			children = (
 				9734ADCD2679D16F006BCF52 /* LearnEnglish.app */,
+				4D935E4726A219BB00906B62 /* LearnEnglishTests.xctest */,
+				4D935E6F26A56EEA00906B62 /* LearnEnglishUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -407,6 +521,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4D935E4626A219BB00906B62 /* LearnEnglishTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D935E5026A219BB00906B62 /* Build configuration list for PBXNativeTarget "LearnEnglishTests" */;
+			buildPhases = (
+				4D935E4326A219BB00906B62 /* Sources */,
+				4D935E4426A219BB00906B62 /* Frameworks */,
+				4D935E4526A219BB00906B62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D935E4D26A219BB00906B62 /* PBXTargetDependency */,
+			);
+			name = LearnEnglishTests;
+			productName = LearnEnglishTests;
+			productReference = 4D935E4726A219BB00906B62 /* LearnEnglishTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4D935E6E26A56EEA00906B62 /* LearnEnglishUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D935E7626A56EEB00906B62 /* Build configuration list for PBXNativeTarget "LearnEnglishUITests" */;
+			buildPhases = (
+				4D935E6B26A56EEA00906B62 /* Sources */,
+				4D935E6C26A56EEA00906B62 /* Frameworks */,
+				4D935E6D26A56EEA00906B62 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D935E7526A56EEA00906B62 /* PBXTargetDependency */,
+			);
+			name = LearnEnglishUITests;
+			productName = LearnEnglishUITests;
+			productReference = 4D935E6F26A56EEA00906B62 /* LearnEnglishUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9734ADCC2679D16F006BCF52 /* LearnEnglish */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9734ADE12679D170006BCF52 /* Build configuration list for PBXNativeTarget "LearnEnglish" */;
@@ -431,9 +581,18 @@
 		9734ADC52679D16F006BCF52 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
+					4D935E4626A219BB00906B62 = {
+						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
+						TestTargetID = 9734ADCC2679D16F006BCF52;
+					};
+					4D935E6E26A56EEA00906B62 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 9734ADCC2679D16F006BCF52;
+					};
 					9734ADCC2679D16F006BCF52 = {
 						CreatedOnToolsVersion = 12.2;
 					};
@@ -453,11 +612,27 @@
 			projectRoot = "";
 			targets = (
 				9734ADCC2679D16F006BCF52 /* LearnEnglish */,
+				4D935E4626A219BB00906B62 /* LearnEnglishTests */,
+				4D935E6E26A56EEA00906B62 /* LearnEnglishUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4D935E4526A219BB00906B62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D935E6D26A56EEA00906B62 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9734ADCB2679D16F006BCF52 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,6 +668,29 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4D935E4326A219BB00906B62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D935E5E26A2ED2C00906B62 /* MenuRouterTest.swift in Sources */,
+				4D935E6626A48E1C00906B62 /* CardsPresenterTest.swift in Sources */,
+				4D935E6426A2FC6500906B62 /* SliderRouterTest.swift in Sources */,
+				4D935E6826A48E4100906B62 /* SliderPresenterTest.swift in Sources */,
+				4D935E5A26A2C43300906B62 /* NetworkServiceTest.swift in Sources */,
+				4D935E6226A2F2E900906B62 /* ProfileRouterTest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4D935E6B26A56EEA00906B62 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D935E7E26A5791500906B62 /*  XCUIApplication+Extension.swift in Sources */,
+				4D935E7A26A5741400906B62 /* LoginPage.swift in Sources */,
+				4D935E8426A57A0F00906B62 /* LoginUITest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9734ADC92679D16F006BCF52 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -546,6 +744,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4D935E4D26A219BB00906B62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9734ADCC2679D16F006BCF52 /* LearnEnglish */;
+			targetProxy = 4D935E4C26A219BB00906B62 /* PBXContainerItemProxy */;
+		};
+		4D935E7526A56EEA00906B62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9734ADCC2679D16F006BCF52 /* LearnEnglish */;
+			targetProxy = 4D935E7426A56EEA00906B62 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		9734ADDB2679D170006BCF52 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -558,6 +769,91 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4D935E4E26A219BB00906B62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58F4X29Z9Z;
+				INFOPLIST_FILE = LearnEnglishTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kosgrey.LearnEnglishTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LearnEnglish.app/LearnEnglish";
+			};
+			name = Debug;
+		};
+		4D935E4F26A219BB00906B62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58F4X29Z9Z;
+				INFOPLIST_FILE = LearnEnglishTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kosgrey.LearnEnglishTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LearnEnglish.app/LearnEnglish";
+			};
+			name = Release;
+		};
+		4D935E7726A56EEB00906B62 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58F4X29Z9Z;
+				INFOPLIST_FILE = LearnEnglishUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kosgrey.LearnEnglishUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LearnEnglish;
+			};
+			name = Debug;
+		};
+		4D935E7826A56EEB00906B62 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 58F4X29Z9Z;
+				INFOPLIST_FILE = LearnEnglishUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kosgrey.LearnEnglishUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LearnEnglish;
+			};
+			name = Release;
+		};
 		9734ADDF2679D170006BCF52 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -715,6 +1011,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4D935E5026A219BB00906B62 /* Build configuration list for PBXNativeTarget "LearnEnglishTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D935E4E26A219BB00906B62 /* Debug */,
+				4D935E4F26A219BB00906B62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4D935E7626A56EEB00906B62 /* Build configuration list for PBXNativeTarget "LearnEnglishUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D935E7726A56EEB00906B62 /* Debug */,
+				4D935E7826A56EEB00906B62 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9734ADC82679D16F006BCF52 /* Build configuration list for PBXProject "LearnEnglish" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

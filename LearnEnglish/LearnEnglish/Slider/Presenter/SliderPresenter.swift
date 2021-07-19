@@ -42,7 +42,7 @@ class SliderPresenter: SliderViewOutput {
     var lesson: Lesson
     var router: SliderRouterProtocol
     var isSelect: Bool = false
-    var answer: AVAudioPlayer?
+    var whoosh: AVAudioPlayer?
 
     required init(view: SliderViewInput, words: [Word], lesson: Lesson, router: SliderRouterProtocol) {
         self.view = view
@@ -57,7 +57,7 @@ class SliderPresenter: SliderViewOutput {
 
     func createWord(value: String, translate: String, lesson: Lesson) {
         coreDataStack.createWord(value: value, translate: translate, lesson: lesson) { word in
-            self.words?.append(word)
+            self.words?.insert(word, at: 0)
         }
         view?.updateCollectionView()
     }
@@ -92,9 +92,9 @@ class SliderPresenter: SliderViewOutput {
             guard let path = Bundle.main.path(forResource: "Whoosh.mp3", ofType: nil) else { return }
             let url = URL(fileURLWithPath: path)
             do {
-                self.answer = try AVAudioPlayer(contentsOf: url)
-                self.answer?.play()
-                self.answer?.setVolume(0.1, fadeDuration: 0.5)
+                self.whoosh = try AVAudioPlayer(contentsOf: url)
+                self.whoosh?.play()
+                self.whoosh?.setVolume(0.5, fadeDuration: 0.5)
             } catch {
                 print("couldn't load file :(")
             }

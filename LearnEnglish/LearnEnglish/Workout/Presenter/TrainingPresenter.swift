@@ -47,22 +47,17 @@ class TrainingPresenter: TrainingViewOutput {
     }
 
     func rightAnswerAudio() {
-        DispatchQueue.global(qos: .userInteractive).async {
-            guard let path = Bundle.main.path(forResource: "rightAnswer.wav", ofType: nil) else { return }
-            let url = URL(fileURLWithPath: path)
-            do {
-                self.answer = try AVAudioPlayer(contentsOf: url)
-                self.answer?.play()
-                self.answer?.setVolume(0.5, fadeDuration: 0.5)
-            } catch {
-                print("couldn't load file :(")
-            }
-        }
+        guard let path = Bundle.main.path(forResource: "rightAnswer.wav", ofType: nil) else { return }
+        answerAudio(with: path)
     }
 
     func failedAnswerAudio() {
+        guard let path = Bundle.main.path(forResource: "Fail-sound.mp3", ofType: nil) else { return }
+        answerAudio(with: path)
+    }
+
+    func answerAudio(with path: String) {
         DispatchQueue.global(qos: .userInteractive).async {
-            guard let path = Bundle.main.path(forResource: "Fail-sound.mp3", ofType: nil) else { return }
             let url = URL(fileURLWithPath: path)
             do {
                 self.answer = try AVAudioPlayer(contentsOf: url)

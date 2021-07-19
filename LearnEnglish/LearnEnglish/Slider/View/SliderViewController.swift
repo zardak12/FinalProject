@@ -105,7 +105,6 @@ class SliderViewController: UIViewController, SliderViewInput {
     @objc func settings() {
         presenter?.tapOnSettings(delegate: self)
     }
-
 }
 
 extension SliderViewController: UICollectionViewDataSource {

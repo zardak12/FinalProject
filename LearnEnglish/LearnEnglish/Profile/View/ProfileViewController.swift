@@ -151,6 +151,11 @@ extension ProfileViewController: ProfileViewInput {
   // MARK: - UITextFieldDelegate
 
 extension ProfileViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.text = nil
+        return true
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == nameTextField {
             if let text = textField.text {

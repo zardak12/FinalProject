@@ -13,8 +13,3 @@ final class Container {
 
     lazy var coreDataStack = CoreDataStack(modelName: "Lessons")
 }
-
-final class NetworkContainer {
-    static let shared = NetworkService()
-
-}

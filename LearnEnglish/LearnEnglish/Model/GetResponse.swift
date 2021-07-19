@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - GetResponce
 struct GetResponce: Codable {
-    let lessons: [Lessons]
+    let lessons: [Lessons]?
 
     private enum CodingKeys: String, CodingKey {
         case lessons = "documents"
