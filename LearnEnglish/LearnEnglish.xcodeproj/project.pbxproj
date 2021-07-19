@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -45,6 +45,8 @@
 		4D935E7A26A5741400906B62 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E7926A5741400906B62 /* LoginPage.swift */; };
 		4D935E7E26A5791500906B62 /*  XCUIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E7D26A5791500906B62 /*  XCUIApplication+Extension.swift */; };
 		4D935E8426A57A0F00906B62 /* LoginUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E8326A57A0F00906B62 /* LoginUITest.swift */; };
+		4D935E9E26A59C9600906B62 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 4D935E9D26A59C9600906B62 /* SnapshotTesting */; };
+		4D935EA026A59DC500906B62 /* SnapshotTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935E9F26A59DC500906B62 /* SnapshotTest.swift */; };
 		4DEEC5712685F41B0017D77B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC5702685F41B0017D77B /* NetworkService.swift */; };
 		4DEEC60F268724440017D77B /* GetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC60E268724440017D77B /* GetResponse.swift */; };
 		4DEEC612268742DC0017D77B /* Lessons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC610268742DC0017D77B /* Lessons.xcdatamodeld */; };
@@ -127,6 +129,7 @@
 		4D935E7926A5741400906B62 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		4D935E7D26A5791500906B62 /*  XCUIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " XCUIApplication+Extension.swift"; sourceTree = "<group>"; };
 		4D935E8326A57A0F00906B62 /* LoginUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUITest.swift; sourceTree = "<group>"; };
+		4D935E9F26A59DC500906B62 /* SnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTest.swift; sourceTree = "<group>"; };
 		4DEEC5702685F41B0017D77B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4DEEC60E268724440017D77B /* GetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetResponse.swift; sourceTree = "<group>"; };
 		4DEEC611268742DC0017D77B /* Lessons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lessons.xcdatamodel; sourceTree = "<group>"; };
@@ -156,6 +159,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D935E9E26A59C9600906B62 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +392,7 @@
 		4D935E4826A219BB00906B62 /* LearnEnglishTests */ = {
 			isa = PBXGroup;
 			children = (
+				4D935EA226A5B64700906B62 /* SnapshotModule */,
 				4D935E5526A2B65700906B62 /* CardsModule */,
 				4D935E5626A2B66700906B62 /* SliderModule */,
 				4D935E5726A2B6AF00906B62 /* ProfileModule */,
@@ -440,6 +445,14 @@
 				4D935E7326A56EEA00906B62 /* Info.plist */,
 			);
 			path = LearnEnglishUITests;
+			sourceTree = "<group>";
+		};
+		4D935EA226A5B64700906B62 /* SnapshotModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D935E9F26A59DC500906B62 /* SnapshotTest.swift */,
+			);
+			path = SnapshotModule;
 			sourceTree = "<group>";
 		};
 		970BBC922690CC87008EFDEB /* Workout */ = {
@@ -535,6 +548,9 @@
 				4D935E4D26A219BB00906B62 /* PBXTargetDependency */,
 			);
 			name = LearnEnglishTests;
+			packageProductDependencies = (
+				4D935E9D26A59C9600906B62 /* SnapshotTesting */,
+			);
 			productName = LearnEnglishTests;
 			productReference = 4D935E4726A219BB00906B62 /* LearnEnglishTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -607,6 +623,9 @@
 				Base,
 			);
 			mainGroup = 9734ADC42679D16F006BCF52;
+			packageReferences = (
+				4D935E9C26A59C9600906B62 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 9734ADCE2679D16F006BCF52 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -673,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D935E5E26A2ED2C00906B62 /* MenuRouterTest.swift in Sources */,
+				4D935EA026A59DC500906B62 /* SnapshotTest.swift in Sources */,
 				4D935E6626A48E1C00906B62 /* CardsPresenterTest.swift in Sources */,
 				4D935E6426A2FC6500906B62 /* SliderRouterTest.swift in Sources */,
 				4D935E6826A48E4100906B62 /* SliderPresenterTest.swift in Sources */,
@@ -1048,6 +1068,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4D935E9C26A59C9600906B62 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4D935E9D26A59C9600906B62 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4D935E9C26A59C9600906B62 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4DEEC610268742DC0017D77B /* Lessons.xcdatamodeld */ = {

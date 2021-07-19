@@ -21,7 +21,8 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     lazy var labelName: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Helvetica-Bold", size: 25)
+        label.font = UIFont(name: "Helvetica-Bold", size: 23)
+        label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -30,7 +31,6 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "buttonFill")
         button.layer.cornerRadius = 5
-        button.layer.borderColor = UIColor.black.cgColor
         button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = UIFont(name: "Helvetica", size: 20)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -110,37 +110,36 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
     func layout() {
         NSLayoutConstraint.activate([
             labelName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            labelName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            labelName.bottomAnchor.constraint(equalTo: firstButton.topAnchor, constant: -10)
-
+            labelName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
         ])
 
         NSLayoutConstraint.activate([
             buttonArray[0].centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            buttonArray[0].topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 20),
             buttonArray[0].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
             buttonArray[0].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40)
         ])
 
         NSLayoutConstraint.activate([
-            buttonArray[1].topAnchor.constraint(equalTo: buttonArray[0].bottomAnchor, constant: 20),
             buttonArray[1].centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            buttonArray[1].topAnchor.constraint(equalTo: buttonArray[0].bottomAnchor, constant: 20),
             buttonArray[1].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
             buttonArray[1].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40)
         ])
 
         NSLayoutConstraint.activate([
-            buttonArray[2].topAnchor.constraint(equalTo: buttonArray[1].bottomAnchor, constant: 20),
             buttonArray[2].centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            buttonArray[2].topAnchor.constraint(equalTo: buttonArray[1].bottomAnchor, constant: 20),
             buttonArray[2].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
             buttonArray[2].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40)
         ])
 
         NSLayoutConstraint.activate([
-            buttonArray[3].topAnchor.constraint(equalTo: buttonArray[2].bottomAnchor, constant: 20),
             buttonArray[3].centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            buttonArray[3].bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),
+            buttonArray[3].topAnchor.constraint(equalTo: buttonArray[2].bottomAnchor, constant: 20),
             buttonArray[3].leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
-            buttonArray[3].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40)
+            buttonArray[3].trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
+            buttonArray[3].bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40)
         ])
     }
 

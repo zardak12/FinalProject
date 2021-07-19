@@ -64,7 +64,7 @@ class SliderCollectionViewLayout: UICollectionViewLayout {
         didInitialSetup = true
 
         let width = collectionBounds.width * 0.7
-        let height = width / 0.6
+        let height = width / 0.7
         itemSize = CGSize(width: width, height: height)
 
         collectionView.setContentOffset(CGPoint(x: collectionViewContentSize.width - collectionBounds.width,
