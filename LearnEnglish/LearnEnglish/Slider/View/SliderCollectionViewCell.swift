@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderViewCellInput {
+final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderViewCellInput {
 
   // MARK: - Identifier
     static let identifier = "identifier"
@@ -53,7 +53,7 @@ class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderVi
         super.init(frame: frame)
         contentView.backgroundColor = .white
         contentView.addSubview(label)
-        getConstraint()
+        setLayout()
         contentView.addGestureRecognizer(tapGesture)
     }
 
@@ -92,12 +92,12 @@ class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderVi
         updateMask()
     }
 
-    func updateShade() {
+    private func updateShade() {
         shadeView.frame = bounds.insetBy(dx: -2, dy: -2)
         shadeView.alpha = 1 - shadeOpacity
     }
 
-    func updateMask() {
+    private func updateMask() {
         let mask = CAShapeLayer()
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
         mask.path = path
@@ -121,7 +121,7 @@ class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderVi
         setShadeOpacity(progress: 0)
     }
 
-    func getConstraint() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)

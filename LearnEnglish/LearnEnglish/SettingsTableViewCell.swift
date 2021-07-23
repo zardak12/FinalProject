@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
 
     static let identifier = "identifier"
 
-    lazy var valueLabel: UILabel = {
+    private lazy var valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.helveticaBoldFont
@@ -19,7 +19,7 @@ class SettingsTableViewCell: UITableViewCell {
         return label
     }()
 
-    lazy var translateLabel: UILabel = {
+    private lazy var translateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.helveticaFont
@@ -44,7 +44,7 @@ class SettingsTableViewCell: UITableViewCell {
     }
 
     // MARK: - Layout
-    func setLayout() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             valueLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10 ),

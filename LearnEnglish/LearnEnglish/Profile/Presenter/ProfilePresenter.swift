@@ -30,7 +30,7 @@ protocol ProfileViewOutput: AnyObject {
 
   // MARK: - ProfilePresenter
 
-class ProfilePresenter: ProfileViewOutput {
+final class ProfilePresenter: ProfileViewOutput {
 
     let defaults = UserDefaults.standard
     weak var view: ProfileViewInput?

@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController, SettingsViewInput {
+final class SettingsViewController: UIViewController, SettingsViewInput {
 
     var presenter: SettingsViewOutput?
 
-    var cellSpacingHeight: CGFloat = 10
+    private var cellSpacingHeight: CGFloat = 10
 
     private lazy var addItem: UIBarButtonItem = {
       let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
@@ -19,7 +19,7 @@ class SettingsViewController: UIViewController, SettingsViewInput {
       return add
     }()
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let table = UITableView()
 
         table.register(SettingsTableViewCell.self, forCellReuseIdentifier: SettingsTableViewCell.identifier)
@@ -51,7 +51,7 @@ class SettingsViewController: UIViewController, SettingsViewInput {
 
       // MARK: - Layout
 
-    func setLayout() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),

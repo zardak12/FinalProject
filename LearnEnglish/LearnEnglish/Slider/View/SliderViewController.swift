@@ -7,13 +7,13 @@
 
 import UIKit
 
-class SliderViewController: UIViewController, SliderViewInput {
+final class SliderViewController: UIViewController, SliderViewInput {
 
     var presenter: SliderViewOutput?
 
       // MARK: - UI
 
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = SliderCollectionViewLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(SliderCollectionViewCell.self,
@@ -37,7 +37,6 @@ class SliderViewController: UIViewController, SliderViewInput {
         super.viewWillAppear(animated)
         collectionView.collectionViewLayout.invalidateLayout()
         collectionView.layoutIfNeeded()
-        presenter?.update()
     }
 
     override func viewDidLoad() {
@@ -45,7 +44,7 @@ class SliderViewController: UIViewController, SliderViewInput {
         view.backgroundColor = Colors.backgoundFill
         view.addSubview(collectionView)
         self.navigationItem.rightBarButtonItem = settingButton
-        setConstraint()
+        setLayout()
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -53,7 +52,7 @@ class SliderViewController: UIViewController, SliderViewInput {
     }
 
     // MARK: - Constraint
-    func setConstraint() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -62,11 +61,11 @@ class SliderViewController: UIViewController, SliderViewInput {
         ])
     }
 
-    func arrayIndexForRow(_ row: Int) -> Int {
+    private func arrayIndexForRow(_ row: Int) -> Int {
         return row % (presenter?.words?.count ?? 0)
     }
 
-    func createFirstWord() {
+    private func createFirstWord() {
         let alertController = UIAlertController(title: "Новое слово ",
                                                 message: "добавьте новое слово",
                                                 preferredStyle: .alert)
@@ -157,7 +156,7 @@ extension SliderViewController: UpdateCollectionViewDelegate {
     func scrollToNext() {
         let collectionBounds = self.collectionView.bounds
         var contentOffset: CGFloat = 0
-        contentOffset = CGFloat(floor(self.collectionView.contentOffset.x + collectionBounds.size.width))
+        contentOffset = CGFloat(floor(self.collectionView.contentOffset.x + 25 * collectionBounds.size.width))
         self.moveToFrame(contentOffset: contentOffset)
     }
 

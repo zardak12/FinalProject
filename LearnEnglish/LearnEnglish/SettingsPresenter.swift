@@ -26,7 +26,7 @@ protocol SettingsViewOutput: AnyObject {
     func update()
 }
 
-class SettingsPresenter: SettingsViewOutput {
+final class SettingsPresenter: SettingsViewOutput {
     private let coreDataStack = Container.shared.coreDataStack
 
     weak var view: SettingsViewInput?

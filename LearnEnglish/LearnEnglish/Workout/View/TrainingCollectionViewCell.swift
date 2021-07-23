@@ -16,10 +16,10 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
     static let identifier = "identifier"
 
     var presenter: TrainingViewOutput?
-    var buttonArray = [UIButton]()
+    private var buttonArray = [UIButton]()
     weak var delegate: QuestionDelegate?
 
-    lazy var labelName: UILabel = {
+    private lazy var labelName: UILabel = {
         let label = UILabel()
         label.font = Font.helveticaBoldFont
         label.textColor = .black
@@ -27,7 +27,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
-    lazy var firstButton: UIButton = {
+    private lazy var firstButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Colors.buttonFill
         button.layer.cornerRadius = Constants.cornerRadius
@@ -38,7 +38,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         return button
     }()
 
-    lazy var secondButton: UIButton = {
+    private lazy var secondButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Colors.buttonFill
         button.layer.cornerRadius = Constants.cornerRadius
@@ -50,7 +50,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         return button
     }()
 
-    lazy var thirdButton: UIButton = {
+    private lazy var thirdButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Colors.buttonFill
         button.layer.cornerRadius = Constants.cornerRadius
@@ -62,7 +62,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         return button
     }()
 
-    lazy var fourthButton: UIButton = {
+    private lazy var fourthButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = Colors.buttonFill
         button.layer.cornerRadius = Constants.cornerRadius
@@ -84,7 +84,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(fourthButton)
         buttonArray = [firstButton, secondButton, thirdButton, fourthButton]
         buttonArray.shuffle()
-        layout()
+        setLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -97,15 +97,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         }
     }
 
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        firstButton.backgroundColor = UIColor(named: "buttonFill")
-//        secondButton.backgroundColor = UIColor(named: "buttonFill")
-//        thirdButton.backgroundColor = UIColor(named: "buttonFill")
-//        fourthButton.backgroundColor = UIColor(named: "buttonFill")
-//    }
-
-    func layout() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             labelName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             labelName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20)
@@ -151,7 +143,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     }
 
-    func updateMask() {
+    private func updateMask() {
         let mask = CAShapeLayer()
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: Constants.cornerRadius).cgPath
         mask.path = path

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SliderRouter: SliderRouterProtocol, RouterProtocol {
+final class SliderRouter: SliderRouterProtocol, RouterProtocol {
     var navigationContoller: UINavigationController
     var assemblyBuilder: AssemblyBuilderProtocol
 

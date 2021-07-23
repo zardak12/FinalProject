@@ -13,7 +13,7 @@ protocol DataServiceProtocol: AnyObject {
     init(networkService: NetworkServiceProtocol)
 }
 
-class DataService: DataServiceProtocol {
+final class DataService: DataServiceProtocol {
 
     let networkService: NetworkServiceProtocol
     private let coreDataStack = Container.shared.coreDataStack

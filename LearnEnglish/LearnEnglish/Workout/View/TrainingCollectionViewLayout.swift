@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TrainingCollectionViewLayout: UICollectionViewLayout {
+final class TrainingCollectionViewLayout: UICollectionViewLayout {
 
   var itemSize: CGSize = .zero {
       didSet { invalidateLayout() }
@@ -37,7 +37,7 @@ class TrainingCollectionViewLayout: UICollectionViewLayout {
 
   private var didInitialSetup = false
 
-  open override func prepare() {
+  override func prepare() {
     guard !didInitialSetup else { return }
     didInitialSetup = true
 

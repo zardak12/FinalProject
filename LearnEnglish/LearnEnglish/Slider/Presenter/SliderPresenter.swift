@@ -32,7 +32,7 @@ protocol SliderViewOutput: AnyObject {
     func swipeAudio()
 }
 
-class SliderPresenter: SliderViewOutput {
+final class SliderPresenter: SliderViewOutput {
 
     private let coreDataStack = Container.shared.coreDataStack
 

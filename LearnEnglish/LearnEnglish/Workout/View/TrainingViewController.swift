@@ -11,7 +11,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
 
     // MARK: - UI
 
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let layout = TrainingCollectionViewLayout().createLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.register(TrainingCollectionViewCell.self,
@@ -30,7 +30,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgoundFill
         view.addSubview(collectionView)
-        setConstraint()
+        setLayout()
         collectionView.isScrollEnabled = false
         collectionView.isPagingEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
@@ -38,7 +38,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         collectionView.delaysContentTouches = false
     }
 
-    func setConstraint() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -47,7 +47,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         ])
     }
 
-    func errorOfCountWords() {
+    private func errorOfCountWords() {
             let alert = UIAlertController(title: "Мало слов...",
                                           message:
                                             "Вы должны иметь хотябы 5 слов чтобы пользоваться режимом тренировка ",
@@ -60,7 +60,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
     }
 
     // MARK: - Presenter
-    func arrayIndexForRow(_ row: Int) -> Int {
+    private func arrayIndexForRow(_ row: Int) -> Int {
         return row % (presenter?.words.count ?? 0)
     }
 }
@@ -77,8 +77,6 @@ extension TrainingViewController: UICollectionViewDataSource {
         }
         return (presenter?.words.count ?? 0) * Constants.reply
     }
-
-    // MARK: - Регистрирует ячейку
 
     // MARK: - Presenter
     func collectionView(_ collectionView: UICollectionView,

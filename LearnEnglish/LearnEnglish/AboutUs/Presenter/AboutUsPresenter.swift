@@ -17,7 +17,7 @@ protocol AboutUsViewOutput: AnyObject {
     func tapBack()
 }
 
-class AboutUsPresenter: AboutUsViewOutput {
+final class AboutUsPresenter: AboutUsViewOutput {
     weak var view: AboutUsViewInput?
     let networkService: NetworkServiceProtocol
     var router: ProfileRouterProtocol

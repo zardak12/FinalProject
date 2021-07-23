@@ -79,7 +79,7 @@ final class ProfileViewController: UIViewController {
         view.addSubview(tapToChangeLabel)
         view.addSubview(nameTextField)
         view.addSubview(aboutProjectButton)
-        setUpLayout()
+        setLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,7 +95,7 @@ final class ProfileViewController: UIViewController {
 
       // MARK: - Layout
 
-    func setUpLayout() {
+    func setLayout() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),

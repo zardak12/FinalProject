@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AboutUsViewController: BaseViewContoller {
+final class AboutUsViewController: BaseViewContoller {
 
       // MARK: - UI
 

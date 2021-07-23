@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileRouter: ProfileRouterProtocol {
+final class ProfileRouter: ProfileRouterProtocol {
 
     var assemblyBuilder: AssemblyBuilderProtocol
     var view: UIViewController

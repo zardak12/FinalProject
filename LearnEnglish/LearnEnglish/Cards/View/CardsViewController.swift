@@ -34,7 +34,7 @@ class CardsViewController: UIViewController, CardsViewInput {
 
     var presenter: CardsViewOutput?
 
-    var cellSpacingHeight: CGFloat = 10
+    private var cellSpacingHeight: CGFloat = 10
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         view.backgroundColor = Colors.backgoundFill
         self.navigationItem.rightBarButtonItem = addItem
         view.addSubview(tableView)
-        getConstraints()
+        setLayout()
         presenter?.frc?.delegate = self
     }
 
@@ -51,7 +51,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         presenter?.fetch()
     }
 
-    func getConstraints() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),

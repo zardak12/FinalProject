@@ -20,7 +20,7 @@ protocol TrainingViewOutput: AnyObject {
     func failedAnswerAudio()
 }
 
-class TrainingPresenter: TrainingViewOutput {
+final class TrainingPresenter: TrainingViewOutput {
 
     var words: [Word]
     var answer: AVAudioPlayer?

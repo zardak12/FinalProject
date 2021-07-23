@@ -11,7 +11,7 @@ protocol ParallaxCardCell {
     func setZoom(progress: CGFloat)
 }
 
-class SliderCollectionViewLayout: UICollectionViewLayout {
+final class SliderCollectionViewLayout: UICollectionViewLayout {
 
     var itemSize: CGSize = .zero {
         didSet { invalidateLayout() }

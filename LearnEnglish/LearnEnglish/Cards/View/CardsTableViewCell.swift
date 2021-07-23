@@ -22,7 +22,7 @@ class CardsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
-        layout()
+        setLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -35,7 +35,7 @@ class CardsTableViewCell: UITableViewCell {
     }
 
     // MARK: - Layout
-    func layout() {
+    private func setLayout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
