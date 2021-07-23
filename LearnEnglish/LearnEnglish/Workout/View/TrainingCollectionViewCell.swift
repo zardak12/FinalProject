@@ -21,7 +21,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     lazy var labelName: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Helvetica-Bold", size: 23)
+        label.font = Font.helveticaBoldFont
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -29,10 +29,10 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     lazy var firstButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttonFill")
-        button.layer.cornerRadius = 5
+        button.backgroundColor = Colors.buttonFill
+        button.layer.cornerRadius = Constants.cornerRadius
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Helvetica", size: 20)
+        button.titleLabel?.font = Font.helveticaButtonFont
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(rightAnswer), for: .touchUpInside)
         return button
@@ -40,10 +40,10 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     lazy var secondButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttonFill")
-        button.layer.cornerRadius = 5
+        button.backgroundColor = Colors.buttonFill
+        button.layer.cornerRadius = Constants.cornerRadius
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Helvetica", size: 20)
+        button.titleLabel?.font = Font.helveticaButtonFont
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 1
         button.addTarget(self, action: #selector(failedAnswer), for: .touchUpInside)
@@ -52,10 +52,10 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     lazy var thirdButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttonFill")
-        button.layer.cornerRadius = 5
+        button.backgroundColor = Colors.buttonFill
+        button.layer.cornerRadius = Constants.cornerRadius
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Helvetica", size: 20)
+        button.titleLabel?.font = Font.helveticaButtonFont
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 2
         button.addTarget(self, action: #selector(failedAnswer), for: .touchUpInside)
@@ -64,17 +64,15 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     lazy var fourthButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttonFill")
-        button.layer.cornerRadius = 5
+        button.backgroundColor = Colors.buttonFill
+        button.layer.cornerRadius = Constants.cornerRadius
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont(name: "Helvetica", size: 20)
+        button.titleLabel?.font = Font.helveticaButtonFont
         button.translatesAutoresizingMaskIntoConstraints = false
         button.tag = 3
         button.addTarget(self, action: #selector(failedAnswer), for: .touchUpInside)
         return button
     }()
-
-    private var cornerRadius: CGFloat = 10
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -99,13 +97,13 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        firstButton.backgroundColor = UIColor(named: "buttonFill")
-        secondButton.backgroundColor = UIColor(named: "buttonFill")
-        thirdButton.backgroundColor = UIColor(named: "buttonFill")
-        fourthButton.backgroundColor = UIColor(named: "buttonFill")
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        firstButton.backgroundColor = UIColor(named: "buttonFill")
+//        secondButton.backgroundColor = UIColor(named: "buttonFill")
+//        thirdButton.backgroundColor = UIColor(named: "buttonFill")
+//        fourthButton.backgroundColor = UIColor(named: "buttonFill")
+//    }
 
     func layout() {
         NSLayoutConstraint.activate([
@@ -155,7 +153,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     func updateMask() {
         let mask = CAShapeLayer()
-        let path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+        let path = UIBezierPath(roundedRect: bounds, cornerRadius: Constants.cornerRadius).cgPath
         mask.path = path
         contentView.layer.mask = mask
     }

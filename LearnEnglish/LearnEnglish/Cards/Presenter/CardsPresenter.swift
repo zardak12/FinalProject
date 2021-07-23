@@ -14,7 +14,7 @@ protocol CardsViewOutput: AnyObject {
     func fetch()
     func createLesson(with name: String)
     func deleteLesson(with lesson: Lesson)
-    func tapToSliderVC(with words: [Word], lesson: Lesson)
+    func tapToSliderVC(lesson: Lesson)
     func tapToWorkoutVC(with words: [Word])
 }
 
@@ -52,8 +52,8 @@ class CardsPresenter: CardsViewOutput {
         coreDataStack.deleteLesson(with: lesson)
     }
 
-    func tapToSliderVC(with words: [Word], lesson: Lesson) {
-        router.showSliderController(with: words, lesson: lesson)
+    func tapToSliderVC(lesson: Lesson) {
+        router.showSliderController(lesson: lesson)
     }
 
     func tapToWorkoutVC(with words: [Word]) {

@@ -14,7 +14,7 @@ class SettingsTableViewCell: UITableViewCell {
     lazy var valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Helvetica-Bold", size: 23)
+        label.font = Font.helveticaBoldFont
         label.textColor = .black
         return label
     }()
@@ -22,8 +22,8 @@ class SettingsTableViewCell: UITableViewCell {
     lazy var translateLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Helvetica", size: 23)
-        label.textColor = UIColor(named: "placeholderFill")
+        label.font = Font.helveticaFont
+        label.textColor = Colors.placeholderFill
         return label
     }()
 
@@ -32,6 +32,11 @@ class SettingsTableViewCell: UITableViewCell {
         contentView.addSubview(valueLabel)
         contentView.addSubview(translateLabel)
         setLayout()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = Constants.cornerRadius
     }
 
     required init?(coder: NSCoder) {

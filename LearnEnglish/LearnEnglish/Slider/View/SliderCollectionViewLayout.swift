@@ -17,7 +17,6 @@ class SliderCollectionViewLayout: UICollectionViewLayout {
         didSet { invalidateLayout() }
     }
 
-    ///
     var minScale: CGFloat = 1.0 {
         didSet { invalidateLayout() }
     }
@@ -59,7 +58,7 @@ class SliderCollectionViewLayout: UICollectionViewLayout {
 
     private var didInitialSetup = false
 
-    open override func prepare() {
+    override func prepare() {
         guard !didInitialSetup else { return }
         didInitialSetup = true
 
@@ -71,7 +70,8 @@ class SliderCollectionViewLayout: UICollectionViewLayout {
                                                 y: 0), animated: false)
     }
 
-    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        super.layoutAttributesForElements(in: rect)
         let itemsCount = collectionView.numberOfItems(inSection: 0)
         guard itemsCount > 0 else { return nil }
 

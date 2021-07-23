@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController, SettingsViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill
         self.navigationItem.rightBarButtonItem = addItem
         view.addSubview(tableView)
         setLayout()
@@ -117,7 +117,7 @@ extension SettingsViewController: UITableViewDataSource {
         guard let word = presenter?.words[indexPath.section] else { return UITableViewCell() }
         cell.configure(with: word)
         cell.backgroundColor = .white
-        cell.layer.cornerRadius = 8
+        cell.layer.cornerRadius = Constants.cornerRadius
         cell.clipsToBounds = true
         return cell
 

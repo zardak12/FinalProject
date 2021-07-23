@@ -8,6 +8,6 @@
 import Foundation
 
 protocol MenuRouterProtocol {
-    func showSliderController(with words: [Word], lesson: Lesson)
+    func showSliderController(lesson: Lesson)
     func showTrainingVC(with words: [Word])
 }

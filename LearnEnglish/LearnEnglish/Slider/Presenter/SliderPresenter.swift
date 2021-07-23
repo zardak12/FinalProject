@@ -22,7 +22,7 @@ protocol SliderViewOutput: AnyObject {
     var words: [Word]? { get set }
     var lesson: Lesson { get set }
     var isSelect: Bool { get set }
-    init(view: SliderViewInput, words: [Word], lesson: Lesson, router: SliderRouterProtocol)
+    init(view: SliderViewInput, lesson: Lesson, router: SliderRouterProtocol)
     func createWord(value: String, translate: String, lesson: Lesson)
     func addWord(_ newWord: Word)
     func deleteWord(_ deleteIndex: Int)
@@ -44,11 +44,11 @@ class SliderPresenter: SliderViewOutput {
     var isSelect: Bool = false
     var whoosh: AVAudioPlayer?
 
-    required init(view: SliderViewInput, words: [Word], lesson: Lesson, router: SliderRouterProtocol) {
+    required init(view: SliderViewInput, lesson: Lesson, router: SliderRouterProtocol) {
         self.view = view
-        self.words = words
         self.lesson = lesson
         self.router = router
+        words = lesson.words?.allObjects as? [Word]
     }
 
     func update() {

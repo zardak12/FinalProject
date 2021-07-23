@@ -10,6 +10,7 @@ import Foundation
 protocol UpdateCollectionViewDelegate: AnyObject {
     func addNewWord(_ word: Word)
     func deleteWord(_ indexPath: Int)
+    func scrollToNext()
 }
 
 protocol SettingsViewInput: AnyObject {
@@ -48,6 +49,7 @@ class SettingsPresenter: SettingsViewOutput {
         coreDataStack.createWord(value: value, translate: translate, lesson: lesson) { word in
             self.words.append(word)
             self.delegate?.addNewWord(word)
+            self.delegate?.scrollToNext()
         }
         view?.updateTableView()
     }

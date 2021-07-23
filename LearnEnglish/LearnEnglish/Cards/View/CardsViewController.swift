@@ -12,8 +12,6 @@ protocol CardsViewInput: AnyObject {}
 
 class CardsViewController: UIViewController, CardsViewInput {
 
-    private let fontSize = UIFont(name: "Georgia-Bold", size: 40)
-
     // MARK: - Уроки
 
     private lazy var tableView: UITableView = {
@@ -41,7 +39,7 @@ class CardsViewController: UIViewController, CardsViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Карточки"
-        view.backgroundColor = UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill
         self.navigationItem.rightBarButtonItem = addItem
         view.addSubview(tableView)
         getConstraints()
@@ -95,8 +93,7 @@ extension CardsViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         cell.configure(with: item?.name ?? "")
-        cell.backgroundColor = UIColor(named: "foregroundFill")
-        cell.layer.cornerRadius = 8
+        cell.backgroundColor = Colors.foregroundFill
         cell.clipsToBounds = true
         return cell
     }
@@ -118,8 +115,7 @@ extension CardsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = presenter?.frc?.object(at: indexPath) else { return }
-        guard let words = item.words?.allObjects as? [Word] else { return }
-        presenter?.tapToSliderVC(with: words, lesson: item)
+        presenter?.tapToSliderVC(lesson: item)
     }
 
     func tableView(_ tableView: UITableView,

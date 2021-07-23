@@ -17,7 +17,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         collection.register(TrainingCollectionViewCell.self,
                             forCellWithReuseIdentifier: TrainingCollectionViewCell.identifier)
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.backgroundColor = UIColor(named: "backrgroundFill")
+        collection.backgroundColor = Colors.backgoundFill
         collection.dataSource = self
         collection.delegate = self
 
@@ -28,7 +28,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill
         view.addSubview(collectionView)
         setConstraint()
         collectionView.isScrollEnabled = false

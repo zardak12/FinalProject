@@ -7,11 +7,11 @@
 
 import UIKit
 
-typealias GetLessonsResponce = Result<GetResponce, NetworkError>
+typealias LessonsResponce = Result<[LessonDTO], NetworkError>
 typealias GetImageResponce = Result<UIImage, NetworkError>
 
 protocol NetworkServiceProtocol {
-    func getLessons(completion: @escaping (GetLessonsResponce) -> Void)
+    func getLessons(completion: @escaping (LessonsResponce) -> Void)
     func loadImage(completion: @escaping (UIImage) -> Void )
 }
 
@@ -21,23 +21,23 @@ final class NetworkService: NetworkServiceProtocol {
 
     // MARK: - Upload Lessons
 
-  func getLessons(completion: @escaping (GetLessonsResponce) -> Void) {
-    guard  let lessonUrl = URL(string: NetworkConstant.lessonUrl) else { return }
-    var request = URLRequest(url: lessonUrl)
-    request.httpMethod = "GET"
-    let dataTask = session.dataTask(with: request) { data, responce, error in
-        do {
-            let data = try self.httpResponse(data: data, response: responce)
-            let responce = try self.decoder.decode(GetResponce.self, from: data)
-            completion(.success(responce))
-        } catch let error as NetworkError {
-            completion(.failure(error))
-        } catch {
-            completion(.failure(.unknown))
-        }
+    func getLessons(completion: @escaping (LessonsResponce) -> Void) {
+      guard  let lessonUrl = URL(string: NetworkConstant.lessonURL) else { return }
+      var request = URLRequest(url: lessonUrl)
+      request.httpMethod = "GET"
+      let dataTask = session.dataTask(with: request) { data, responce, error in
+          do {
+              let data = try self.httpResponse(data: data, response: responce)
+              let responce = try self.decoder.decode([LessonDTO].self, from: data)
+              completion(.success(responce))
+          } catch let error as NetworkError {
+              completion(.failure(error))
+          } catch {
+              completion(.failure(.unknown))
+          }
+      }
+      dataTask.resume()
     }
-    dataTask.resume()
-  }
 
     // MARK: - Upload Image
 

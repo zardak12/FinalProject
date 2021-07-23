@@ -35,14 +35,14 @@ class DataService: DataServiceProtocol {
         networkService.getLessons { result in
             switch result {
             case .success(let responce):
-                guard let lessons = responce.lessons else { return }
-                for lesson in lessons {
+                for lesson in responce {
                     let lessonEntity = Lesson(context: viewContext)
-                    lessonEntity.name = lesson.fields.name.stringValue
-                    for word in lesson.fields.words.arrayValue.values {
+                    lessonEntity.name = lesson.name
+                    guard let words = lesson.words else { return }
+                    for word in words {
                         let wordEntity = Word(context: viewContext)
-                        wordEntity.value = word.mapValue.fields.value.stringValue
-                        wordEntity.translate = word.mapValue.fields.translate.stringValue
+                        wordEntity.value = word.value
+                        wordEntity.translate = word.translate
                         lessonEntity.addToWords(wordEntity)
                     }
                 }

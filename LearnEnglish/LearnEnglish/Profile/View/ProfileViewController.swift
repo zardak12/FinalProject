@@ -25,7 +25,7 @@ final class ProfileViewController: UIViewController {
     private lazy var tapToChangeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = Font.profileImageFont
         label.textColor = .white
         return label
     }()
@@ -41,9 +41,9 @@ final class ProfileViewController: UIViewController {
         let placeholderText = NSAttributedString(string: "Как вас зовут?",
                                                  attributes:
                                                     [NSAttributedString.Key.foregroundColor:
-                                                        UIColor(named: "placeholderFill") as Any])
+                                                        Colors.placeholderFill as Any])
         field.attributedPlaceholder = placeholderText
-        field.font = UIFont.boldSystemFont(ofSize: 30)
+        field.font = Font.profileNameFont
         return field
     }()
 
@@ -60,7 +60,7 @@ final class ProfileViewController: UIViewController {
         button.layer.cornerRadius = button.bounds.height / 2
         button.backgroundColor = .clear
         button.setTitle("About us", for: .normal)
-        button.setTitleColor(.lightText, for: .normal)
+        button.setTitleColor(Colors.placeholderFill, for: .normal)
         button.addTarget(self, action: #selector(showAboutUs), for: .touchUpInside)
         return button
     }()
@@ -74,7 +74,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Профиль"
-        view.backgroundColor = UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill
         view.addSubview(imageView)
         view.addSubview(tapToChangeLabel)
         view.addSubview(nameTextField)

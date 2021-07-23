@@ -14,7 +14,7 @@ protocol AssemblyBuilderProtocol {
     func createProfile() -> UIViewController
     func createAboutUs() -> UIViewController
     func createSlider(with navigationContoller: UINavigationController,
-                      words: [Word], lesson: Lesson) -> UIViewController
+                      lesson: Lesson) -> UIViewController
     func createSettings(words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) -> UIViewController
     func createTraining(with words: [Word]) -> UIViewController
 }
@@ -73,10 +73,10 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
     }
 
     func createSlider(with navigationContoller: UINavigationController,
-                      words: [Word], lesson: Lesson) -> UIViewController {
+                      lesson: Lesson) -> UIViewController {
         let view = SliderViewController()
         let router = SliderRouter(navigationContoller: navigationContoller, assemblyBuilder: self)
-        let presenter = SliderPresenter(view: view, words: words, lesson: lesson, router: router)
+        let presenter = SliderPresenter(view: view, lesson: lesson, router: router)
         view.presenter = presenter
         return view
     }

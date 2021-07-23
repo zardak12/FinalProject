@@ -11,19 +11,13 @@ class CardsTableViewCell: UITableViewCell {
 
     static let identifier = "identifier"
 
-    private let fontSize = UIFont.systemFont(ofSize: 20)
-
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
         title.numberOfLines = 0
-        title.font = UIFont.boldSystemFont(ofSize: 25)
+        title.font = Font.boldSystemFont
         return title
     }()
-
-    private let addToHeight: CGFloat = 16
-    private let titleLabelTopAndBottomAnchor: CGFloat = 8
-    private let titleLabelLeangdAndTrailingAnchor: CGFloat = 5
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -35,12 +29,16 @@ class CardsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = Constants.cornerRadius
+    }
+
     // MARK: - Layout
     func layout() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: titleLabelTopAndBottomAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,
-                                               constant: -titleLabelTopAndBottomAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.centerYAnchor)
 
@@ -51,5 +49,4 @@ class CardsTableViewCell: UITableViewCell {
         titleLabel.text = text
         titleLabel.textColor = .white
     }
-
 }

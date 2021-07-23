@@ -14,7 +14,7 @@ class AboutUsViewController: BaseViewContoller {
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        label.font = Font.helveticaButtonFont
         label.textColor = .white
         label.text = "Автор проекта: Марк Шнейдерман"
         label.sizeToFit()
@@ -42,7 +42,7 @@ class AboutUsViewController: BaseViewContoller {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        view.backgroundColor = UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill// UIColor(named: "backgroundFill")
         view.addSubview(nameLabel)
         view.addSubview(avaImageView)
         setLayout()

@@ -39,7 +39,7 @@ class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderVi
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "Helvetica-Bold", size: 23)
+        label.font = Font.helveticaBoldFont
         label.textColor = .black
         label.sizeToFit()
         return label

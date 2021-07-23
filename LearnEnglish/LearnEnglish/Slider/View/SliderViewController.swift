@@ -42,7 +42,7 @@ class SliderViewController: UIViewController, SliderViewInput {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill
         view.addSubview(collectionView)
         self.navigationItem.rightBarButtonItem = settingButton
         setConstraint()
@@ -96,6 +96,7 @@ class SliderViewController: UIViewController, SliderViewInput {
         present(alertController, animated: true)
     }
 
+      // MARK: - SliderViewInput
     func updateCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
@@ -152,4 +153,20 @@ extension SliderViewController: UpdateCollectionViewDelegate {
     func deleteWord(_ deleteIndex: Int) {
         presenter?.deleteWord(deleteIndex)
     }
+
+    func scrollToNext() {
+        let collectionBounds = self.collectionView.bounds
+        var contentOffset: CGFloat = 0
+        contentOffset = CGFloat(floor(self.collectionView.contentOffset.x + collectionBounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+    }
+
+    func moveToFrame(contentOffset: CGFloat) {
+        let frame: CGRect = CGRect(x: contentOffset,
+                                   y: self.collectionView.contentOffset.y,
+                                   width: self.collectionView.frame.width,
+                                   height: self.collectionView.frame.height)
+        self.collectionView.scrollRectToVisible(frame, animated: true)
+    }
+
 }

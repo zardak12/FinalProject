@@ -16,8 +16,8 @@ class MenuRouter: MenuRouterProtocol, RouterProtocol {
         self.assemblyBuilder = assemblyBuilder
     }
 
-    func showSliderController(with words: [Word], lesson: Lesson) {
-        let sliderVC = assemblyBuilder.createSlider(with: navigationContoller, words: words, lesson: lesson)
+    func showSliderController(lesson: Lesson) {
+        let sliderVC = assemblyBuilder.createSlider(with: navigationContoller, lesson: lesson)
         navigationContoller.pushViewController(sliderVC, animated: true)
     }
 
