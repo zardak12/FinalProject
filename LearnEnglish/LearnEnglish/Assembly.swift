@@ -48,7 +48,9 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         let view = CardsViewController()
         let navigationController = UINavigationController(rootViewController: view)
         let router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: self)
-        let presenter = CardsPresenter(view: view, router: router)
+        let stack = Container.shared.coreDataStack
+        let coreDataService = CoreDataService(stack: stack)
+        let presenter = CardsPresenter(view: view, router: router, coreDataService: coreDataService)
         view.presenter = presenter
         navigationController.navigationBar.tintColor = UIColor.white
         navigationController.navigationBar.barStyle = .black
@@ -62,7 +64,9 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         let view = WorkoutViewController()
         let navigationController = UINavigationController(rootViewController: view)
         let router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: self)
-        let presenter = CardsPresenter(view: view, router: router)
+        let stack = Container.shared.coreDataStack
+        let coreDataService = CoreDataService(stack: stack)
+        let presenter = CardsPresenter(view: view, router: router, coreDataService: coreDataService)
         view.presenter = presenter
         navigationController.navigationBar.tintColor = UIColor.white
         navigationController.navigationBar.barStyle = .black
@@ -76,14 +80,19 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
                       lesson: Lesson) -> UIViewController {
         let view = SliderViewController()
         let router = SliderRouter(navigationContoller: navigationContoller, assemblyBuilder: self)
-        let presenter = SliderPresenter(view: view, lesson: lesson, router: router)
+        let stack = Container.shared.coreDataStack
+        let coreDataService = CoreDataService(stack: stack)
+        let presenter = SliderPresenter(view: view, lesson: lesson, router: router, coreDataService: coreDataService)
         view.presenter = presenter
         return view
     }
 
     func createSettings(words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) -> UIViewController {
         let view = SettingsViewController()
-        let presenter = SettingsPresenter(view: view, words: words, lesson: lesson, delegate: delegate)
+        let stack = Container.shared.coreDataStack
+        let coreDataService = CoreDataService(stack: stack)
+        let presenter = SettingsPresenter(view: view, words: words, lesson: lesson,
+                                          delegate: delegate, coreDataService: coreDataService)
         view.presenter = presenter
         return view
     }

@@ -10,47 +10,62 @@ import CoreData
 
 final class CoreDataStack {
 
-    private let container: NSPersistentContainer
+    let readContext: NSManagedObjectContext
+    let writeContext: NSManagedObjectContext
 
-    init(modelName: String) {
-        let container = NSPersistentContainer(name: modelName)
-        self.container = container
+    private let coordinator: NSPersistentStoreCoordinator
+    private let objectModel: NSManagedObjectModel = {
+        guard let url = Bundle.main.url(forResource: "Lessons", withExtension: "momd") else {
+            fatalError("CoreDataStack: CoreData MOMD is nil")
+        }
+        guard let model = NSManagedObjectModel(contentsOf: url) else {
+            fatalError("CoreDataStack: CoreData MOMD is nil")
+        }
+        return model
+    }()
+
+    init() {
+
+        guard let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                                      .userDomainMask, true).first else {
+            fatalError("Documents is nil")
+        }
+
+        let url = URL(fileURLWithPath: documentsPath).appendingPathComponent("LearnEnglish.sqlite")
+        let coordinator = NSPersistentStoreCoordinator(managedObjectModel: objectModel)
+
+        do {
+            try coordinator.addPersistentStore(ofType: NSSQLiteStoreType,
+                                               configurationName: nil,
+                                               at: url,
+                                               options: [NSMigratePersistentStoresAutomaticallyOption: true,
+                                                        NSInferMappingModelAutomaticallyOption: true])
+        } catch {
+            fatalError("AddPersistentStore failure")
+        }
+
+        self.coordinator = coordinator
+
+        self.readContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        self.readContext.persistentStoreCoordinator = coordinator
+
+        self.writeContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        self.writeContext.persistentStoreCoordinator = coordinator
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(contextDidChange(notification:)),
+                                               name: Notification.Name.NSManagedObjectContextDidSave,
+                                               object: self.writeContext)
+
     }
+}
 
-    func load() {
-        container.loadPersistentStores { _, error in
-            if let error = error {
-                assertionFailure(error.localizedDescription)
+private extension CoreDataStack {
+    @objc func contextDidChange(notification: Notification) {
+        coordinator.performAndWait {
+            readContext.performAndWait {
+                readContext.mergeChanges(fromContextDidSave: notification)
             }
         }
     }
-
-    func createLesson(with name: String) {
-        let lesson = Lesson(context: viewContext)
-        lesson.name = name
-        try? viewContext.save()
-    }
-
-    func createWord(value: String, translate: String, lesson: Lesson, completion: @escaping (Word) -> Void) {
-        let word = Word(context: viewContext)
-        word.value = value
-        word.translate = translate
-        lesson.addToWords(word)
-        try? viewContext.save()
-        completion(word)
-    }
-
-    func deleteWord(with word: Word) {
-        viewContext.delete(word)
-        try? viewContext.save()
-    }
-
-    func deleteLesson(with lesson: Lesson) {
-        viewContext.delete(lesson)
-        try? viewContext.save()
-    }
-
-    var viewContext: NSManagedObjectContext { container.viewContext }
-    lazy var backgroundContext: NSManagedObjectContext = container.newBackgroundContext()
-    var coordinator: NSPersistentStoreCoordinator { container.persistentStoreCoordinator }
 }

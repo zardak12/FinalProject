@@ -11,7 +11,6 @@
 		4D742AF8269AF462009CDA12 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D742AF7269AF462009CDA12 /* NetworkError.swift */; };
 		4D7835362698BF0B002FDB19 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7835352698BF0B002FDB19 /* ProfileViewController.swift */; };
 		4D78452E2699B9FF00C274BB /* AboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D78452D2699B9FF00C274BB /* AboutUsViewController.swift */; };
-		4D7BC57D268B5645008CD301 /* Containers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BC57C268B5645008CD301 /* Containers.swift */; };
 		4D7BC582268C896A008CD301 /* Lesson+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BC57E268C896A008CD301 /* Lesson+CoreDataClass.swift */; };
 		4D7BC583268C896A008CD301 /* Lesson+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BC57F268C896A008CD301 /* Lesson+CoreDataProperties.swift */; };
 		4D7BC584268C896A008CD301 /* Word+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BC580268C896A008CD301 /* Word+CoreDataClass.swift */; };
@@ -50,6 +49,8 @@
 		4D935EE326A976DB00906B62 /* WordDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935EE226A976DB00906B62 /* WordDTO.swift */; };
 		4D935EE526A976EF00906B62 /* LessonDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935EE426A976EF00906B62 /* LessonDTO.swift */; };
 		4D935EE726AAA6B400906B62 /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935EE626AAA6B400906B62 /* CoreDataService.swift */; };
+		4D935EE926AB727C00906B62 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935EE826AB727C00906B62 /* DIContainer.swift */; };
+		4D935EEB26AC150C00906B62 /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935EEA26AC150C00906B62 /* CoreDataError.swift */; };
 		4DEEC5712685F41B0017D77B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC5702685F41B0017D77B /* NetworkService.swift */; };
 		4DEEC60F268724440017D77B /* GetResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC60E268724440017D77B /* GetResponse.swift */; };
 		4DEEC612268742DC0017D77B /* Lessons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC610268742DC0017D77B /* Lessons.xcdatamodeld */; };
@@ -94,7 +95,6 @@
 		4D742AF7269AF462009CDA12 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4D7835352698BF0B002FDB19 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4D78452D2699B9FF00C274BB /* AboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsViewController.swift; sourceTree = "<group>"; };
-		4D7BC57C268B5645008CD301 /* Containers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Containers.swift; sourceTree = "<group>"; };
 		4D7BC57E268C896A008CD301 /* Lesson+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4D7BC57F268C896A008CD301 /* Lesson+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lesson+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4D7BC580268C896A008CD301 /* Word+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Word+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -136,6 +136,8 @@
 		4D935EE226A976DB00906B62 /* WordDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordDTO.swift; sourceTree = "<group>"; };
 		4D935EE426A976EF00906B62 /* LessonDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDTO.swift; sourceTree = "<group>"; };
 		4D935EE626AAA6B400906B62 /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		4D935EE826AB727C00906B62 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		4D935EEA26AC150C00906B62 /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		4DEEC5702685F41B0017D77B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4DEEC60E268724440017D77B /* GetResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetResponse.swift; sourceTree = "<group>"; };
 		4DEEC611268742DC0017D77B /* Lessons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lessons.xcdatamodel; sourceTree = "<group>"; };
@@ -332,7 +334,8 @@
 			children = (
 				4D935D21269B983300906B62 /* UIButton+Extension.swift */,
 				4D742AF7269AF462009CDA12 /* NetworkError.swift */,
-				4D7BC57C268B5645008CD301 /* Containers.swift */,
+				4D935EEA26AC150C00906B62 /* CoreDataError.swift */,
+				4D935EE826AB727C00906B62 /* DIContainer.swift */,
 				4D742AF5269ADDA2009CDA12 /* Constants.swift */,
 				970BBC72268EEEFF008EFDEB /* SpinnerViewController.swift */,
 				970BBC75268EEF57008EFDEB /* BaseViewContoller.swift */,
@@ -730,6 +733,7 @@
 				970BBC81268EFC86008EFDEB /* WorkoutViewController.swift in Sources */,
 				4D7BC583268C896A008CD301 /* Lesson+CoreDataProperties.swift in Sources */,
 				970BBC9B2691F7BF008EFDEB /* CardsTableViewCell.swift in Sources */,
+				4D935EEB26AC150C00906B62 /* CoreDataError.swift in Sources */,
 				4D78452E2699B9FF00C274BB /* AboutUsViewController.swift in Sources */,
 				4D742AF6269ADDA2009CDA12 /* Constants.swift in Sources */,
 				4D935E0A26A03F8F00906B62 /* ProfileRouter.swift in Sources */,
@@ -752,6 +756,7 @@
 				4D935EE726AAA6B400906B62 /* CoreDataService.swift in Sources */,
 				4D935EE526A976EF00906B62 /* LessonDTO.swift in Sources */,
 				4D935D70269C784300906B62 /* AboutUsPresenter.swift in Sources */,
+				4D935EE926AB727C00906B62 /* DIContainer.swift in Sources */,
 				4D935D78269C79B600906B62 /* ProfilePresenter.swift in Sources */,
 				4D935E0E26A0591E00906B62 /* DataService.swift in Sources */,
 				4D935DEF269F228200906B62 /* SliderRouterProtocol.swift in Sources */,
@@ -759,7 +764,6 @@
 				4D935D4A269C740B00906B62 /* CardsPresenter.swift in Sources */,
 				4D935DD9269DB51600906B62 /* RouterProtocol.swift in Sources */,
 				9734ADED2679D3C7006BCF52 /* SliderCollectionViewLayout.swift in Sources */,
-				4D7BC57D268B5645008CD301 /* Containers.swift in Sources */,
 				4D935D53269C754400906B62 /* TrainingPresenter.swift in Sources */,
 				4D935EE326A976DB00906B62 /* WordDTO.swift in Sources */,
 				9714212D2696DCB400467C83 /* SettingsTableViewCell.swift in Sources */,

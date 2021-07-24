@@ -90,10 +90,19 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
         present(alertController, animated: true)
     }
 
+      // MARK: - SettingsViewInput
     func updateTableView() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+    }
+
+    func showErrorAlert() {
+        let alertError = UIAlertController(title: "Уже есть...",
+                                           message: "Такое слово уже существует. Введите другое слово",
+                                           preferredStyle: .alert)
+        alertError.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertError, animated: true)
     }
 
 }

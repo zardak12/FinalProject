@@ -8,8 +8,6 @@
 import UIKit
 import CoreData
 
-protocol CardsViewInput: AnyObject {}
-
 class CardsViewController: UIViewController, CardsViewInput {
 
     // MARK: - Уроки
@@ -58,6 +56,14 @@ class CardsViewController: UIViewController, CardsViewInput {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
+    }
+
+    func showErrorAlert() {
+        let alertError = UIAlertController(title: "Уже есть...",
+                                           message: "Такая тема уже существует. Введите другую тему",
+                                           preferredStyle: .alert)
+        alertError.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertError, animated: true)
     }
 
     @objc func addNewLesson() {

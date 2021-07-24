@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
     let assembly = AssemblyBuilder()
     let networkService = NetworkService()
-    let dataService = DataService(networkService: networkService)
+    let stack = Container.shared.coreDataStack
+    let dataService = DataService(networkService: networkService, stack: stack)
     let startRouter = StartRouter(assembly: assembly, dataService: dataService)
     window = UIWindow(frame: UIScreen.main.bounds)
     window?.rootViewController = startRouter.getStartViewController()

@@ -10,6 +10,7 @@ import AVFoundation
 
 protocol SliderViewInput: AnyObject {
     func updateCollectionView()
+    func showErrorAlert()
 }
 
 protocol SliderViewCellInput: AnyObject {
@@ -22,7 +23,10 @@ protocol SliderViewOutput: AnyObject {
     var words: [Word]? { get set }
     var lesson: Lesson { get set }
     var isSelect: Bool { get set }
-    init(view: SliderViewInput, lesson: Lesson, router: SliderRouterProtocol)
+    init(view: SliderViewInput,
+         lesson: Lesson,
+         router: SliderRouterProtocol,
+          coreDataService: CoreDataServiceProtocol)
     func createWord(value: String, translate: String, lesson: Lesson)
     func addWord(_ newWord: Word)
     func deleteWord(_ deleteIndex: Int)
@@ -41,13 +45,18 @@ final class SliderPresenter: SliderViewOutput {
     var words: [Word]?
     var lesson: Lesson
     var router: SliderRouterProtocol
+    var coreDataService: CoreDataServiceProtocol
     var isSelect: Bool = false
     var whoosh: AVAudioPlayer?
 
-    required init(view: SliderViewInput, lesson: Lesson, router: SliderRouterProtocol) {
+    required init(view: SliderViewInput,
+                  lesson: Lesson,
+                  router: SliderRouterProtocol,
+                  coreDataService: CoreDataServiceProtocol) {
         self.view = view
         self.lesson = lesson
         self.router = router
+        self.coreDataService = coreDataService
         words = lesson.words?.allObjects as? [Word]
     }
 
@@ -56,8 +65,13 @@ final class SliderPresenter: SliderViewOutput {
     }
 
     func createWord(value: String, translate: String, lesson: Lesson) {
-        coreDataStack.createWord(value: value, translate: translate, lesson: lesson) { word in
-            self.words?.insert(word, at: 0)
+        coreDataService.createWord(value: value, translate: translate, lesson: lesson) { result in
+            switch result {
+            case .success(let word):
+                self.words?.insert(word, at: 0)
+            case .failure(_):
+                self.view?.showErrorAlert()
+            }
         }
         view?.updateCollectionView()
     }

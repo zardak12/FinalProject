@@ -66,8 +66,8 @@ final class SliderViewController: UIViewController, SliderViewInput {
     }
 
     private func createFirstWord() {
-        let alertController = UIAlertController(title: "Новое слово ",
-                                                message: "добавьте новое слово",
+        let alertController = UIAlertController(title: "Введите слово и значение",
+                                                message: "",
                                                 preferredStyle: .alert)
         alertController.addTextField { textField in
             textField.placeholder = "Слово"
@@ -100,6 +100,14 @@ final class SliderViewController: UIViewController, SliderViewInput {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+    }
+
+    func showErrorAlert() {
+        let alertError = UIAlertController(title: "Уже есть...",
+                                           message: "Такое слово уже существует. Введите другое слово",
+                                           preferredStyle: .alert)
+        alertError.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertError, animated: true)
     }
 
     @objc func settings() {

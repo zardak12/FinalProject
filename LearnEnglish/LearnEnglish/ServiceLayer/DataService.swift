@@ -10,43 +10,43 @@ import CoreData
 
 protocol DataServiceProtocol: AnyObject {
     func load()
-    init(networkService: NetworkServiceProtocol)
+    init(networkService: NetworkServiceProtocol, stack: CoreDataStack)
 }
 
 final class DataService: DataServiceProtocol {
 
-    let networkService: NetworkServiceProtocol
-    private let coreDataStack = Container.shared.coreDataStack
-    let request = NSFetchRequest<Lesson>(entityName: "Lesson")
-    let fetchRequest: NSFetchRequest<Lesson> = Lesson.fetchRequest()
+    private let networkService: NetworkServiceProtocol
+    private let stack: CoreDataStack
+    private let request = NSFetchRequest<Lesson>(entityName: "Lesson")
+    private let fetchRequest: NSFetchRequest<Lesson> = Lesson.fetchRequest()
 
-    required init(networkService: NetworkServiceProtocol) {
+    required init(networkService: NetworkServiceProtocol, stack: CoreDataStack) {
         self.networkService = networkService
+        self.stack = stack
     }
 
       // MARK: - Загрузка данных
 
   func load() {
-    coreDataStack.load()
-    let viewContext = coreDataStack.viewContext
-    viewContext.performAndWait {
-        guard let objects = try? viewContext.fetch(fetchRequest) else { return }
+    let writeContext = stack.writeContext
+    writeContext.performAndWait {
+        guard let objects = try? writeContext.fetch(fetchRequest) else { return }
         if objects.isEmpty {
         networkService.getLessons { result in
             switch result {
             case .success(let responce):
                 for lesson in responce {
-                    let lessonEntity = Lesson(context: viewContext)
+                    let lessonEntity = Lesson(context: writeContext)
                     lessonEntity.name = lesson.name
                     guard let words = lesson.words else { return }
                     for word in words {
-                        let wordEntity = Word(context: viewContext)
+                        let wordEntity = Word(context: writeContext)
                         wordEntity.value = word.value
                         wordEntity.translate = word.translate
                         lessonEntity.addToWords(wordEntity)
                     }
                 }
-                try? viewContext.save()
+                try? writeContext.save()
             case .failure(let error):
                 print(error)
             }

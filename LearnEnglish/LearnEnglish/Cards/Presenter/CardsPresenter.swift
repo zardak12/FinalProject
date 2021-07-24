@@ -8,9 +8,13 @@
 import UIKit
 import CoreData
 
+protocol CardsViewInput: AnyObject {
+    func showErrorAlert()
+}
+
 protocol CardsViewOutput: AnyObject {
     var frc: NSFetchedResultsController<Lesson>? { get set }
-    init(view: CardsViewInput, router: MenuRouterProtocol)
+    init(view: CardsViewInput, router: MenuRouterProtocol, coreDataService: CoreDataServiceProtocol)
     func fetch()
     func createLesson(with name: String)
     func deleteLesson(with lesson: Lesson)
@@ -21,13 +25,14 @@ protocol CardsViewOutput: AnyObject {
 class CardsPresenter: CardsViewOutput {
 
     weak var view: CardsViewInput?
-    let coreDataStack = Container.shared.coreDataStack
     var frc: NSFetchedResultsController<Lesson>?
     var router: MenuRouterProtocol
+    var coreDataService: CoreDataServiceProtocol
 
-    required init(view: CardsViewInput, router: MenuRouterProtocol) {
+    required init(view: CardsViewInput, router: MenuRouterProtocol, coreDataService: CoreDataServiceProtocol) {
         self.view = view
         self.router = router
+        self.coreDataService = coreDataService
         self.frc = createFetchResultController()
     }
 
@@ -35,7 +40,7 @@ class CardsPresenter: CardsViewOutput {
         let request = NSFetchRequest<Lesson>(entityName: "Lesson")
         request.sortDescriptors = [.init(key: "name", ascending: true)]
         return NSFetchedResultsController(fetchRequest: request,
-                                          managedObjectContext: coreDataStack.viewContext,
+                                          managedObjectContext: coreDataService.stack.readContext,
                                           sectionNameKeyPath: "name",
                                           cacheName: nil)
     }
@@ -45,11 +50,14 @@ class CardsPresenter: CardsViewOutput {
     }
 
     func createLesson(with name: String) {
-        coreDataStack.createLesson(with: name)
+        let result = coreDataService.createLesson(with: name)
+        if result == false {
+            view?.showErrorAlert()
+        }
     }
 
     func deleteLesson(with lesson: Lesson) {
-        coreDataStack.deleteLesson(with: lesson)
+        coreDataService.deleteLesson(with: lesson)
     }
 
     func tapToSliderVC(lesson: Lesson) {

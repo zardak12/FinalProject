@@ -15,30 +15,38 @@ protocol UpdateCollectionViewDelegate: AnyObject {
 
 protocol SettingsViewInput: AnyObject {
     func updateTableView()
+    func showErrorAlert()
 }
 
 protocol SettingsViewOutput: AnyObject {
     var words: [Word] { get set }
     var lesson: Lesson { get set }
-    init(view: SettingsViewInput, words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate)
+    init(view: SettingsViewInput, words: [Word],
+         lesson: Lesson,
+         delegate: UpdateCollectionViewDelegate,
+         coreDataService: CoreDataServiceProtocol)
     func createWord(value: String, translate: String, lesson: Lesson)
     func deleteWord(wtih word: Word, _ deleteIndex: Int)
     func update()
 }
 
 final class SettingsPresenter: SettingsViewOutput {
-    private let coreDataStack = Container.shared.coreDataStack
 
     weak var view: SettingsViewInput?
     weak var delegate: UpdateCollectionViewDelegate?
+    var coreDataService: CoreDataServiceProtocol
     var words: [Word]
     var lesson: Lesson
 
-    required init(view: SettingsViewInput, words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) {
+    required init(view: SettingsViewInput, words: [Word],
+                  lesson: Lesson,
+                  delegate: UpdateCollectionViewDelegate,
+                  coreDataService: CoreDataServiceProtocol) {
         self.view = view
         self.words = words
         self.lesson = lesson
         self.delegate = delegate
+        self.coreDataService = coreDataService
     }
 
     func update() {
@@ -46,10 +54,15 @@ final class SettingsPresenter: SettingsViewOutput {
     }
 
     func createWord(value: String, translate: String, lesson: Lesson) {
-        coreDataStack.createWord(value: value, translate: translate, lesson: lesson) { word in
-            self.words.append(word)
-            self.delegate?.addNewWord(word)
-            self.delegate?.scrollToNext()
+        coreDataService.createWord(value: value, translate: translate, lesson: lesson) { result in
+            switch result {
+            case .success(let word):
+                self.words.append(word)
+                self.delegate?.addNewWord(word)
+                self.delegate?.scrollToNext()
+            case .failure(_):
+                self.view?.showErrorAlert()
+            }
         }
         view?.updateTableView()
     }
@@ -57,7 +70,7 @@ final class SettingsPresenter: SettingsViewOutput {
     func deleteWord(wtih word: Word, _ deleteIndex: Int) {
         words.remove(at: deleteIndex)
         delegate?.deleteWord(deleteIndex)
-        coreDataStack.deleteWord(with: word)
+        coreDataService.deleteWord(with: word)
         view?.updateTableView()
     }
 }
