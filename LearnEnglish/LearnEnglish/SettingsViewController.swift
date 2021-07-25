@@ -60,7 +60,7 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
         ])
     }
 
-    // MARK: - OBJECTIVE FUNCTION
+    // MARK: - Objective function
 
     @objc func addWord() {
         let alertController = UIAlertController(title: "Введите слово и значение", message: "", preferredStyle: .alert)

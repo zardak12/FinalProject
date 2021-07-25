@@ -9,19 +9,19 @@ import XCTest
 @testable import LearnEnglish
 
 class MockNetwork: NetworkServiceProtocol {
-    var responce: GetResponce?
+    var responce: [LessonDTO]?
     var image: UIImage?
 
     init() {}
 
-    convenience init (with responce: GetResponce, with image: UIImage) {
+    convenience init (with responce: [LessonDTO], with image: UIImage) {
         self.init()
         self.responce = responce
         self.image = image
     }
 
-    func getLessons(completion: @escaping (GetLessonsResponce) -> Void) {
-        if responce?.lessons == nil {
+    func getLessons(completion: @escaping (LessonsResponce) -> Void) {
+        if responce == nil {
             let error = NetworkError.unknown
             completion(.failure(error))
         } else {
@@ -38,36 +38,32 @@ class MockNetwork: NetworkServiceProtocol {
 class NetworkServiceTest: XCTestCase {
     let testError = NetworkError.unknown
     var networkService: NetworkServiceProtocol!
-    var responce: GetResponce!
+    var responce = [LessonDTO]()
     var image: UIImage!
 
     override func setUpWithError() throws {
-        responce = GetResponce(lessons: nil)
         image = UIImage(systemName: "pencil")
         networkService = MockNetwork(with: responce, with: image)
     }
 
     override func tearDownWithError() throws {
-        responce = nil
         image = nil
         networkService = nil
     }
 
     func testNetworkServiceGetLessons() throws {
 
-        var catchError: NetworkError?
+        var networkResponce: [LessonDTO]?
 
         networkService.getLessons { result in
             switch result {
             case .success(let responce):
-                print(responce)
+                networkResponce = responce
             case .failure(let error):
-                print("Ошибка")
-                catchError = error
+                print(error.localizedDescription)
             }
         }
-
-        XCTAssertEqual(catchError, testError)
+        XCTAssertEqual(responce, networkResponce)
     }
 
     func testNetworkServiceLoadImage() throws {

@@ -11,7 +11,7 @@ import CoreData
 typealias CoreDataWord = Result<Word, CoreDataError>
 
 protocol CoreDataServiceProtocol {
-    var stack: CoreDataStack { get set }
+    var stack: CoreDataStackProtocol { get set }
     func createLesson(with name: String) -> Bool
     func createWord(value: String, translate: String, lesson: Lesson, completion: @escaping (CoreDataWord) -> Void)
     func deleteLesson(with lesson: Lesson)
@@ -19,9 +19,9 @@ protocol CoreDataServiceProtocol {
 }
 
 final class CoreDataService: CoreDataServiceProtocol {
-    var stack: CoreDataStack
+    var stack: CoreDataStackProtocol
 
-    init(stack: CoreDataStack) {
+    init(stack: CoreDataStackProtocol) {
         self.stack = stack
     }
 

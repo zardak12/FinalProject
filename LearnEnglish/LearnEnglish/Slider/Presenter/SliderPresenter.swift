@@ -33,12 +33,9 @@ protocol SliderViewOutput: AnyObject {
     func update()
     func tapOnSettings(delegate: UpdateCollectionViewDelegate)
     func rotate()
-    func swipeAudio()
 }
 
 final class SliderPresenter: SliderViewOutput {
-
-    private let coreDataStack = Container.shared.coreDataStack
 
     weak var view: SliderViewInput?
     var cell: SliderViewCellInput?
@@ -65,7 +62,8 @@ final class SliderPresenter: SliderViewOutput {
     }
 
     func createWord(value: String, translate: String, lesson: Lesson) {
-        coreDataService.createWord(value: value, translate: translate, lesson: lesson) { result in
+        coreDataService.createWord(value: value, translate: translate, lesson: lesson) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let word):
                 self.words?.insert(word, at: 0)
@@ -99,19 +97,5 @@ final class SliderPresenter: SliderViewOutput {
         cell?.rotateFirst()
         isSelect = false
       }
-    }
-
-    func swipeAudio() {
-        DispatchQueue.global(qos: .userInteractive).async {
-            guard let path = Bundle.main.path(forResource: "Whoosh.mp3", ofType: nil) else { return }
-            let url = URL(fileURLWithPath: path)
-            do {
-                self.whoosh = try AVAudioPlayer(contentsOf: url)
-                self.whoosh?.play()
-                self.whoosh?.setVolume(0.5, fadeDuration: 0.5)
-            } catch {
-                print("couldn't load file :(")
-            }
-        }
     }
 }

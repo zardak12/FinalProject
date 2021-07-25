@@ -29,7 +29,8 @@ final class AboutUsPresenter: AboutUsViewOutput {
     }
 
     func makeImageVisible(completion: (Bool) -> Void) {
-        networkService.loadImage { image in
+        networkService.loadImage { [weak self] image in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 self.view?.showAuthorImage(with: image)
             }

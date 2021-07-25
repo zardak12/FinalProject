@@ -21,7 +21,6 @@ final class SliderViewController: UIViewController, SliderViewInput {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .clear
         collection.dataSource = self
-        collection.delegate = self
         return collection
     }()
 
@@ -140,14 +139,6 @@ extension SliderViewController: UICollectionViewDataSource {
         presenter?.cell = cell
         cell.configure(with: item)
         return cell
-    }
-}
-
-extension SliderViewController: UICollectionViewDelegate {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
-                                   withVelocity velocity: CGPoint,
-                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        presenter?.swipeAudio()
     }
 }
 

@@ -6,10 +6,12 @@
 //
 
 import XCTest
-import CoreData
 @testable import LearnEnglish
 
 class MockDelegate: UpdateCollectionViewDelegate {
+    func scrollToNext() {
+    }
+
     func addNewWord(_ word: Word) {
     }
 
@@ -26,11 +28,13 @@ class SliderRouterTest: XCTestCase {
     var lesson: Lesson?
     var word: Word?
     var words = [Word]()
-    let coreDataStack = Container.shared.coreDataStack
+    let stack = MockCoreDataStack()
+    var coreDataService: CoreDataServiceProtocol!
 
     override func setUpWithError() throws {
-        let lesson = Lesson(context: coreDataStack.viewContext)
-        let word = Word(context: coreDataStack.viewContext)
+        coreDataService = MockCoreDataService(stack: stack)
+        let lesson = Lesson(context: coreDataService.stack.readContext)
+        let word = Word(context: coreDataService.stack.readContext)
         word.value = "hello"
         word.translate = "Привет"
         lesson.words?.adding(word)

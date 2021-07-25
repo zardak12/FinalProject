@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol SliderRouterProtocol {
     func showSettingVC(with words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate)

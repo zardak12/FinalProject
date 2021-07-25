@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseViewContoller: UIViewController {
+class BaseViewController: UIViewController {
 
   // MARK: - Child
   private let spinner = SpinnerViewController()
@@ -22,7 +22,7 @@ class BaseViewContoller: UIViewController {
 
     // MARK: - show Spinner
 
-    private func showSpinner(isShown: Bool) {
+    func showSpinner(isShown: Bool) {
         if isShown {
             addChild(spinner)
             spinner.view.frame = view.frame
@@ -34,5 +34,4 @@ class BaseViewContoller: UIViewController {
             spinner.removeFromParent()
         }
     }
-
   }

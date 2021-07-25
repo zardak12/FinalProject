@@ -9,26 +9,17 @@ import XCTest
 import CoreData
 @testable import LearnEnglish
 
-class MockNavigationController: UINavigationController {
-    var presentedVC: UIViewController?
-
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        self.presentedVC = viewController
-        super.pushViewController(viewController, animated: animated)
-    }
-}
-
 class MenuRouterTest: XCTestCase {
     var router: MenuRouterProtocol!
     var navigationController = MockNavigationController()
+    let coreDataService = CoreDataService(stack: MockCoreDataStack())
     var lesson: Lesson?
     var word: Word?
     var words = [Word]()
-    let coreDataStack = Container.shared.coreDataStack
 
     override func setUpWithError() throws {
-        let lesson = Lesson(context: coreDataStack.viewContext)
-        let word = Word(context: coreDataStack.viewContext)
+        let lesson = Lesson(context: coreDataService.stack.readContext)
+        let word = Word(context: coreDataService.stack.readContext)
         word.value = "hello"
         word.translate = "Привет"
         lesson.words?.adding(word)
@@ -52,7 +43,7 @@ class MenuRouterTest: XCTestCase {
 
     func testMenuRouterSlider() throws {
         guard let lesson = lesson else { return }
-        router.showSliderController(with: words, lesson: lesson)
+        router.showSliderController(lesson: lesson)
         let sliderVC = navigationController.presentedVC
         XCTAssertTrue(sliderVC is SliderViewController)
     }

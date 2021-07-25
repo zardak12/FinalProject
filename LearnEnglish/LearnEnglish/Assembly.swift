@@ -15,7 +15,8 @@ protocol AssemblyBuilderProtocol {
     func createAboutUs() -> UIViewController
     func createSlider(with navigationContoller: UINavigationController,
                       lesson: Lesson) -> UIViewController
-    func createSettings(words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) -> UIViewController
+    func createSettings(words: [Word], lesson: Lesson,
+                        delegate: UpdateCollectionViewDelegate) -> UIViewController
     func createTraining(with words: [Word]) -> UIViewController
 }
 
@@ -87,7 +88,8 @@ class AssemblyBuilder: AssemblyBuilderProtocol {
         return view
     }
 
-    func createSettings(words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) -> UIViewController {
+    func createSettings(words: [Word], lesson: Lesson,
+                        delegate: UpdateCollectionViewDelegate) -> UIViewController {
         let view = SettingsViewController()
         let stack = Container.shared.coreDataStack
         let coreDataService = CoreDataService(stack: stack)

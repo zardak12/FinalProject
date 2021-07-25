@@ -54,7 +54,8 @@ final class SettingsPresenter: SettingsViewOutput {
     }
 
     func createWord(value: String, translate: String, lesson: Lesson) {
-        coreDataService.createWord(value: value, translate: translate, lesson: lesson) { result in
+        coreDataService.createWord(value: value, translate: translate, lesson: lesson) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let word):
                 self.words.append(word)

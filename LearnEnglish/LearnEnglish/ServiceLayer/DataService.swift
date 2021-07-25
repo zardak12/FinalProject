@@ -10,17 +10,17 @@ import CoreData
 
 protocol DataServiceProtocol: AnyObject {
     func load()
-    init(networkService: NetworkServiceProtocol, stack: CoreDataStack)
+    init(networkService: NetworkServiceProtocol, stack: CoreDataStackProtocol)
 }
 
 final class DataService: DataServiceProtocol {
 
     private let networkService: NetworkServiceProtocol
-    private let stack: CoreDataStack
+    private let stack: CoreDataStackProtocol
     private let request = NSFetchRequest<Lesson>(entityName: "Lesson")
     private let fetchRequest: NSFetchRequest<Lesson> = Lesson.fetchRequest()
 
-    required init(networkService: NetworkServiceProtocol, stack: CoreDataStack) {
+    required init(networkService: NetworkServiceProtocol, stack: CoreDataStackProtocol) {
         self.networkService = networkService
         self.stack = stack
     }

@@ -8,7 +8,10 @@
 import XCTest
 @testable import LearnEnglish
 
-class CardsMockView: CardsViewInput { }
+class CardsMockView: CardsViewInput {
+    func showErrorAlert() {
+    }
+}
 
 class CardsPresenterTest: XCTestCase {
 
@@ -17,13 +20,16 @@ class CardsPresenterTest: XCTestCase {
     var navigationController: MockNavigationController!
     var router: MenuRouterProtocol!
     var presenter: CardsPresenter!
+    var stack = MockCoreDataStack()
+    var coreDataService: CoreDataServiceProtocol!
 
     override func setUpWithError() throws {
         view = CardsMockView()
         assembly = AssemblyBuilder()
         navigationController = MockNavigationController()
         router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: assembly)
-        presenter = CardsPresenter(view: view, router: router)
+        coreDataService = MockCoreDataService(stack: stack)
+        presenter = CardsPresenter(view: view, router: router, coreDataService: coreDataService)
     }
 
     override func tearDownWithError() throws {

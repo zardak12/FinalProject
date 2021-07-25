@@ -8,10 +8,15 @@
 import Foundation
 import CoreData
 
-final class CoreDataStack {
+protocol CoreDataStackProtocol {
+    var readContext: NSManagedObjectContext { get set }
+    var writeContext: NSManagedObjectContext { get set }
+}
 
-    let readContext: NSManagedObjectContext
-    let writeContext: NSManagedObjectContext
+final class CoreDataStack: CoreDataStackProtocol {
+
+    var readContext: NSManagedObjectContext
+    var writeContext: NSManagedObjectContext
 
     private let coordinator: NSPersistentStoreCoordinator
     private let objectModel: NSManagedObjectModel = {

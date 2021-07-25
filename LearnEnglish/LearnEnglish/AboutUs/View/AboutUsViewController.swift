@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AboutUsViewController: BaseViewContoller {
+final class AboutUsViewController: BaseViewController {
 
       // MARK: - UI
 
@@ -42,15 +42,11 @@ final class AboutUsViewController: BaseViewContoller {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = rightBarButtonItem
-        view.backgroundColor = Colors.backgoundFill// UIColor(named: "backgroundFill")
+        view.backgroundColor = Colors.backgoundFill
         view.addSubview(nameLabel)
         view.addSubview(avaImageView)
         setLayout()
-        isLoading = true
-        presenter?.makeImageVisible(completion: { [weak self] result in
-            guard let self = self else { return }
-            self.isLoading = result
-        })
+        loadData()
     }
 
       // MARK: - Constraints
@@ -71,6 +67,12 @@ final class AboutUsViewController: BaseViewContoller {
         ])
     }
 
+    func loadData() {
+        isLoading = true
+        presenter?.makeImageVisible(completion: { result in
+            self.isLoading = result
+        })
+    }
       // MARK: - @Objc function
 
     @objc func goBack() {
