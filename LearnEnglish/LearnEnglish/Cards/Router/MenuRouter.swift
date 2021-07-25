@@ -7,15 +7,18 @@
 
 import UIKit
 
-class MenuRouter: MenuRouterProtocol, RouterProtocol {
+  // MARK: - MenuRouter
+final class MenuRouter: MenuRouterProtocol, RouterProtocol {
     var navigationContoller: UINavigationController
     var assemblyBuilder: AssemblyBuilderProtocol
 
+      // MARK: - Init
     init(navigationContoller: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationContoller = navigationContoller
         self.assemblyBuilder = assemblyBuilder
     }
 
+      // MARK: - Show
     func showSliderController(lesson: Lesson) {
         let sliderVC = assemblyBuilder.createSlider(with: navigationContoller, lesson: lesson)
         navigationContoller.pushViewController(sliderVC, animated: true)

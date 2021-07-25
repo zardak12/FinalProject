@@ -11,6 +11,7 @@ class CardsTableViewCell: UITableViewCell {
 
     static let identifier = "identifier"
 
+      // MARK: - UI
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -19,6 +20,7 @@ class CardsTableViewCell: UITableViewCell {
         return title
     }()
 
+      // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
@@ -28,13 +30,12 @@ class CardsTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = Constants.cornerRadius
     }
 
-    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -45,6 +46,7 @@ class CardsTableViewCell: UITableViewCell {
         ])
     }
 
+      // MARK: - Configure
     func configure(with text: String) {
         titleLabel.text = text
         titleLabel.textColor = .white

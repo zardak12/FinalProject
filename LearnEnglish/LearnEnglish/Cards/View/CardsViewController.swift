@@ -10,8 +10,7 @@ import CoreData
 
 class CardsViewController: UIViewController, CardsViewInput {
 
-    // MARK: - Уроки
-
+      // MARK: - UI
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
@@ -30,10 +29,12 @@ class CardsViewController: UIViewController, CardsViewInput {
         return add
     }()
 
+      // MARK: - CardsViewOutput
     var presenter: CardsViewOutput?
 
     private var cellSpacingHeight: CGFloat = 10
 
+      // MARK: - Life Cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Карточки"
@@ -49,6 +50,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         presenter?.fetch()
     }
 
+      // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -58,6 +60,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         ])
     }
 
+      // MARK: - Alert
     func showErrorAlert() {
         let alertError = UIAlertController(title: "Уже есть...",
                                            message: "Такая тема уже существует. Введите другую тему",
@@ -66,6 +69,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         present(alertError, animated: true)
     }
 
+      // MARK: - Objective function
     @objc func addNewLesson() {
         let alert = UIAlertController(title: "Введите название темы", message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
@@ -79,19 +83,18 @@ class CardsViewController: UIViewController, CardsViewInput {
     }
 }
 
+  // MARK: - UITableViewDataSource
 extension CardsViewController: UITableViewDataSource {
 
-    // MARK: - Presenter ViewOutput
     func numberOfSections(in tableView: UITableView) -> Int {
         return presenter?.frc?.sections?.count ?? 0
     }
-    // MARK: - Presenter ViewOutput
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = presenter?.frc?.sections else { return 0 }
         return sections[section].numberOfObjects
     }
 
-    // MARK: - Presenter ViewOutput
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = presenter?.frc?.object(at: indexPath)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CardsTableViewCell.identifier,
@@ -106,6 +109,7 @@ extension CardsViewController: UITableViewDataSource {
 
 }
 
+  // MARK: - UITableViewDelegate
 extension CardsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -138,6 +142,7 @@ extension CardsViewController: UITableViewDelegate {
     }
 }
 
+  // MARK: - NSFetchedResultsControllerDelegate
 extension CardsViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

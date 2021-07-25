@@ -7,6 +7,7 @@
 
 import UIKit
 
+  // MARK: - AssemblyBuilderProtocol
 protocol AssemblyBuilderProtocol {
     func createMainVC() -> UIViewController
     func createCards() -> UIViewController
@@ -20,7 +21,8 @@ protocol AssemblyBuilderProtocol {
     func createTraining(with words: [Word]) -> UIViewController
 }
 
-class AssemblyBuilder: AssemblyBuilderProtocol {
+  // MARK: - AssemblyBuilder
+final class AssemblyBuilder: AssemblyBuilderProtocol {
 
     var tabBarCnt = UITabBarController()
 

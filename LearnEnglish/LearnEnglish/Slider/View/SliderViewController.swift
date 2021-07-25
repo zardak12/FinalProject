@@ -12,7 +12,6 @@ final class SliderViewController: UIViewController, SliderViewInput {
     var presenter: SliderViewOutput?
 
       // MARK: - UI
-
     private lazy var collectionView: UICollectionView = {
         let layout = SliderCollectionViewLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -114,9 +113,8 @@ final class SliderViewController: UIViewController, SliderViewInput {
     }
 }
 
+  // MARK: - UICollectionViewDataSource
 extension SliderViewController: UICollectionViewDataSource {
-
-    // MARK: - Возвращает количество слов
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if presenter?.words?.isEmpty == true {
@@ -124,8 +122,6 @@ extension SliderViewController: UICollectionViewDataSource {
         }
         return (presenter?.words?.count ?? 0) * Constants.reply
     }
-
-    // MARK: - Регистрирует ячейку
 
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -142,6 +138,7 @@ extension SliderViewController: UICollectionViewDataSource {
     }
 }
 
+  // MARK: - UpdateCollectionViewDelegate
 extension SliderViewController: UpdateCollectionViewDelegate {
 
     func addNewWord(_ newWord: Word) {

@@ -152,14 +152,14 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
       // MARK: - TrainingViewCell
 
-    func showRightAnswer() {
+    private func showRightAnswer() {
         firstButton.rightAnimation()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.delegate?.scrollToNext()
         }
     }
 
-    func showFailedAnswer(with numberButton: Int) {
+    private func showFailedAnswer(with numberButton: Int) {
         switch numberButton {
         case 1:
             secondButton.fallAnimation()

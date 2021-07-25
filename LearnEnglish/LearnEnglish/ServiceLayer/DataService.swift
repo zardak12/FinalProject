@@ -8,25 +8,28 @@
 import Foundation
 import CoreData
 
+  // MARK: - DataServiceProtocol
 protocol DataServiceProtocol: AnyObject {
     func load()
     init(networkService: NetworkServiceProtocol, stack: CoreDataStackProtocol)
 }
 
+  // MARK: - DataService
 final class DataService: DataServiceProtocol {
 
+      // MARK: - Private Properties
     private let networkService: NetworkServiceProtocol
     private let stack: CoreDataStackProtocol
     private let request = NSFetchRequest<Lesson>(entityName: "Lesson")
     private let fetchRequest: NSFetchRequest<Lesson> = Lesson.fetchRequest()
 
+      // MARK: - Init
     required init(networkService: NetworkServiceProtocol, stack: CoreDataStackProtocol) {
         self.networkService = networkService
         self.stack = stack
     }
 
-      // MARK: - Загрузка данных
-
+    // MARK: - Load Data
   func load() {
     let writeContext = stack.writeContext
     writeContext.performAndWait {

@@ -8,10 +8,12 @@
 import UIKit
 import CoreData
 
+  // MARK: - CardsViewInput
 protocol CardsViewInput: AnyObject {
     func showErrorAlert()
 }
 
+  // MARK: - CardsViewOutput
 protocol CardsViewOutput: AnyObject {
     var frc: NSFetchedResultsController<Lesson>? { get set }
     init(view: CardsViewInput, router: MenuRouterProtocol, coreDataService: CoreDataServiceProtocol)
@@ -22,13 +24,15 @@ protocol CardsViewOutput: AnyObject {
     func tapToWorkoutVC(with words: [Word])
 }
 
-class CardsPresenter: CardsViewOutput {
+  // MARK: - CardsPresenter
+final class CardsPresenter: CardsViewOutput {
 
     weak var view: CardsViewInput?
     var frc: NSFetchedResultsController<Lesson>?
     var router: MenuRouterProtocol
     var coreDataService: CoreDataServiceProtocol
 
+      // MARK: - Init
     required init(view: CardsViewInput, router: MenuRouterProtocol, coreDataService: CoreDataServiceProtocol) {
         self.view = view
         self.router = router
@@ -36,6 +40,7 @@ class CardsPresenter: CardsViewOutput {
         self.frc = createFetchResultController()
     }
 
+      // MARK: - FetchResultController
     func createFetchResultController() -> NSFetchedResultsController<Lesson> {
         let request = NSFetchRequest<Lesson>(entityName: "Lesson")
         request.sortDescriptors = [.init(key: "name", ascending: true)]
@@ -49,6 +54,7 @@ class CardsPresenter: CardsViewOutput {
         try? frc?.performFetch()
     }
 
+      // MARK: - Create
     func createLesson(with name: String) {
         let result = coreDataService.createLesson(with: name)
         if result == false {
@@ -56,10 +62,12 @@ class CardsPresenter: CardsViewOutput {
         }
     }
 
+      // MARK: - Delete
     func deleteLesson(with lesson: Lesson) {
         coreDataService.deleteLesson(with: lesson)
     }
 
+      // MARK: - Router
     func tapToSliderVC(lesson: Lesson) {
         router.showSliderController(lesson: lesson)
     }

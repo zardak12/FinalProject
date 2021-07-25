@@ -44,7 +44,6 @@ final class SliderPresenter: SliderViewOutput {
     var router: SliderRouterProtocol
     var coreDataService: CoreDataServiceProtocol
     var isSelect: Bool = false
-    var whoosh: AVAudioPlayer?
 
     required init(view: SliderViewInput,
                   lesson: Lesson,

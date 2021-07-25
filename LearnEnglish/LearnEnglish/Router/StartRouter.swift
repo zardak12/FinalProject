@@ -7,11 +7,12 @@
 
 import UIKit
 
-class StartRouter {
+final class StartRouter {
 
     let assembly: AssemblyBuilderProtocol
     let dataService: DataServiceProtocol
 
+      // MARK: - Init
     init(assembly: AssemblyBuilderProtocol, dataService: DataServiceProtocol) {
         self.assembly = assembly
         self.dataService = dataService

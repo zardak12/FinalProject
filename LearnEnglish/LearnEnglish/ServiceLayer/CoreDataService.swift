@@ -10,6 +10,7 @@ import CoreData
 
 typealias CoreDataWord = Result<Word, CoreDataError>
 
+  // MARK: - CoreDataServiceProtocol
 protocol CoreDataServiceProtocol {
     var stack: CoreDataStackProtocol { get set }
     func createLesson(with name: String) -> Bool
@@ -18,13 +19,16 @@ protocol CoreDataServiceProtocol {
     func deleteWord(with word: Word)
 }
 
+  // MARK: - CoreDataService
 final class CoreDataService: CoreDataServiceProtocol {
     var stack: CoreDataStackProtocol
 
+      // MARK: - Init
     init(stack: CoreDataStackProtocol) {
         self.stack = stack
     }
 
+      // MARK: - Create Entity
     func createLesson(with name: String) -> Bool {
         var result = false
         let context = stack.writeContext
@@ -58,6 +62,7 @@ final class CoreDataService: CoreDataServiceProtocol {
         try? context.save()
     }
 
+      // MARK: - Delete Entity
     func deleteLesson(with lesson: Lesson) {
         let context = stack.writeContext
         context.performAndWait {
