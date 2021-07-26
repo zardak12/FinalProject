@@ -1,4 +1,4 @@
-# FinalProject
+# Финальный проект
 ## Выполнение пунктов  
 ### Использовать Core Data для хранения моделей данных
 Уроки и слова сохраняются в CoreData. Реализованы с помощью relationships с отношение one to many.(Lesson to many Word). Реализовано на writeContext и readContext.
