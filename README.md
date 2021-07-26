@@ -1,7 +1,7 @@
 # FinalProject
 ## Выполнение пунктов  
 ### Использовать Core Data для хранения моделей данных
-Уроки и слова сохраняются в CoreData. Реализованы с помощью relationships с отношение one to many.(Lesson to many Word)
+Уроки и слова сохраняются в CoreData. Реализованы с помощью relationships с отношение one to many.(Lesson to many Word). Реализовано на writeContext и readContext.
 ### Использовать KeyChain/UserDefaults для пользовательских настроек
 Имя и фотография сохраняется в UserDefauts 
 ### Использование Swift styleguides (Google styleguides)
