@@ -22,7 +22,7 @@ class MockDelegate: UpdateCollectionViewDelegate {
 
 class SliderRouterTest: XCTestCase {
 
-    var router: SliderRouterProtocol!
+    var sut: SliderRouterProtocol!
     var navigationController = MockNavigationController()
     var delegate = MockDelegate()
     var lesson: Lesson?
@@ -31,7 +31,8 @@ class SliderRouterTest: XCTestCase {
     let stack = MockCoreDataStack()
     var coreDataService: CoreDataServiceProtocol!
 
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
         coreDataService = MockCoreDataService(stack: stack)
         let lesson = Lesson(context: coreDataService.stack.readContext)
         let word = Word(context: coreDataService.stack.readContext)
@@ -40,18 +41,19 @@ class SliderRouterTest: XCTestCase {
         lesson.words?.adding(word)
         words.append(word)
         let assembly = AssemblyBuilder()
-        router = SliderRouter(navigationContoller: navigationController, assemblyBuilder: assembly)
+        sut = SliderRouter(navigationContoller: navigationController, assemblyBuilder: assembly)
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         lesson = nil
         word = nil
-        router = nil
+        sut = nil
+        super.tearDown()
     }
 
-    func testSliderRouter() throws {
+    func testSliderRouter() {
         guard let lesson = lesson else { return }
-        router.showSettingVC(with: words, lesson: lesson, delegate: delegate)
+        sut.showSettingVC(lesson: lesson, delegate: delegate)
         let settingVc = navigationController.presentedVC
         XCTAssertTrue(settingVc is SettingsViewController)
     }

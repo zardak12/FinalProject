@@ -7,10 +7,14 @@
 
 import UIKit
 
+// MARK: - AboutUsViewInput
 protocol AboutUsViewInput: AnyObject {
+    /// Show Author Image
+    /// - Parameter image: Image from Network
     func showAuthorImage(with image: UIImage)
 }
 
+// MARK: - AboutUsViewOutput
 protocol AboutUsViewOutput: AnyObject {
     init(view: AboutUsViewInput, networkService: NetworkServiceProtocol, router: ProfileRouterProtocol)
     func makeImageVisible(completion: (Bool) -> Void)
@@ -22,6 +26,7 @@ final class AboutUsPresenter: AboutUsViewOutput {
     let networkService: NetworkServiceProtocol
     var router: ProfileRouterProtocol
 
+    // MARK: - Init
     required init(view: AboutUsViewInput, networkService: NetworkServiceProtocol, router: ProfileRouterProtocol) {
         self.view = view
         self.networkService = networkService
@@ -38,6 +43,7 @@ final class AboutUsPresenter: AboutUsViewOutput {
         completion(false)
     }
 
+    // MARK: - Router
     func tapBack() {
         router.goBack()
     }

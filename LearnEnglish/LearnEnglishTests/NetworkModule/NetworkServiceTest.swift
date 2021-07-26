@@ -36,40 +36,42 @@ class MockNetwork: NetworkServiceProtocol {
 }
 
 class NetworkServiceTest: XCTestCase {
+    var sut: NetworkServiceProtocol!
     let testError = NetworkError.unknown
-    var networkService: NetworkServiceProtocol!
     var responce = [LessonDTO]()
     var image: UIImage!
 
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
         image = UIImage(systemName: "pencil")
-        networkService = MockNetwork(with: responce, with: image)
+        sut = MockNetwork(with: responce, with: image)
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
+        super.tearDown()
         image = nil
-        networkService = nil
+        sut = nil
     }
 
-    func testNetworkServiceGetLessons() throws {
+    func testNetworkServiceGetLessons() {
 
         var networkResponce: [LessonDTO]?
 
-        networkService.getLessons { result in
+        sut.getLessons { result in
             switch result {
             case .success(let responce):
                 networkResponce = responce
             case .failure(let error):
-                print(error.localizedDescription)
+                XCTAssertNotNil(error)
             }
         }
         XCTAssertEqual(responce, networkResponce)
     }
 
-    func testNetworkServiceLoadImage() throws {
+    func testNetworkServiceLoadImage() {
         var catchImage: UIImage?
 
-        networkService.loadImage { imageResponce in
+        sut.loadImage { imageResponce in
             catchImage = imageResponce
         }
         XCTAssertEqual(catchImage, image)

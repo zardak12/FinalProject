@@ -21,7 +21,6 @@ class BaseViewController: UIViewController {
   }
 
     // MARK: - show Spinner
-
     func showSpinner(isShown: Bool) {
         if isShown {
             addChild(spinner)

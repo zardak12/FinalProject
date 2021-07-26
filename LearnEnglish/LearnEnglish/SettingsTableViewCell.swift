@@ -9,8 +9,10 @@ import UIKit
 
 final class SettingsTableViewCell: UITableViewCell {
 
+    // MARK: - Identifier
     static let identifier = "identifier"
 
+    // MARK: - UI
     private lazy var valueLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +29,7 @@ final class SettingsTableViewCell: UITableViewCell {
         return label
     }()
 
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(valueLabel)
@@ -34,16 +37,16 @@ final class SettingsTableViewCell: UITableViewCell {
         setLayout()
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.layer.cornerRadius = Constants.cornerRadius
-    }
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Layout
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = Constants.cornerRadius
+    }
+
     private func setLayout() {
         NSLayoutConstraint.activate([
             valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
@@ -59,6 +62,7 @@ final class SettingsTableViewCell: UITableViewCell {
         ])
     }
 
+    // MARK: - Configure
     func configure(with word: Word) {
         valueLabel.text = word.value
         translateLabel.text = word.translate

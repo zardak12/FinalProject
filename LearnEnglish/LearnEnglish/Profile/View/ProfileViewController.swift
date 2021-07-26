@@ -9,8 +9,7 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
 
-      // MARK: - UI
-
+    // MARK: - UI
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -65,12 +64,10 @@ final class ProfileViewController: UIViewController {
         return button
     }()
 
-      // MARK: - ViewOutput
-
+    // MARK: - ViewOutput
     var presenter: ProfileViewOutput?
 
-      // MARK: - Life Cyrcle
-
+    // MARK: - Life Cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Профиль"
@@ -93,8 +90,7 @@ final class ProfileViewController: UIViewController {
         imageView.layer.cornerRadius = imageView.bounds.height / 2
     }
 
-      // MARK: - Layout
-
+    // MARK: - Layout
     func setLayout() {
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
@@ -120,8 +116,7 @@ final class ProfileViewController: UIViewController {
 
     }
 
-      // MARK: - Objc fucntions
-
+    // MARK: - Objc fucntions
     @objc func openImagePicker() {
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
             return
@@ -135,8 +130,7 @@ final class ProfileViewController: UIViewController {
 
 }
 
-  // MARK: - ViewInput
-
+// MARK: - ViewInput
 extension ProfileViewController: ProfileViewInput {
     func showAvaImage(with image: UIImage, with text: String) {
         imageView.image = image
@@ -148,8 +142,7 @@ extension ProfileViewController: ProfileViewInput {
     }
 }
 
-  // MARK: - UITextFieldDelegate
-
+// MARK: - UITextFieldDelegate
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         textField.text = nil
@@ -168,8 +161,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
 }
 
-  // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
-
+// MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension ProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController,
                                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {

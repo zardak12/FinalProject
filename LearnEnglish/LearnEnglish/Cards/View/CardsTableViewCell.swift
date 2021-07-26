@@ -9,9 +9,10 @@ import UIKit
 
 class CardsTableViewCell: UITableViewCell {
 
+    // MARK: - Identifier
     static let identifier = "identifier"
 
-      // MARK: - UI
+    // MARK: - UI
     private lazy var titleLabel: UILabel = {
         let title = UILabel()
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +21,7 @@ class CardsTableViewCell: UITableViewCell {
         return title
     }()
 
-      // MARK: - Init
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(titleLabel)
@@ -30,6 +31,7 @@ class CardsTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -46,7 +48,7 @@ class CardsTableViewCell: UITableViewCell {
         ])
     }
 
-      // MARK: - Configure
+    // MARK: - Configure
     func configure(with text: String) {
         titleLabel.text = text
         titleLabel.textColor = .white

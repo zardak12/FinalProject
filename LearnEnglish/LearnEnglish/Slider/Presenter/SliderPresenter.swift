@@ -9,12 +9,20 @@ import Foundation
 import AVFoundation
 
 protocol SliderViewInput: AnyObject {
+
+    /// Update collectionView
     func updateCollectionView()
+
+    /// Show alert with Error
     func showErrorAlert()
 }
 
 protocol SliderViewCellInput: AnyObject {
+
+    /// Rotate card to one side
     func rotateFirst()
+
+    /// Rotate card to another side
     func rotateSecond()
 }
 
@@ -26,12 +34,29 @@ protocol SliderViewOutput: AnyObject {
     init(view: SliderViewInput,
          lesson: Lesson,
          router: SliderRouterProtocol,
-          coreDataService: CoreDataServiceProtocol)
+         coreDataService: CoreDataServiceProtocol)
+
+    /// Create a new word
+    /// - Parameters:
+    ///   - value: Word to learn
+    ///   - translate: Translation of this word
+    ///   - lesson: Specific lesson
     func createWord(value: String, translate: String, lesson: Lesson)
+
+    /// Add word in array
+    /// - Parameter newWord: new word
     func addWord(_ newWord: Word)
+
+    /// Delete word from array
+    /// - Parameter deleteIndex: index array
     func deleteWord(_ deleteIndex: Int)
+
     func update()
+
+    /// Switch to the SettingsViewController
+    /// - Parameter delegate: delegate that update SliderViewContorller
     func tapOnSettings(delegate: UpdateCollectionViewDelegate)
+
     func rotate()
 }
 
@@ -45,6 +70,7 @@ final class SliderPresenter: SliderViewOutput {
     var coreDataService: CoreDataServiceProtocol
     var isSelect: Bool = false
 
+    // MARK: - Init
     required init(view: SliderViewInput,
                   lesson: Lesson,
                   router: SliderRouterProtocol,
@@ -56,10 +82,12 @@ final class SliderPresenter: SliderViewOutput {
         words = lesson.words?.allObjects as? [Word]
     }
 
+    // MARK: - Update
     func update() {
         view?.updateCollectionView()
     }
 
+    // MARK: - Create Word
     func createWord(value: String, translate: String, lesson: Lesson) {
         coreDataService.createWord(value: value, translate: translate, lesson: lesson) { [weak self] result in
             guard let self = self else { return }
@@ -73,6 +101,7 @@ final class SliderPresenter: SliderViewOutput {
         view?.updateCollectionView()
     }
 
+    // MARK: - UpdateCollectionViewDelegate Methods
     func addWord(_ newWord: Word) {
         words?.insert(newWord, at: 0)
         view?.updateCollectionView()
@@ -83,11 +112,12 @@ final class SliderPresenter: SliderViewOutput {
         view?.updateCollectionView()
     }
 
+    // MARK: - Router
     func tapOnSettings(delegate: UpdateCollectionViewDelegate) {
-        guard  let words = words else { return }
-        router.showSettingVC(with: words, lesson: lesson, delegate: delegate)
+        router.showSettingVC(lesson: lesson, delegate: delegate)
     }
 
+    // MARK: - Rotate
     func rotate() {
       if isSelect == false {
         cell?.rotateSecond()

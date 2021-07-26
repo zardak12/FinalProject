@@ -7,8 +7,7 @@
 
 import UIKit
 
-  // MARK: - UIButton+Extension
-
+// MARK: - UIButton+Extension
 extension UIButton {
 
     func rightAnimation() {

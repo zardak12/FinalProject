@@ -12,12 +12,13 @@ final class StartRouter {
     let assembly: AssemblyBuilderProtocol
     let dataService: DataServiceProtocol
 
-      // MARK: - Init
+    // MARK: - Init
     init(assembly: AssemblyBuilderProtocol, dataService: DataServiceProtocol) {
         self.assembly = assembly
         self.dataService = dataService
     }
 
+    // MARK: - Start
     func getStartViewController() -> UIViewController {
         dataService.load()
         let viewControllers = assembly.createMainVC()

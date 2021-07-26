@@ -9,9 +9,10 @@ import UIKit
 
 final class SliderViewController: UIViewController, SliderViewInput {
 
+    // MARK: - SliderViewOutput
     var presenter: SliderViewOutput?
 
-      // MARK: - UI
+    // MARK: - UI
     private lazy var collectionView: UICollectionView = {
         let layout = SliderCollectionViewLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -37,6 +38,7 @@ final class SliderViewController: UIViewController, SliderViewInput {
         collectionView.layoutIfNeeded()
     }
 
+      // MARK: - Life Cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgoundFill
@@ -49,7 +51,7 @@ final class SliderViewController: UIViewController, SliderViewInput {
         collectionView.delaysContentTouches = false
     }
 
-    // MARK: - Constraint
+    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -63,6 +65,7 @@ final class SliderViewController: UIViewController, SliderViewInput {
         return row % (presenter?.words?.count ?? 0)
     }
 
+    // MARK: - Create First Word
     private func createFirstWord() {
         let alertController = UIAlertController(title: "Введите слово и значение",
                                                 message: "",
@@ -93,13 +96,14 @@ final class SliderViewController: UIViewController, SliderViewInput {
         present(alertController, animated: true)
     }
 
-      // MARK: - SliderViewInput
+    // MARK: - SliderViewInput
     func updateCollectionView() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
     }
 
+    // MARK: - Alert
     func showErrorAlert() {
         let alertError = UIAlertController(title: "Уже есть...",
                                            message: "Такое слово уже существует. Введите другое слово",
@@ -108,12 +112,13 @@ final class SliderViewController: UIViewController, SliderViewInput {
         present(alertError, animated: true)
     }
 
+    // MARK: - Objective Function
     @objc func settings() {
         presenter?.tapOnSettings(delegate: self)
     }
 }
 
-  // MARK: - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 extension SliderViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -138,7 +143,7 @@ extension SliderViewController: UICollectionViewDataSource {
     }
 }
 
-  // MARK: - UpdateCollectionViewDelegate
+// MARK: - UpdateCollectionViewDelegate
 extension SliderViewController: UpdateCollectionViewDelegate {
 
     func addNewWord(_ newWord: Word) {

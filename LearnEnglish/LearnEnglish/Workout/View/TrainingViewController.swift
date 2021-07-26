@@ -10,7 +10,6 @@ import UIKit
 final class TrainingViewController: UIViewController, TrainingViewInput {
 
     // MARK: - UI
-
     private lazy var collectionView: UICollectionView = {
         let layout = TrainingCollectionViewLayout().createLayout()
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -24,8 +23,10 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         return collection
     }()
 
+    // MARK: - TrainingViewOutput
     var presenter: TrainingViewOutput?
 
+    // MARK: - Life Cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Colors.backgoundFill
@@ -38,6 +39,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         collectionView.delaysContentTouches = false
     }
 
+    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -47,6 +49,7 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
         ])
     }
 
+    // MARK: - Alert Error
     private func errorOfCountWords() {
             let alert = UIAlertController(title: "Мало слов...",
                                           message:
@@ -59,17 +62,14 @@ final class TrainingViewController: UIViewController, TrainingViewInput {
             present(alert, animated: true)
     }
 
-    // MARK: - Presenter
     private func arrayIndexForRow(_ row: Int) -> Int {
         return row % (presenter?.words.count ?? 0)
     }
 }
 
+// MARK: - UICollectionViewDataSource
 extension TrainingViewController: UICollectionViewDataSource {
 
-    // MARK: - Возвращает количество слов
-
-    // MARK: - Presenter
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if presenter?.words.count ?? 0 < 5 {
             errorOfCountWords()
@@ -78,7 +78,6 @@ extension TrainingViewController: UICollectionViewDataSource {
         return (presenter?.words.count ?? 0) * Constants.reply
     }
 
-    // MARK: - Presenter
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TrainingCollectionViewCell.identifier,
@@ -94,6 +93,7 @@ extension TrainingViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - QuestionDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 extension TrainingViewController: QuestionDelegate, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func scrollToNext() {
         let collectionBounds = self.collectionView.bounds

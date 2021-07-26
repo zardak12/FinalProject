@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - NetworkConstant
 enum NetworkConstant {
     static let imageUrl = """
         https://firebasestorage.googleapis.com/v0/b/englishword-9caad.appspot.com/o/av\
@@ -15,18 +16,21 @@ enum NetworkConstant {
     static let lessonURL = "https://englishword-9caad-default-rtdb.firebaseio.com/lessons.json"
 }
 
+// MARK: - UserDefaultKeys
 enum UserDefaultKeys {
   static let  keyForName = "keyForName"
   static let  keyForAvaImage = "keyForAvaImage"
   static let  keyForAuthorImage = "keyForAuthorImage"
 }
 
+// MARK: - Constants
 enum Constants {
     static let cornerRadius = CGFloat(8)
     static let reply = 50
+    static let cellSpacingHeight: CGFloat = 10
 }
 
-  // MARK: - UIFont
+// MARK: - UIFont
 enum Font {
     static let boldSystemFont = UIFont.boldSystemFont(ofSize: 25)
     static let helveticaBoldFont = UIFont(name: "Helvetica-Bold", size: 23)
@@ -36,6 +40,7 @@ enum Font {
     static let profileNameFont = UIFont.boldSystemFont(ofSize: 30)
 }
 
+// MARK: - UIColor
 enum Colors {
     static let backgoundFill = UIColor(named: "backgroundFill")
     static let foregroundFill = UIColor(named: "foregroundFill")

@@ -44,13 +44,15 @@ class BaseViewControllerTests: XCTestCase {
 
     let sut = MockBaseViewController()
 
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
+        super.tearDown()
     }
 
-    func testSpinnerLoadingFalse() throws {
+    func testSpinnerLoadingFalse() {
         sut.isLoading = true
         sut.isLoading = false
 
@@ -58,7 +60,7 @@ class BaseViewControllerTests: XCTestCase {
         XCTAssertFalse(result)
     }
 
-    func testSpinnerLoadingTrue() throws {
+    func testSpinnerLoadingTrue() {
         sut.isLoading = false
         sut.isLoading = true
 
@@ -67,7 +69,7 @@ class BaseViewControllerTests: XCTestCase {
         XCTAssertTrue(result)
     }
 
-    func testThatResultIsEqual() throws {
+    func testThatResultIsEqual() {
         sut.isLoading = true
         let result = sut.showSpinner(isShown: sut.isLoading)
         XCTAssertEqual(result, sut.isLoading)

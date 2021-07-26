@@ -101,6 +101,12 @@
 		4D935F4126AD7BFD00906B62 /* BaseViewConrollerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4026AD7BFD00906B62 /* BaseViewConrollerTest.swift */; };
 		4D935F4426AD7E4600906B62 /* CoreDataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4326AD7E4600906B62 /* CoreDataServiceTest.swift */; };
 		4D935F4726AD7E7E00906B62 /* MockCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4626AD7E7E00906B62 /* MockCoreDataService.swift */; };
+		4D935F4926AEE7B500906B62 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4826AEE7B500906B62 /* NetworkServiceProtocol.swift */; };
+		4D935F4B26AEF08900906B62 /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4A26AEF08900906B62 /* DataServiceProtocol.swift */; };
+		4D935F4D26AEF0F700906B62 /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4C26AEF0F700906B62 /* CoreDataServiceProtocol.swift */; };
+		4D935F4E26AF042100906B62 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4826AEE7B500906B62 /* NetworkServiceProtocol.swift */; };
+		4D935F4F26AF042C00906B62 /* CoreDataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4C26AEF0F700906B62 /* CoreDataServiceProtocol.swift */; };
+		4D935F5026AF043E00906B62 /* DataServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4A26AEF08900906B62 /* DataServiceProtocol.swift */; };
 		4DEEC5712685F41B0017D77B /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC5702685F41B0017D77B /* NetworkService.swift */; };
 		4DEEC612268742DC0017D77B /* Lessons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC610268742DC0017D77B /* Lessons.xcdatamodeld */; };
 		4DEEC61C268751940017D77B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEEC61B268751940017D77B /* CoreDataStack.swift */; };
@@ -200,6 +206,9 @@
 		4D935F4026AD7BFD00906B62 /* BaseViewConrollerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewConrollerTest.swift; sourceTree = "<group>"; };
 		4D935F4326AD7E4600906B62 /* CoreDataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceTest.swift; sourceTree = "<group>"; };
 		4D935F4626AD7E7E00906B62 /* MockCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataService.swift; sourceTree = "<group>"; };
+		4D935F4826AEE7B500906B62 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
+		4D935F4A26AEF08900906B62 /* DataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceProtocol.swift; sourceTree = "<group>"; };
+		4D935F4C26AEF0F700906B62 /* CoreDataServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceProtocol.swift; sourceTree = "<group>"; };
 		4DEEC5702685F41B0017D77B /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		4DEEC611268742DC0017D77B /* Lessons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Lessons.xcdatamodel; sourceTree = "<group>"; };
 		4DEEC61B268751940017D77B /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -256,6 +265,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D42EA8126AF67600055D38B /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				4D935D54269C756100906B62 /* Assembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		4D935D4B269C746500906B62 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,9 +431,12 @@
 		4D935DC9269D029800906B62 /* ServiceLayer */ = {
 			isa = PBXGroup;
 			children = (
+				4D935F4826AEE7B500906B62 /* NetworkServiceProtocol.swift */,
 				4DEEC5702685F41B0017D77B /* NetworkService.swift */,
 				4D935E0D26A0591E00906B62 /* DataService.swift */,
+				4D935F4A26AEF08900906B62 /* DataServiceProtocol.swift */,
 				4D935EE626AAA6B400906B62 /* CoreDataService.swift */,
+				4D935F4C26AEF0F700906B62 /* CoreDataServiceProtocol.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -614,7 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				9734ADD02679D16F006BCF52 /* AppDelegate.swift */,
-				4D935D54269C756100906B62 /* Assembly.swift */,
+				4D42EA8126AF67600055D38B /* Assembly */,
 				4D935E1026A064F100906B62 /* Router */,
 				9734AE0E267B315F006BCF52 /* Model */,
 				970BBC942690CCA4008EFDEB /* Cards */,
@@ -855,6 +875,7 @@
 				4D935F0C26ACB44F00906B62 /* SettingsPresenter.swift in Sources */,
 				4D935EFF26ACB41900906B62 /* StartRouter.swift in Sources */,
 				4D935F2826ACB57A00906B62 /* Lessons.xcdatamodeld in Sources */,
+				4D935F4F26AF042C00906B62 /* CoreDataServiceProtocol.swift in Sources */,
 				4D935F0226ACB42700906B62 /* MenuRouterProtocol.swift in Sources */,
 				4D935F3426ACC72200906B62 /* MockCoreDataStack.swift in Sources */,
 				4D935F0626ACB43600906B62 /* SliderCollectionViewLayout.swift in Sources */,
@@ -874,6 +895,7 @@
 				4D935F1726ACB49A00906B62 /* AboutUsPresenter.swift in Sources */,
 				4D935F3A26AD797B00906B62 /* DIContainer.swift in Sources */,
 				4D935F2326ACB56B00906B62 /* CoreDataStack.swift in Sources */,
+				4D935F4E26AF042100906B62 /* NetworkServiceProtocol.swift in Sources */,
 				4D935E6426A2FC6500906B62 /* SliderRouterTest.swift in Sources */,
 				4D935F2A26ACB58200906B62 /* WordDTO.swift in Sources */,
 				4D935F1326ACB48800906B62 /* ProfilePresenter.swift in Sources */,
@@ -881,6 +903,7 @@
 				4D935F1D26ACB4AF00906B62 /* CoreDataError.swift in Sources */,
 				4D935F2626ACB57300906B62 /* Word+CoreDataClass.swift in Sources */,
 				4D935F4126AD7BFD00906B62 /* BaseViewConrollerTest.swift in Sources */,
+				4D935F5026AF043E00906B62 /* DataServiceProtocol.swift in Sources */,
 				4D935EFE26ACB40D00906B62 /* CardsPresenter.swift in Sources */,
 				4D935F0926ACB44100906B62 /* SliderRouter.swift in Sources */,
 				4D935F1926ACB4A100906B62 /* DataService.swift in Sources */,
@@ -931,6 +954,7 @@
 				4D742AF6269ADDA2009CDA12 /* Constants.swift in Sources */,
 				4D935E0A26A03F8F00906B62 /* ProfileRouter.swift in Sources */,
 				4D935DFB26A00CBF00906B62 /* MenuRouterProtocol.swift in Sources */,
+				4D935F4B26AEF08900906B62 /* DataServiceProtocol.swift in Sources */,
 				4D935DF1269F23DF00906B62 /* SliderRouter.swift in Sources */,
 				4D7BC584268C896A008CD301 /* Word+CoreDataClass.swift in Sources */,
 				4D935D55269C756100906B62 /* Assembly.swift in Sources */,
@@ -939,7 +963,9 @@
 				4D742AF8269AF462009CDA12 /* NetworkError.swift in Sources */,
 				970BBC76268EEF57008EFDEB /* BaseViewContoller.swift in Sources */,
 				4D7BC585268C896A008CD301 /* Word+CoreDataProperties.swift in Sources */,
+				4D935F4D26AEF0F700906B62 /* CoreDataServiceProtocol.swift in Sources */,
 				9714212A2696DC9700467C83 /* SettingsViewController.swift in Sources */,
+				4D935F4926AEE7B500906B62 /* NetworkServiceProtocol.swift in Sources */,
 				4D7BC582268C896A008CD301 /* Lesson+CoreDataClass.swift in Sources */,
 				9734ADFE267A24A7006BCF52 /* CardsViewController.swift in Sources */,
 				9734ADEA2679D3B0006BCF52 /* SliderCollectionViewCell.swift in Sources */,

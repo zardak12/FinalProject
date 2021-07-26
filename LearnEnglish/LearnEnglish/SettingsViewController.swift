@@ -9,10 +9,12 @@ import UIKit
 
 final class SettingsViewController: UIViewController, SettingsViewInput {
 
+    // MARK: - SettingsViewOutput
     var presenter: SettingsViewOutput?
 
     private var cellSpacingHeight: CGFloat = 10
 
+      // MARK: - UI
     private lazy var addItem: UIBarButtonItem = {
       let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addWord))
       add.tintColor = .white
@@ -34,7 +36,6 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
     }()
 
     // MARK: - Life Cyrcle
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -49,8 +50,7 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
         presenter?.update()
     }
 
-      // MARK: - Layout
-
+    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -61,7 +61,6 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
     }
 
     // MARK: - Objective function
-
     @objc func addWord() {
         let alertController = UIAlertController(title: "Введите слово и значение", message: "", preferredStyle: .alert)
         alertController.addTextField { textField in
@@ -90,13 +89,14 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
         present(alertController, animated: true)
     }
 
-      // MARK: - SettingsViewInput
+    // MARK: - SettingsViewInput
     func updateTableView() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
 
+    // MARK: - Alert
     func showErrorAlert() {
         let alertError = UIAlertController(title: "Уже есть...",
                                            message: "Такое слово уже существует. Введите другое слово",
@@ -107,11 +107,11 @@ final class SettingsViewController: UIViewController, SettingsViewInput {
 
 }
 
-  // MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension SettingsViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter?.words.count ?? 0
+        return presenter?.words?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -123,7 +123,7 @@ extension SettingsViewController: UITableViewDataSource {
                                                        for: indexPath) as? SettingsTableViewCell else {
             return UITableViewCell()
         }
-        guard let word = presenter?.words[indexPath.section] else { return UITableViewCell() }
+        guard let word = presenter?.words?[indexPath.section] else { return UITableViewCell() }
         cell.configure(with: word)
         cell.backgroundColor = .white
         cell.layer.cornerRadius = Constants.cornerRadius
@@ -133,8 +133,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
 }
 
-  // MARK: - UITableViewDelegate
-
+// MARK: - UITableViewDelegate
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return cellSpacingHeight
@@ -160,7 +159,7 @@ extension SettingsViewController: UITableViewDelegate {
                    forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let deleteIndex = indexPath.section
-            guard let word = presenter?.words[indexPath.section] else { return }
+            guard let word = presenter?.words?[indexPath.section] else { return }
             presenter?.deleteWord(wtih: word, deleteIndex)
         }
     }

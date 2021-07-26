@@ -15,40 +15,42 @@ class CardsMockView: CardsViewInput {
 
 class CardsPresenterTest: XCTestCase {
 
+    var sut: CardsPresenter!
     var view: CardsMockView!
     var assembly: AssemblyBuilder!
     var navigationController: MockNavigationController!
     var router: MenuRouterProtocol!
-    var presenter: CardsPresenter!
     var stack = MockCoreDataStack()
     var coreDataService: CoreDataServiceProtocol!
 
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
         view = CardsMockView()
         assembly = AssemblyBuilder()
         navigationController = MockNavigationController()
         router = MenuRouter(navigationContoller: navigationController, assemblyBuilder: assembly)
         coreDataService = MockCoreDataService(stack: stack)
-        presenter = CardsPresenter(view: view, router: router, coreDataService: coreDataService)
+        sut = CardsPresenter(view: view, router: router, coreDataService: coreDataService)
     }
 
-    override func tearDownWithError() throws {
+    override func tearDown() {
         view = nil
         assembly = nil
         navigationController = nil
         router = nil
-        presenter = nil
+        sut = nil
+        super.tearDown()
     }
 
-    func testViewIsNotNil() throws {
+    func testViewIsNotNil() {
         XCTAssertNotNil(view)
     }
 
-    func testRouterIsNotNil() throws {
+    func testRouterIsNotNil() {
         XCTAssertNotNil(router)
     }
 
-    func testPresenterIsNotNil() throws {
-        XCTAssertNotNil(presenter)
+    func testPresenterIsNotNil() {
+        XCTAssertNotNil(sut)
     }
 }

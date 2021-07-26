@@ -9,5 +9,9 @@ import Foundation
 import CoreData
 
 protocol SliderRouterProtocol {
-    func showSettingVC(with words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate)
+    /// Show SettingsViewController
+    /// - Parameters:
+    ///   - lesson: Lesson Entity
+    ///   - delegate: delegate that updated SliderViewController
+    func showSettingVC(lesson: Lesson, delegate: UpdateCollectionViewDelegate)
 }

@@ -10,20 +10,22 @@ import XCTest
 
 class ProfileRouterTest: XCTestCase {
 
-    var router: ProfileRouterProtocol!
+    var sut: ProfileRouterProtocol!
     let view = UIViewController()
 
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
         let assembly = AssemblyBuilder()
-        router = ProfileRouter(assemblyBuilder: assembly, view: view)
+        sut = ProfileRouter(assemblyBuilder: assembly, view: view)
     }
 
-    override func tearDownWithError() throws {
-        router = nil
+    override func tearDown() {
+        super.tearDown()
+        sut = nil
     }
 
-    func testProfileRouter() throws {
-        router.showAboutUsVC()
+    func testProfileRouter() {
+        sut.showAboutUsVC()
         XCTAssertNotNil(view)
     }
 }

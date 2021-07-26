@@ -6,58 +6,65 @@
 //
 import UIKit
 
+// MARK: - ParallaxCardCell
 protocol ParallaxCardCell {
     func setShadeOpacity(progress: CGFloat)
     func setZoom(progress: CGFloat)
 }
 
+// MARK: - SliderCollectionViewLayout
 final class SliderCollectionViewLayout: UICollectionViewLayout {
 
-    var itemSize: CGSize = .zero {
+    // MARK: - Private Properties
+    private var itemSize: CGSize = .zero {
         didSet { invalidateLayout() }
     }
 
-    var minScale: CGFloat = 1.0 {
+    private var minScale: CGFloat = 1.0 {
         didSet { invalidateLayout() }
     }
 
-    var visibleItemsCount: Int = 1 {
+    private var visibleItemsCount: Int = 1 {
         didSet { invalidateLayout() }
     }
 
-    var itemsCount: CGFloat {
+    private var itemsCount: CGFloat {
         return CGFloat(collectionView.numberOfItems(inSection: 0))
     }
 
-    var collectionBounds: CGRect {
+    private var collectionBounds: CGRect {
         return collectionView.bounds
     }
 
-    var contentOffset: CGPoint {
+    private var contentOffset: CGPoint {
         return collectionView.contentOffset
     }
 
-    var currentPage: Int {
+    private var currentPage: Int {
         return max(Int(contentOffset.x) / Int(collectionBounds.width), 0)
     }
 
-    let scale = CGFloat(1.0)
-    let progress = CGFloat(1.0)
+    private let scale = CGFloat(1.0)
+
+    private let progress = CGFloat(1.0)
 
     override var collectionView: UICollectionView {
-        return super.collectionView!
+        return super.collectionView ?? UICollectionView()
     }
 
+    // MARK: - shouldInvalidateLayout
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
         return true
     }
 
+    // MARK: - collectionViewContentSize
     override var collectionViewContentSize: CGSize {
         return CGSize(width: collectionBounds.width * itemsCount, height: collectionBounds.height)
     }
 
     private var didInitialSetup = false
 
+    // MARK: - Prepare
     override func prepare() {
         guard !didInitialSetup else { return }
         didInitialSetup = true
@@ -70,6 +77,7 @@ final class SliderCollectionViewLayout: UICollectionViewLayout {
                                                 y: 0), animated: false)
     }
 
+    // MARK: - LayoutAttributesForElements
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         super.layoutAttributesForElements(in: rect)
         let itemsCount = collectionView.numberOfItems(inSection: 0)

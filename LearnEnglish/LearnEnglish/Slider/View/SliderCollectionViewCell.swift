@@ -9,11 +9,10 @@ import UIKit
 
 final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, SliderViewCellInput {
 
-  // MARK: - Identifier
+    // MARK: - Identifier
     static let identifier = "identifier"
 
-  // MARK: - Private Properities
-
+    // MARK: - Private Properities
     private var tapToFlipGesture: UITapGestureRecognizer?
     private var cornerRadius: CGFloat = 10 { didSet { update() } }
     private var shadowOpacity: CGFloat = 0.3 { didSet { update() } }
@@ -30,12 +29,14 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
     private var latestBounds: CGRect?
     var presenter: SliderViewOutput?
 
+    // MARK: - UITapGestureRecognizer
     private lazy var tapGesture: UITapGestureRecognizer = {
         let recognizer = UITapGestureRecognizer()
         recognizer.addTarget(self, action: #selector(tap))
         return recognizer
     }()
 
+    // MARK: - UI
     private lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +50,7 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         return 1.3
     }
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .white
@@ -78,6 +80,7 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         }
     }
 
+    // MARK: - Configure
     func configure(with item: Word) {
         firstValue = item.value
         secondValue = item.translate
@@ -88,6 +91,7 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         }
     }
 
+    // MARK: - Updates
     private func update() {
         updateMask()
     }
@@ -104,6 +108,7 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         contentView.layer.mask = mask
     }
 
+    // MARK: - isHighlighted
     override var isHighlighted: Bool {
         get {
             return super.isHighlighted
@@ -116,21 +121,27 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         }
     }
 
+    // MARK: - PrepareForReuse
     override func prepareForReuse() {
         super.prepareForReuse()
         setShadeOpacity(progress: 0)
     }
 
+    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
+
+    // MARK: - Objective function
     @objc func tap() {
         presenter?.rotate()
 
     }
+
+    // MARK: - SliderViewCellInput
     func rotateFirst() {
         let transitionOptions: UIView.AnimationOptions = [.transitionFlipFromLeft, .showHideTransitionViews]
 

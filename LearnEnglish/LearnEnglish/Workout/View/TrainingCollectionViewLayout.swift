@@ -9,65 +9,71 @@ import UIKit
 
 final class TrainingCollectionViewLayout: UICollectionViewLayout {
 
-  var itemSize: CGSize = .zero {
-      didSet { invalidateLayout() }
-  }
-
-  var collectionBounds: CGRect {
-      return collectionView.bounds
-  }
-
-  var itemsCount: CGFloat {
-      return CGFloat(collectionView.numberOfItems(inSection: 0))
-  }
-
-  private var itemCount = 0
-
-  private var layoutAttributes: [UICollectionViewLayoutAttributes?] = []
-
-  private var adjustedLayoutAttributes: [UICollectionViewLayoutAttributes] = []
-
-  override var collectionViewContentSize: CGSize {
-      return CGSize(width: collectionBounds.width, height: collectionBounds.height)
-  }
-
-  override var collectionView: UICollectionView {
-      return super.collectionView!
-  }
-
-  private var didInitialSetup = false
-
-  override func prepare() {
-    guard !didInitialSetup else { return }
-    didInitialSetup = true
-
-    itemCount = collectionView.numberOfItems(inSection: 0)
-
-    let width = collectionBounds.width * 0.5
-    let height = width / 0.6
-    itemSize = CGSize(width: width, height: height)
-  }
-
-  override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-
-    let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-    attributes.size = itemSize
-    attributes.center = CGPoint(x: collectionBounds.midX, y: collectionBounds.midY)
-    return attributes
-     }
-
-  override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-
-    for item in 0..<itemCount {
-      let indexPath = IndexPath(item: item, section: 0)
-      let attributes = layoutAttributesForItem(at: indexPath)
-      layoutAttributes.append(attributes)
+    // MARK: - Private Properties
+    private var itemSize: CGSize = .zero {
+        didSet { invalidateLayout() }
     }
 
-    adjustedLayoutAttributes = layoutAttributes.compactMap { $0 }
+    private var collectionBounds: CGRect {
+        return collectionView.bounds
+    }
 
-    return adjustedLayoutAttributes
-  }
+    private var itemsCount: CGFloat {
+        return CGFloat(collectionView.numberOfItems(inSection: 0))
+    }
+
+    private var itemCount = 0
+
+    private var layoutAttributes: [UICollectionViewLayoutAttributes?] = []
+
+    private var adjustedLayoutAttributes: [UICollectionViewLayoutAttributes] = []
+
+    // MARK: - CollectionViewContentSize
+    override var collectionViewContentSize: CGSize {
+        return CGSize(width: collectionBounds.width, height: collectionBounds.height)
+    }
+
+    // MARK: - CollectionView
+    override var collectionView: UICollectionView {
+        return super.collectionView ?? UICollectionView()
+    }
+
+    private var didInitialSetup = false
+
+    // MARK: - Prepare
+    override func prepare() {
+        guard !didInitialSetup else { return }
+        didInitialSetup = true
+
+        itemCount = collectionView.numberOfItems(inSection: 0)
+
+        let width = collectionBounds.width * 0.5
+        let height = width / 0.6
+        itemSize = CGSize(width: width, height: height)
+    }
+
+    // MARK: - LayoutAttributesForItem
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attributes.size = itemSize
+        attributes.center = CGPoint(x: collectionBounds.midX, y: collectionBounds.midY)
+        return attributes
+    }
+
+    // MARK: - LayoutAttributesForElements
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+
+        for item in 0..<itemCount {
+            let indexPath = IndexPath(item: item, section: 0)
+            let attributes = layoutAttributesForItem(at: indexPath)
+            layoutAttributes.append(attributes)
+        }
+
+        adjustedLayoutAttributes = layoutAttributes.compactMap { $0 }
+
+        return adjustedLayoutAttributes
+    }
 
     func createLayout() -> UICollectionViewLayout {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),

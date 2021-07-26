@@ -8,11 +8,13 @@
 import Foundation
 import CoreData
 
+// MARK: - CoreDataStackProtocol
 protocol CoreDataStackProtocol {
     var readContext: NSManagedObjectContext { get set }
     var writeContext: NSManagedObjectContext { get set }
 }
 
+// MARK: - CoreDataStack
 final class CoreDataStack: CoreDataStackProtocol {
 
     var readContext: NSManagedObjectContext

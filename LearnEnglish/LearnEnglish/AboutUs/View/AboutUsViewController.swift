@@ -9,8 +9,7 @@ import UIKit
 
 final class AboutUsViewController: BaseViewController {
 
-      // MARK: - UI
-
+    // MARK: - UI
     lazy var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,12 +32,10 @@ final class AboutUsViewController: BaseViewController {
         return button
     }()
 
-      // MARK: - ViewOutput
-
+    // MARK: - ViewOutput
     var presenter: AboutUsViewOutput?
 
-      // MARK: - Life cyrcle
-
+    // MARK: - Life cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -49,8 +46,7 @@ final class AboutUsViewController: BaseViewController {
         loadData()
     }
 
-      // MARK: - Constraints
-
+    // MARK: - Constraints
     private func  setLayout() {
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
@@ -67,20 +63,21 @@ final class AboutUsViewController: BaseViewController {
         ])
     }
 
+    // MARK: - Load Data
     func loadData() {
         isLoading = true
         presenter?.makeImageVisible(completion: { result in
             self.isLoading = result
         })
     }
-      // MARK: - @Objc function
 
+    // MARK: - @Objective function
     @objc func goBack() {
         presenter?.tapBack()
     }
 }
 
-  // MARK: - ViewInput
+// MARK: - ViewInput
 extension AboutUsViewController: AboutUsViewInput {
     func showAuthorImage(with image: UIImage) {
         avaImageView.image = image

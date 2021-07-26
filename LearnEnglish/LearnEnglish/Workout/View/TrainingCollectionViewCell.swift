@@ -13,11 +13,17 @@ protocol QuestionDelegate: AnyObject {
 
 final class TrainingCollectionViewCell: UICollectionViewCell {
 
+    // MARK: - Identifier
     static let identifier = "identifier"
 
+    // MARK: - TrainingViewOutput
     var presenter: TrainingViewOutput?
-    private var buttonArray = [UIButton]()
+
+    // MARK: - QuestionDelegate
     weak var delegate: QuestionDelegate?
+
+    // MARK: - UI
+    private var buttonArray = [UIButton]()
 
     private lazy var labelName: UILabel = {
         let label = UILabel()
@@ -74,6 +80,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         return button
     }()
 
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .white
@@ -91,12 +98,14 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Bounds
     override var bounds: CGRect {
         didSet {
             updateMask()
         }
     }
 
+    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             labelName.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -133,6 +142,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         ])
     }
 
+    // MARK: - Configure
     func configure(with word: Word) {
         labelName.text = word.translate
         firstButton.setTitle(word.value, for: .normal)
@@ -143,6 +153,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
 
     }
 
+    // MARK: - Update
     private func updateMask() {
         let mask = CAShapeLayer()
         let path = UIBezierPath(roundedRect: bounds, cornerRadius: Constants.cornerRadius).cgPath
@@ -150,8 +161,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         contentView.layer.mask = mask
     }
 
-      // MARK: - TrainingViewCell
-
+    // MARK: - Answers
     private func showRightAnswer() {
         firstButton.rightAnimation()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -172,8 +182,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    // MARK: - Objc functions
-
+    // MARK: - Objective functions
     @objc func rightAnswer() {
         showRightAnswer()
         presenter?.rightAnswerAudio()

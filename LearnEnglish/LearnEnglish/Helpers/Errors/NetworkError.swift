@@ -5,8 +5,7 @@
 //  Created by Марк Шнейдерман on 11.07.2021.
 //
 
-  // MARK: - Errors
-
+  // MARK: - NetworkError
 enum NetworkError: Error {
   case network
   case decodable

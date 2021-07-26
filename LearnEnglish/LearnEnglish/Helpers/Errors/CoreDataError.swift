@@ -7,6 +7,7 @@
 
 import Foundation
 
+  // MARK: - CoreDataError
 enum CoreDataError: Error {
     case exist
 }

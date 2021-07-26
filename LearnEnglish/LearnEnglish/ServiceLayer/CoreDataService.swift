@@ -8,27 +8,16 @@
 import Foundation
 import CoreData
 
-typealias CoreDataWord = Result<Word, CoreDataError>
-
-  // MARK: - CoreDataServiceProtocol
-protocol CoreDataServiceProtocol {
-    var stack: CoreDataStackProtocol { get set }
-    func createLesson(with name: String) -> Bool
-    func createWord(value: String, translate: String, lesson: Lesson, completion: @escaping (CoreDataWord) -> Void)
-    func deleteLesson(with lesson: Lesson)
-    func deleteWord(with word: Word)
-}
-
-  // MARK: - CoreDataService
+// MARK: - CoreDataService
 final class CoreDataService: CoreDataServiceProtocol {
     var stack: CoreDataStackProtocol
 
-      // MARK: - Init
+    // MARK: - Init
     init(stack: CoreDataStackProtocol) {
         self.stack = stack
     }
 
-      // MARK: - Create Entity
+    // MARK: - Create Entity
     func createLesson(with name: String) -> Bool {
         var result = false
         let context = stack.writeContext
@@ -62,7 +51,7 @@ final class CoreDataService: CoreDataServiceProtocol {
         try? context.save()
     }
 
-      // MARK: - Delete Entity
+    // MARK: - Delete Entity
     func deleteLesson(with lesson: Lesson) {
         let context = stack.writeContext
         context.performAndWait {
@@ -87,7 +76,7 @@ final class CoreDataService: CoreDataServiceProtocol {
 
 private extension CoreDataService {
 
-      // MARK: - Lesson FetchRequest
+    // MARK: - Lesson FetchRequest
     private func fetchRequestAddLesson(with name: String) -> NSFetchRequest<Lesson> {
         let request: NSFetchRequest<Lesson> = Lesson.fetchRequest()
         request.predicate = NSPredicate(format: "name == %@", name)
@@ -103,7 +92,7 @@ private extension CoreDataService {
         return request
     }
 
-      // MARK: - Word FetchRequest
+    // MARK: - Word FetchRequest
     private func fetchRequestAddWord(with value: String) -> NSFetchRequest<Word> {
         let request = NSFetchRequest<Word>(entityName: "Word")
         request.predicate = NSPredicate(format: "value == %@", value)

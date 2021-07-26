@@ -10,7 +10,7 @@ import CoreData
 
 class CardsViewController: UIViewController, CardsViewInput {
 
-      // MARK: - UI
+    // MARK: - UI
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
@@ -29,12 +29,10 @@ class CardsViewController: UIViewController, CardsViewInput {
         return add
     }()
 
-      // MARK: - CardsViewOutput
+    // MARK: - CardsViewOutput
     var presenter: CardsViewOutput?
 
-    private var cellSpacingHeight: CGFloat = 10
-
-      // MARK: - Life Cyrcle
+    // MARK: - Life Cyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Карточки"
@@ -50,7 +48,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         presenter?.fetch()
     }
 
-      // MARK: - Layout
+    // MARK: - Layout
     private func setLayout() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -60,7 +58,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         ])
     }
 
-      // MARK: - Alert
+    // MARK: - Alert
     func showErrorAlert() {
         let alertError = UIAlertController(title: "Уже есть...",
                                            message: "Такая тема уже существует. Введите другую тему",
@@ -69,7 +67,7 @@ class CardsViewController: UIViewController, CardsViewInput {
         present(alertError, animated: true)
     }
 
-      // MARK: - Objective function
+    // MARK: - Objective function
     @objc func addNewLesson() {
         let alert = UIAlertController(title: "Введите название темы", message: "", preferredStyle: .alert)
         alert.addTextField(configurationHandler: nil)
@@ -83,7 +81,7 @@ class CardsViewController: UIViewController, CardsViewInput {
     }
 }
 
-  // MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension CardsViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,11 +107,11 @@ extension CardsViewController: UITableViewDataSource {
 
 }
 
-  // MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension CardsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
+        return Constants.cellSpacingHeight
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -142,7 +140,7 @@ extension CardsViewController: UITableViewDelegate {
     }
 }
 
-  // MARK: - NSFetchedResultsControllerDelegate
+// MARK: - NSFetchedResultsControllerDelegate
 extension CardsViewController: NSFetchedResultsControllerDelegate {
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {

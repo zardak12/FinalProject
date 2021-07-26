@@ -8,6 +8,9 @@
 import Foundation
 
 protocol ProfileRouterProtocol {
+    /// Show AboutUsViewController
     func showAboutUsVC()
+
+    /// Go Back
     func goBack()
 }

@@ -9,15 +9,37 @@ import UIKit
 
   // MARK: - AssemblyBuilderProtocol
 protocol AssemblyBuilderProtocol {
+    /// MainViewController
     func createMainVC() -> UIViewController
+
+    /// CardsViewController
     func createCards() -> UIViewController
+
+    /// WorkoutViewController
     func createWorkout() -> UIViewController
+
+    /// ProfileViewController
     func createProfile() -> UIViewController
+
+    /// AboutUsViewController
     func createAboutUs() -> UIViewController
+
+    /// SliderViewController
+    /// - Parameters:
+    ///   - navigationContoller: UINavigationController
+    ///   - lesson: Lesson Entity
     func createSlider(with navigationContoller: UINavigationController,
                       lesson: Lesson) -> UIViewController
-    func createSettings(words: [Word], lesson: Lesson,
+
+    /// SettingsViewController
+    /// - Parameters:
+    ///   - lesson: Lesson Entity
+    ///   - delegate: Update words in SliderViewController
+    func createSettings(lesson: Lesson,
                         delegate: UpdateCollectionViewDelegate) -> UIViewController
+
+    /// TrainingViewController
+    /// - Parameter words: Word Entity
     func createTraining(with words: [Word]) -> UIViewController
 }
 
@@ -34,6 +56,7 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         UINavigationBar.appearance().titleTextAttributes = attrs as [NSAttributedString.Key: Any]
         let tabBarCnt = UITabBarController()
         tabBarCnt.tabBar.barStyle = .default
+        tabBarCnt.tabBar.tintColor = Colors.backgoundFill
         let cardsVC = createCards()
         let cardsTabBarItem = UITabBarItem(title: "Карточки", image: UIImage(named: "cards"), tag: 0)
         cardsVC.tabBarItem = cardsTabBarItem
@@ -90,12 +113,12 @@ final class AssemblyBuilder: AssemblyBuilderProtocol {
         return view
     }
 
-    func createSettings(words: [Word], lesson: Lesson,
+    func createSettings(lesson: Lesson,
                         delegate: UpdateCollectionViewDelegate) -> UIViewController {
         let view = SettingsViewController()
         let stack = Container.shared.coreDataStack
         let coreDataService = CoreDataService(stack: stack)
-        let presenter = SettingsPresenter(view: view, words: words, lesson: lesson,
+        let presenter = SettingsPresenter(view: view, lesson: lesson,
                                           delegate: delegate, coreDataService: coreDataService)
         view.presenter = presenter
         return view

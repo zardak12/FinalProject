@@ -8,15 +8,19 @@
 import UIKit
 
 final class SliderRouter: SliderRouterProtocol, RouterProtocol {
+    // MARK: - Properties
     var navigationContoller: UINavigationController
     var assemblyBuilder: AssemblyBuilderProtocol
 
+    // MARK: - Init
     init(navigationContoller: UINavigationController, assemblyBuilder: AssemblyBuilderProtocol) {
         self.navigationContoller = navigationContoller
         self.assemblyBuilder = assemblyBuilder
     }
-    func showSettingVC(with words: [Word], lesson: Lesson, delegate: UpdateCollectionViewDelegate) {
-        let settingVC = assemblyBuilder.createSettings(words: words, lesson: lesson, delegate: delegate)
+
+    // MARK: - Show
+    func showSettingVC(lesson: Lesson, delegate: UpdateCollectionViewDelegate) {
+        let settingVC = assemblyBuilder.createSettings(lesson: lesson, delegate: delegate)
         navigationContoller.pushViewController(settingVC, animated: true)
     }
 

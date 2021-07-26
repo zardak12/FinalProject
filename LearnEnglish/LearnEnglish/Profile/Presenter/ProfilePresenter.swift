@@ -8,14 +8,19 @@
 import UIKit
 
 // MARK: - ProfileViewInput
-
 protocol ProfileViewInput: AnyObject {
+    /// Show Image
+    /// - Parameters:
+    ///   - image: Change Image
+    ///   - text: Change text inder image
   func showAvaImage(with image: UIImage, with text: String)
+
+    /// Show name
+    /// - Parameter name: name that display
   func showName(with name: String)
 }
 
 // MARK: - ProfileViewOutput
-
 protocol ProfileViewOutput: AnyObject {
 
   init(view: ProfileViewInput, with router: ProfileRouterProtocol)
@@ -23,24 +28,33 @@ protocol ProfileViewOutput: AnyObject {
   func checkImage()
   func checkName()
 
+    /// Save Image UserDefaults
+    /// - Parameter image: UIImage from picker
   func saveImage(with image: UIImage)
+
+    /// Save Name UserDefaults
+    /// - Parameter name: Put your name
   func saveName(with name: String)
+
+    /// Switch to AboutUsViewController
   func tapOnAboutUsVC()
 }
 
-  // MARK: - ProfilePresenter
-
+// MARK: - ProfilePresenter
 final class ProfilePresenter: ProfileViewOutput {
 
+    // MARK: - Properties
     let defaults = UserDefaults.standard
     weak var view: ProfileViewInput?
     var router: ProfileRouterProtocol
 
+    // MARK: - Init
     required init(view: ProfileViewInput, with router: ProfileRouterProtocol) {
         self.view = view
         self.router = router
     }
 
+    // MARK: - Check
     func checkImage() {
         if let imageData = defaults.object(forKey: UserDefaultKeys.keyForAvaImage) as? Data,
            let image = UIImage(data: imageData) {
@@ -57,6 +71,7 @@ final class ProfilePresenter: ProfileViewOutput {
         }
     }
 
+    // MARK: - Save UserDefaults
     func saveImage(with image: UIImage) {
         view?.showAvaImage(with: image, with: "")
         if let png = image.pngData() {
@@ -69,6 +84,7 @@ final class ProfilePresenter: ProfileViewOutput {
         defaults.set(name, forKey: UserDefaultKeys.keyForName)
     }
 
+    // MARK: - Router
     func tapOnAboutUsVC() {
         router.showAboutUsVC()
     }
