@@ -44,24 +44,29 @@
 
 <img width="383" alt="Cards_1" src="https://user-images.githubusercontent.com/26218092/127067760-0c554d9a-47b5-4bf1-bb3a-1767ad484dcd.png">
 <img width="372" alt="Cards_2" src="https://user-images.githubusercontent.com/26218092/127067781-40a85153-6667-40a0-a6fe-f86751cb7549.png">
+
 ### 2) Slider 
 На данном экране мы можем свайпать карточки вправо.Их  можно возвращать назад. Когда слова заканчиваются начинаются новые и создается эффект бесконечности. По нажатию она переворачивается и можно посмотреть перевод данного слова. Если мы создадим новую тему в Cards и зайдем, то он попросит создать новое слово. Сверху есть кнопка settings переход на экран Settnigs для редактирования данного урока.
 
 <img width="377" alt="Slider" src="https://user-images.githubusercontent.com/26218092/127068149-2f2bcd8b-7f40-425f-b70a-b7201e100331.png">
+
 ### 3) Settings
 На данном экране реализовано редактирвоание карточек. Вы можете добавить новые карточки нажав на плюс и удалить по свайпу влево.
 
 <img width="372" alt="Setting_1" src="https://user-images.githubusercontent.com/26218092/127068267-a5b4fa2d-5bdd-40c1-99cc-7729f658ec73.png">
 <img width="382" alt="Settings_2" src="https://user-images.githubusercontent.com/26218092/127068281-7be1398a-ae6c-4c1f-afc0-cada7ea941f9.png">
+
 ### 4) Workout 
 Режим Тренировка. WorkoutViewController наследован от CardsViewController и также отображает список тем, по нажатию мы переходим на TrainingViewController, где реализована тренировка.При выборе правильного ответа появляется приятный звук,при неправльном кнопка трясется и издает неприятный звук. Это сделано, чтобы человеку не хотелось ошибаться, а наоборот нажимать на правильный ответ.
 
 <img width="385" alt="Workout" src="https://user-images.githubusercontent.com/26218092/127068495-8253fc72-76b1-4e87-b576-b50d1dfd3c5f.png">
 <img width="375" alt="Training" src="https://user-images.githubusercontent.com/26218092/127068596-753063fb-224f-4ff1-ba99-afc36b991d13.png">
+
 ### 5) Profile 
 На данном экране реализована запоминание пользователя. Вы можете написать свое имя и выбрать подходящую картинку в галерии и приложение будет помнить вас. По нажатию на кнопку AboutUs выходит информация обо мне.
 
 <img width="373" alt="Profile" src="https://user-images.githubusercontent.com/26218092/127068759-b8c370d4-52be-493b-8317-91b979465af1.png">
+
 ### 6) AboutUs 
 Тут просто находится информация обо мне. Мое имя, фамилия и мое фото. Сделал этот экран, чтобы удолетворить условию: грузит медиа из сети.
 
