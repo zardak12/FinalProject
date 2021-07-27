@@ -10,7 +10,8 @@ import XCTest
 class LoginUITest: XCTestCase {
     let app = XCUIApplication()
 
-    override func setUpWithError() throws {
+    override func setUp() {
+        super.setUp()
         app.launch()
         continueAfterFailure = false
     }

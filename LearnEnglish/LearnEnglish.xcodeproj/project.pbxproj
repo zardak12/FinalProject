@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D42EA9726B02DB60055D38B /* SettingsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42EA9626B02DB60055D38B /* SettingsPresenterTest.swift */; };
+		4D42EA9926B031B90055D38B /* AboutUsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42EA9826B031B90055D38B /* AboutUsPresenterTest.swift */; };
+		4D42EA9B26B03AED0055D38B /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42EA9A26B03AED0055D38B /* DataServiceTest.swift */; };
 		4D742AF6269ADDA2009CDA12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D742AF5269ADDA2009CDA12 /* Constants.swift */; };
 		4D742AF8269AF462009CDA12 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D742AF7269AF462009CDA12 /* NetworkError.swift */; };
 		4D7835362698BF0B002FDB19 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7835352698BF0B002FDB19 /* ProfileViewController.swift */; };
@@ -153,6 +156,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4D42EA9626B02DB60055D38B /* SettingsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenterTest.swift; sourceTree = "<group>"; };
+		4D42EA9826B031B90055D38B /* AboutUsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsPresenterTest.swift; sourceTree = "<group>"; };
+		4D42EA9A26B03AED0055D38B /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
 		4D742AF5269ADDA2009CDA12 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4D742AF7269AF462009CDA12 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4D7835352698BF0B002FDB19 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +277,14 @@
 				4D935D54269C756100906B62 /* Assembly.swift */,
 			);
 			path = Assembly;
+			sourceTree = "<group>";
+		};
+		4D42EA9326B02D650055D38B /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D42EA9626B02DB60055D38B /* SettingsPresenterTest.swift */,
+			);
+			path = SettingsModule;
 			sourceTree = "<group>";
 		};
 		4D935D4B269C746500906B62 /* Slider */ = {
@@ -490,6 +504,7 @@
 			children = (
 				4D935E5526A2B65700906B62 /* CardsModule */,
 				4D935E5626A2B66700906B62 /* SliderModule */,
+				4D42EA9326B02D650055D38B /* SettingsModule */,
 				4D935E5726A2B6AF00906B62 /* ProfileModule */,
 				4D935F4226AD7C1600906B62 /* AboutUsModule */,
 				4D935E5426A2B61700906B62 /* NetworkModule */,
@@ -577,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				4D935F4026AD7BFD00906B62 /* BaseViewConrollerTest.swift */,
+				4D42EA9826B031B90055D38B /* AboutUsPresenterTest.swift */,
 			);
 			path = AboutUsModule;
 			sourceTree = "<group>";
@@ -585,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				4D935F4326AD7E4600906B62 /* CoreDataServiceTest.swift */,
+				4D42EA9A26B03AED0055D38B /* DataServiceTest.swift */,
 			);
 			path = CoreDataModule;
 			sourceTree = "<group>";
@@ -864,6 +881,7 @@
 				4D935E5E26A2ED2C00906B62 /* MenuRouterTest.swift in Sources */,
 				4D935F1526ACB49100906B62 /* ProfileRouter.swift in Sources */,
 				4D935F0A26ACB44800906B62 /* SettingsViewController.swift in Sources */,
+				4D42EA9B26B03AED0055D38B /* DataServiceTest.swift in Sources */,
 				4D935F0426ACB43000906B62 /* SliderViewController.swift in Sources */,
 				4D935F0026ACB42100906B62 /* CardsTableViewCell.swift in Sources */,
 				4D935F0F26ACB45F00906B62 /* TrainingCollectionViewLayout.swift in Sources */,
@@ -884,6 +902,7 @@
 				4D935F1A26ACB4A400906B62 /* CoreDataService.swift in Sources */,
 				4D935F1026ACB46200906B62 /* WorkoutViewController.swift in Sources */,
 				4D935F0B26ACB44B00906B62 /* SettingsTableViewCell.swift in Sources */,
+				4D42EA9926B031B90055D38B /* AboutUsPresenterTest.swift in Sources */,
 				4D935F0326ACB42A00906B62 /* MenuRouter.swift in Sources */,
 				4D935F1126ACB47D00906B62 /* TrainingPresenter.swift in Sources */,
 				4D935F1B26ACB4A900906B62 /* UIButton+Extension.swift in Sources */,
@@ -903,6 +922,7 @@
 				4D935F1D26ACB4AF00906B62 /* CoreDataError.swift in Sources */,
 				4D935F2626ACB57300906B62 /* Word+CoreDataClass.swift in Sources */,
 				4D935F4126AD7BFD00906B62 /* BaseViewConrollerTest.swift in Sources */,
+				4D42EA9726B02DB60055D38B /* SettingsPresenterTest.swift in Sources */,
 				4D935F5026AF043E00906B62 /* DataServiceProtocol.swift in Sources */,
 				4D935EFE26ACB40D00906B62 /* CardsPresenter.swift in Sources */,
 				4D935F0926ACB44100906B62 /* SliderRouter.swift in Sources */,

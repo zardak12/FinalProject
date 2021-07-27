@@ -18,9 +18,9 @@ class SliderMockView: SliderViewInput {
 class SliderPresenterTest: XCTestCase {
     var sut: SliderViewOutput!
     let stack = MockCoreDataStack()
-    var view: SliderMockView!
+    var view: SliderViewInput!
     var navigationController: MockNavigationController!
-    var assembly: AssemblyBuilder!
+    var assembly: AssemblyBuilderProtocol!
     var words = [Word]()
     var router: SliderRouterProtocol!
     var coreDataService: CoreDataServiceProtocol!
@@ -76,4 +76,8 @@ class SliderPresenterTest: XCTestCase {
         XCTAssertEqual(sut.words?.count, 0)
     }
 
+    func testRotate() {
+        sut.rotate()
+        XCTAssertTrue(sut.isSelect)
+    }
 }
