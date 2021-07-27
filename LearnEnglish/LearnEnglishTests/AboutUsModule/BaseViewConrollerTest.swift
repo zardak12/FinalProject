@@ -23,7 +23,6 @@ class MockBaseViewController: UIViewController {
     }
 
     // MARK: - show Spinner
-
     func showSpinner(isShown: Bool) -> Bool {
         if isShown {
             addChild(spinner)
