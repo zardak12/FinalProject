@@ -9,15 +9,10 @@ import XCTest
 @testable import LearnEnglish
 
 class MockDelegate: UpdateCollectionViewDelegate {
-    func scrollToNext() {
-    }
+    func scrollToNext() {}
+    func addNewWord(_ word: Word) {}
 
-    func addNewWord(_ word: Word) {
-    }
-
-    func deleteWord(_ indexPath: Int) {
-    }
-
+    func deleteWord(_ indexPath: Int) {}
 }
 
 class SliderRouterTest: XCTestCase {

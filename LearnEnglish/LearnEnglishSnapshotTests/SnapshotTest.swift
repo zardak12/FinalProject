@@ -13,6 +13,7 @@ class SnapshotTest: XCTestCase {
 
     func testCardVC() throws {
         let cardVC = AssemblyBuilder().createCards()
+        //isRecording = true
         assertSnapshot(matching: cardVC, as: .image(on: .iPhone8))
     }
 }
