@@ -12,8 +12,8 @@ import SnapshotTesting
 class SnapshotTest: XCTestCase {
 
     func testCardVC() throws {
+        /// Add isRecording = true if first time, after write  isRecording = false
         let cardVC = AssemblyBuilder().createCards()
-        //isRecording = true
         assertSnapshot(matching: cardVC, as: .image(on: .iPhone8))
     }
 }

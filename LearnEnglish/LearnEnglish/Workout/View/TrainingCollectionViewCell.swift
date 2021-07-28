@@ -142,6 +142,12 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
         ])
     }
 
+      // MARK: - PrepareForReuse
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        firstButton.isEnabled = true
+    }
+
     // MARK: - Configure
     func configure(with word: Word) {
         labelName.text = word.translate
@@ -164,6 +170,7 @@ final class TrainingCollectionViewCell: UICollectionViewCell {
     // MARK: - Answers
     private func showRightAnswer() {
         firstButton.rightAnimation()
+        firstButton.isEnabled = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.delegate?.scrollToNext()
         }
