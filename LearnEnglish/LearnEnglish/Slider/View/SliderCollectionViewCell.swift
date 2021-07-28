@@ -63,6 +63,7 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         fatalError("init(coder:) has not been implemented")
     }
 
+      // MARK: - Set
     func setShadeOpacity(progress: CGFloat) {
         shadeOpacity = progress
         updateShade()
@@ -72,6 +73,7 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
         zoom = progress
     }
 
+      // MARK: - Bounds
     override var bounds: CGRect {
         didSet {
             guard latestBounds != bounds else { return }

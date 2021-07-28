@@ -15,7 +15,7 @@ typealias GetImageResponce = Result<UIImage, NetworkError>
 protocol NetworkServiceProtocol {
 
     /// Get Lessons from network
-    /// - Parameter completion: Handler with result of responce
+    /// - Parameter completion: Handler with result of LessonsResponce
     func getLessons(completion: @escaping (LessonsResponce) -> Void)
 
     /// Load Image

@@ -54,6 +54,7 @@ final class CardsPresenter: CardsViewOutput {
         self.frc = createFetchResultController()
     }
 
+      // MARK: - FetchResultController
     func createFetchResultController() -> NSFetchedResultsController<Lesson> {
         let request = NSFetchRequest<Lesson>(entityName: "Lesson")
         request.sortDescriptors = [.init(key: "name", ascending: true)]

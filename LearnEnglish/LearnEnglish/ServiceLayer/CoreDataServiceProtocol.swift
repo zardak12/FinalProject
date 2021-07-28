@@ -23,7 +23,7 @@ protocol CoreDataServiceProtocol {
     ///   - value: Value of the word
     ///   - translate: Translate of the word
     ///   - lesson: The theme of the words
-    ///   - completion: Handler with result of the words
+    ///   - completion: Handler with result of the resoonce CoreDataWord
 
     func createWord(value: String, translate: String, lesson: Lesson, completion: @escaping (CoreDataWord) -> Void)
     /// Delete Lesson
