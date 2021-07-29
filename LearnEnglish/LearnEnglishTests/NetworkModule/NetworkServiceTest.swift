@@ -57,6 +57,7 @@ class NetworkServiceTest: XCTestCase {
 
         var networkResponce: [LessonDTO]?
 
+        let expectation = expectation(description: "getLessons")
         sut.getLessons { result in
             switch result {
             case .success(let responce):
@@ -64,16 +65,21 @@ class NetworkServiceTest: XCTestCase {
             case .failure(let error):
                 XCTAssertNotNil(error)
             }
+            expectation.fulfill()
         }
         XCTAssertEqual(responce, networkResponce)
+        waitForExpectations(timeout: 10, handler: nil)
     }
 
     func testNetworkServiceLoadImage() {
         var catchImage: UIImage?
 
+        let expectation = expectation(description: "getLessons")
         sut.loadImage { imageResponce in
             catchImage = imageResponce
+            expectation.fulfill()
         }
         XCTAssertEqual(catchImage, image)
+        waitForExpectations(timeout: 10, handler: nil)
     }
 }
