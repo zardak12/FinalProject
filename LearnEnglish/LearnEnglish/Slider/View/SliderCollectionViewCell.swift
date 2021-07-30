@@ -144,7 +144,6 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
     // MARK: - Objective function
     @objc func tap() {
         presenter?.rotate()
-
     }
 
     // MARK: - SliderViewCellInput

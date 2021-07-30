@@ -138,6 +138,7 @@ extension SliderViewController: UICollectionViewDataSource {
         guard let item = presenter?.words?[arrayIndex] else { return UICollectionViewCell() }
         cell.presenter = presenter
         presenter?.cell = cell
+        presenter?.isSelect = false
         cell.configure(with: item)
         return cell
     }
