@@ -10,6 +10,8 @@
 		4D42EA9726B02DB60055D38B /* SettingsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42EA9626B02DB60055D38B /* SettingsPresenterTest.swift */; };
 		4D42EA9926B031B90055D38B /* AboutUsPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42EA9826B031B90055D38B /* AboutUsPresenterTest.swift */; };
 		4D42EA9B26B03AED0055D38B /* DataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D42EA9A26B03AED0055D38B /* DataServiceTest.swift */; };
+		4D58838C26B48337002AFA51 /* MockNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58838B26B48337002AFA51 /* MockNetworkService.swift */; };
+		4D58838E26B483FD002AFA51 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D58838D26B483FD002AFA51 /* BaseViewController.swift */; };
 		4D742AF6269ADDA2009CDA12 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D742AF5269ADDA2009CDA12 /* Constants.swift */; };
 		4D742AF8269AF462009CDA12 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D742AF7269AF462009CDA12 /* NetworkError.swift */; };
 		4D7835362698BF0B002FDB19 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7835352698BF0B002FDB19 /* ProfileViewController.swift */; };
@@ -101,7 +103,6 @@
 		4D935F3426ACC72200906B62 /* MockCoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F3326ACC72200906B62 /* MockCoreDataStack.swift */; };
 		4D935F3A26AD797B00906B62 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935EE826AB727C00906B62 /* DIContainer.swift */; };
 		4D935F3D26AD7B0C00906B62 /* MockNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F3C26AD7B0C00906B62 /* MockNavigationController.swift */; };
-		4D935F4126AD7BFD00906B62 /* BaseViewConrollerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4026AD7BFD00906B62 /* BaseViewConrollerTest.swift */; };
 		4D935F4426AD7E4600906B62 /* CoreDataServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4326AD7E4600906B62 /* CoreDataServiceTest.swift */; };
 		4D935F4726AD7E7E00906B62 /* MockCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4626AD7E7E00906B62 /* MockCoreDataService.swift */; };
 		4D935F4926AEE7B500906B62 /* NetworkServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D935F4826AEE7B500906B62 /* NetworkServiceProtocol.swift */; };
@@ -159,6 +160,8 @@
 		4D42EA9626B02DB60055D38B /* SettingsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenterTest.swift; sourceTree = "<group>"; };
 		4D42EA9826B031B90055D38B /* AboutUsPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsPresenterTest.swift; sourceTree = "<group>"; };
 		4D42EA9A26B03AED0055D38B /* DataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTest.swift; sourceTree = "<group>"; };
+		4D58838B26B48337002AFA51 /* MockNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkService.swift; sourceTree = "<group>"; };
+		4D58838D26B483FD002AFA51 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		4D742AF5269ADDA2009CDA12 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4D742AF7269AF462009CDA12 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		4D7835352698BF0B002FDB19 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -209,7 +212,6 @@
 		4D935EFC26AC776E00906B62 /* SnapshotTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotTest.swift; sourceTree = "<group>"; };
 		4D935F3326ACC72200906B62 /* MockCoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataStack.swift; sourceTree = "<group>"; };
 		4D935F3C26AD7B0C00906B62 /* MockNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNavigationController.swift; sourceTree = "<group>"; };
-		4D935F4026AD7BFD00906B62 /* BaseViewConrollerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewConrollerTest.swift; sourceTree = "<group>"; };
 		4D935F4326AD7E4600906B62 /* CoreDataServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataServiceTest.swift; sourceTree = "<group>"; };
 		4D935F4626AD7E7E00906B62 /* MockCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCoreDataService.swift; sourceTree = "<group>"; };
 		4D935F4826AEE7B500906B62 /* NetworkServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProtocol.swift; sourceTree = "<group>"; };
@@ -582,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				4D935F3326ACC72200906B62 /* MockCoreDataStack.swift */,
+				4D58838B26B48337002AFA51 /* MockNetworkService.swift */,
 				4D935F4626AD7E7E00906B62 /* MockCoreDataService.swift */,
 				4D935F3C26AD7B0C00906B62 /* MockNavigationController.swift */,
 			);
@@ -591,8 +594,8 @@
 		4D935F4226AD7C1600906B62 /* AboutUsModule */ = {
 			isa = PBXGroup;
 			children = (
-				4D935F4026AD7BFD00906B62 /* BaseViewConrollerTest.swift */,
 				4D42EA9826B031B90055D38B /* AboutUsPresenterTest.swift */,
+				4D58838D26B483FD002AFA51 /* BaseViewController.swift */,
 			);
 			path = AboutUsModule;
 			sourceTree = "<group>";
@@ -920,8 +923,8 @@
 				4D935F1326ACB48800906B62 /* ProfilePresenter.swift in Sources */,
 				4D935F1626ACB49600906B62 /* AboutUsViewController.swift in Sources */,
 				4D935F1D26ACB4AF00906B62 /* CoreDataError.swift in Sources */,
+				4D58838E26B483FD002AFA51 /* BaseViewController.swift in Sources */,
 				4D935F2626ACB57300906B62 /* Word+CoreDataClass.swift in Sources */,
-				4D935F4126AD7BFD00906B62 /* BaseViewConrollerTest.swift in Sources */,
 				4D42EA9726B02DB60055D38B /* SettingsPresenterTest.swift in Sources */,
 				4D935F5026AF043E00906B62 /* DataServiceProtocol.swift in Sources */,
 				4D935EFE26ACB40D00906B62 /* CardsPresenter.swift in Sources */,
@@ -931,6 +934,7 @@
 				4D935F2426ACB56D00906B62 /* Lesson+CoreDataClass.swift in Sources */,
 				4D935E6826A48E4100906B62 /* SliderPresenterTest.swift in Sources */,
 				4D935E5A26A2C43300906B62 /* NetworkServiceTest.swift in Sources */,
+				4D58838C26B48337002AFA51 /* MockNetworkService.swift in Sources */,
 				4D935F0D26ACB45800906B62 /* TrainingViewController.swift in Sources */,
 				4D935E6226A2F2E900906B62 /* ProfileRouterTest.swift in Sources */,
 				4D935F2C26ACB59E00906B62 /* Assembly.swift in Sources */,
