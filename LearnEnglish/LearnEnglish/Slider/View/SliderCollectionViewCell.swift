@@ -39,6 +39,8 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
     // MARK: - UI
     private lazy var label: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = Font.helveticaBoldFont
         label.textColor = .black
@@ -133,7 +135,9 @@ final class SliderCollectionViewCell: UICollectionViewCell, ParallaxCardCell, Sl
     private func setLayout() {
         NSLayoutConstraint.activate([
             label.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            label.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
 
